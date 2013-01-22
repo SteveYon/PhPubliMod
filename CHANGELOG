@@ -1,0 +1,12 @@
+2009-09-30: version 1.0
+Added automatic installation procedure via web interface
+with scripts in install/ directory.
+Moved definition of macros to param_labo.php
+
+2009-03-05: version 0.91
+Code cleanup to conform with W3C validation tools.
+Added missing file intranet/export_notice_hal.php.
+Added $LABO_HALID in include.php.
+
+2009-03-04: version 0.90
+First public release

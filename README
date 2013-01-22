@@ -1,0 +1,49 @@
+---------------------------------------------------------------------------------------
+PHPUBLI Copyright (C) 2007-2009 CNRS
+Auteur : Benoît PIER <http://www.lmfa.ec-lyon.fr/perso/Benoit.Pier>
+Laboratoire de mécanique des fluides et d'acoustique (CNRS-Université de Lyon)
+École centrale de Lyon
+36 avenue Guy-de-Collongue
+69134 Écully cedex, France
+
+Ce programme est un logiciel libre distribué sous licence GNU/GPL version 3.
+Pour plus de détails voir le fichier COPYING.
+---------------------------------------------------------------------------------------
+
+---------------------------------------------------------------------------------------
+PHPUBLI - Serveur php/mysql pour gérer, chercher, mettre en ligne et formater
+les notices bibliographiques de documents scientifiques (typiquement la production
+scientifique d'un laboratoire de recherche). La structure très détaillée de la base
+de données a été pensée pour être flexible et interfaçable avec d'autres systèmes
+(affichage personnalisé, alimentation d'autres bases de données...), pour éviter
+toute redondance inutile, minimiser les erreurs de saisie et rester compatible
+avec des besoins futurs.
+
+Un exemple de mise en oeuvre est visible à l'adresse http://www.lmfa.ec-lyon.fr/publi.
+
+Cet outil gère les types de documents suivants : articles dans des revues
+scientifiques, thèses, hdr, communications dans des congrès avec ou sans actes, livres
+et ouvrages. La recherche de documents par auteur et/ou année de publication et/ou type
+de document et/ou équipe de recherche est proposée ; des critères beaucoup plus
+élaborés sont possibles. Cette base de données a pour vocation de référencer les
+publications mais non de les archiver. Pour chaque notice, les fonctionnalités
+proposées comprennent aussi :
+    * lien DOI vers l'original du document ;
+    * lien vers l'archive ouverte HAL ;
+    * recherche automatique du document via Google Scholar.
+
+Une interface permet l'export d'une sélection de documents dans des formats
+utilisables par d'autres logiciels :
+    * bibtex pour utilisation avec Latex ;
+    * RIS qui permet d'alimenter d'autres systèmes (Endnote, Refworks#) directement
+avec les données de la base ;
+    * XML le format le plus généraliste qui permet de reproduire le plus fidèlement
+possible la structure des données de la base et qui peut être mis en forme de manière
+très flexible par des fichiers XSLT. L'option XML (générique) exporte un maximum
+d'informations de la base, alors que l'option XML (compatible HAL) produit un fichier
+pour import automatique des données vers les serveurs de HAL.
+
+Les opérations (ajouts, modifications) sur la base se font dans l'espace intranet après
+identification par login et mot de passe. Chaque notice peut être validée et protégée
+en écriture par des utilisateurs privilégiés.
+---------------------------------------------------------------------------------------

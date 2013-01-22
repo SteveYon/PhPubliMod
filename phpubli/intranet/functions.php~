@@ -1,0 +1,888 @@
+<?php session_start();
+/*****************************************************************************
+ * Copyright (C) 2007-2009 CNRS
+ *
+ * Author: Benoît PIER  <http://www.lmfa.ec-lyon.fr/perso/Benoit.Pier>
+ *
+ * This file is part of PHPUBLI-1.0
+ *
+ * PHPUBLI is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the license, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ *****************************************************************************/
+
+function maintenance($bd)
+{
+	$maintenancelevel=0;
+
+	$query="select * from flags where name='readonly'";
+	// print "$query <br>\n";
+	$result=$bd->exec_query($query);
+	$flag = $bd->fetch_object ($result);
+	$maintenancelevel=$flag->value;
+	// print "maintenancelevel=$maintenancelevel<br>\n";
+	return $maintenancelevel;
+}
+
+function leftmenu_intranet($item)
+{
+	global $rootdir;
+	global $bd;
+	print("<!-- begin lhs menu -->\n");
+	print("<div id=lhsmenu>\n");
+	print("<ul>\n");
+
+	print("<li><a href=\"$rootdir/\"");
+	if ($item == "") print(" class=active");
+	print(">Publications</a></li>\n");
+	print("<li>&nbsp;</li>\n");
+	print("<li><a href=\"$rootdir/intranet/\"");
+	if ($item == "intranet") print(" class=restractive");
+	else print(" class=restr");
+	print(">Intranet</a></li>\n");
+	print("<li>&nbsp;</li>\n");
+	print("<li><a href=\"$rootdir/intranet/login.php\"");
+	if ($item == "login") print(" class=restractive");
+	else print(" class=restr");
+	print(">login</a></li>\n");
+	print("<li><a href=\"$rootdir/intranet/logout.php\"");
+	if ($item == "logout") print(" class=restractive");
+	else print(" class=restr");
+	print(">logout</a></li>\n");
+	/*
+	print("<li><a href=\"$rootdir/intranet/document.php\"");
+	if ($item == "doc") print(" class=restractive");
+	else print(" class=restr");
+	print(">documents</a></li>\n");*/
+			  /*
+				  print("<li><a href=\"$rootdir/intranet/these.php\"");
+				  if ($item == "these") print(" class=restractive");
+				  else print(" class=restr");
+				  print(">thèses</a></li>\n");
+			  */
+        /*
+	print("<li><a href=\"$rootdir/intranet/personne.php\"");
+	if ($item == "personne") print(" class=restractive");
+	else print(" class=restr");
+	print(">personnes</a></li>\n");
+	print("<li><a href=\"$rootdir/intranet/journal.php\"");
+	if ($item == "journal") print(" class=restractive");
+	else print(" class=restr");
+	print(">journaux</a></li>\n");
+	print("<li><a href=\"$rootdir/intranet/institution.php\"");
+	if ($item == "institution") print(" class=restractive");
+	else print(" class=restr");
+	print(">institutions</a></li>\n");
+	print("<li><a href=\"$rootdir/intranet/publisher.php\"");
+	if ($item == "publisher") print(" class=restractive");
+	else print(" class=restr");
+	print(">maisons d'édition</a></li>\n");
+	print("<li><a href=\"$rootdir/intranet/conference.php\"");
+	if ($item == "conference") print(" class=restractive");
+	else print(" class=restr");
+	print(">conférences</a></li>\n");
+        */
+	$currentuser=current_user($bd);
+	if (!empty($currentuser))
+	{
+		$status=check_login($bd);
+		print("<li>&nbsp;</li>\n");
+		print("<li>&nbsp;user: $currentuser&nbsp;</li>&nbsp;\n");
+
+		if ($status>0)
+		{
+			print("<li><a href=\"$rootdir/intranet/admin\"");
+			if ($item == "admin") print(" class=restractive");
+			else print(" class=restr");
+			print(">admin</a></li>\n");
+		}
+		if ($status==2)
+		{
+			print("<li><a href=\"$rootdir/intranet/superadmin\"");
+			if ($item == "superadmin") print(" class=restractive");
+			else print(" class=restr");
+			print(">superadmin</a></li>\n");
+		}
+	}
+
+	print("</ul>\n");
+	print("</div>\n");
+	print("<!-- end lhs menu -->\n");
+}
+
+// ****************************************************************
+// log operations
+
+function log_entry($table_name, $item_id, $action, $item_old, $item_new, $bd)
+{
+	$u_id=$_SESSION['id'];
+	$g_id=$_SESSION['group'];
+	// print ("u_id=$u_id g_id=$g_id<br>\n");
+
+	$query="select * from `tables` where table_name='$table_name'";
+	$res=$bd->exec_query($query);
+	$table=$bd->fetch_object($res);
+	$table_id=$table->table_id;
+
+	$entry_o="";
+	if ("$item_old" != "")
+	foreach ($item_old as $key=>$val)
+	{
+		$entry_o .= "$key=\"$val\" ";
+	}
+	$entry_n="";
+	foreach ($item_new as $key=>$val)
+	{
+		$entry_n .= "$key=\"$val\" ";
+	}
+
+	$entry_old=addSlashes($entry_o);
+	$entry_new=addSlashes($entry_n);
+
+	// print ("u_id=$u_id g_id=$g_id table_id=$table_id item_id=$item_id <br>\n");
+	// print ("old: $entry_old <br><br>\n");
+	// print ("new: $entry_new <br><br>\n");
+
+	$query="insert into history"
+		. " (u_id, table_id, item_id, g_id, action, date_entry, entry_old, entry_new)"
+		. " values"
+		. " ('$u_id', '$table_id', '$item_id', '$g_id', '$action', now(), '$entry_old', '$entry_new')";
+	// print ("query= $query <br>\n");
+	$res=$bd->exec_query($query);
+}
+
+function log_delete($table_name, $item_id, $item, $bd)
+{
+	$login=$_SESSION['user'];
+	// print ("login=$login <br>\n");
+
+	$query="select * from user where u_login='$login'";
+	// print ("query= $query <br>\n");
+
+	$res=$bd->exec_query($query);
+	$user=$bd->fetch_object($res);
+
+	$u_id=$user->u_id;
+	$g_id=$user->u_groupid;
+	// print ("u_id=$u_id g_id=$g_id<br>\n");
+
+	$query="select * from `tables` where table_name='$table_name'";
+	$res=$bd->exec_query($query);
+	$table=$bd->fetch_object($res);
+	$table_id=$table->table_id;
+
+	$note="";
+	foreach ($item as $key=>$val)
+	{
+		$note .= "$key=\"$val\" ";
+	}
+
+	// print ("u_id=$u_id g_id=$g_id table_id=$table_id item_id=$item_id <br>\n");
+	// print ("$note <br><br>\n");
+
+	$query="insert into history"
+		. " (u_id, table_id, item_id, g_id, action, date_applied, note)"
+		. " values"
+		. " ('$u_id', '$table_id', '$item_id', '$g_id', 'delete', utc_timestamp(), 'was: $note')";
+	// print ("query= $query <br>\n");
+	$res=$bd->exec_query($query);
+}
+
+function log_update($table_name, $item_id, $item, $bd)
+{
+	$login=$_SESSION['user'];
+	// print ("login=$login <br>\n");
+
+	$query="select * from user where u_login='$login'";
+	// print ("query= $query <br>\n");
+
+	$res=$bd->exec_query($query);
+	$user=$bd->fetch_object($res);
+
+	$u_id=$user->u_id;
+	$g_id=$user->u_groupid;
+	// print ("u_id=$u_id g_id=$g_id<br>\n");
+
+	$query="select * from `tables` where table_name='$table_name'";
+	$res=$bd->exec_query($query);
+	$table=$bd->fetch_object($res);
+	$table_id=$table->table_id;
+
+	$note="";
+	foreach ($item as $key=>$val)
+	{
+		$note .= "$key=\"$val\" ";
+	}
+
+	// print ("u_id=$u_id g_id=$g_id table_id=$table_id item_id=$item_id <br>\n");
+	// print ("$note <br><br>\n");
+
+	$query="insert into history"
+		. " (u_id, table_id, item_id, g_id, action, date_applied, note)"
+		. " values"
+		. " ('$u_id', '$table_id', '$item_id', '$g_id', 'update', utc_timestamp(), 'was: $note')";
+	// print ("query= $query <br>\n");
+	$res=$bd->exec_query($query);
+}
+
+function log_insert($table_name, $item_id, $bd)
+{
+	$login=$_SESSION['user'];
+	// print ("login=$login <br>\n");
+
+	$query="select * from user where u_login='$login'";
+	// print ("query= $query <br>\n");
+
+	$res=$bd->exec_query($query);
+	$user=$bd->fetch_object($res);
+
+	$u_id=$user->u_id;
+	$g_id=$user->u_groupid;
+	// print ("u_id=$u_id g_id=$g_id<br>\n");
+
+	$query="select * from `tables` where table_name='$table_name'";
+	$res=$bd->exec_query($query);
+	$table=$bd->fetch_object($res);
+	$table_id=$table->table_id;
+
+	$note="";
+
+	// print ("u_id=$u_id g_id=$g_id table_id=$table_id item_id=$item_id <br>\n");
+	// print ("$note <br><br>\n");
+
+	$query="insert into history"
+		. " (u_id, table_id, item_id, g_id, action, date_applied)"
+		. " values"
+		. " ('$u_id', '$table_id', '$item_id', '$g_id', 'insert', utc_timestamp())";
+	// print ("query= $query <br>\n");
+	$res=$bd->exec_query($query);
+}
+
+/*
+// ****************************************************************
+// Journal operations
+
+function journal_lines($bd)
+{
+	global $rootdir;
+	$query = "SELECT * FROM journal ORDER BY journal_fullname";
+	// $query = "SELECT * FROM journal";
+	$result = $bd->exec_query ($query);
+
+	$lines="";
+	$i=0;
+
+	while ( $journal = $bd->fetch_object ($result) )
+	{
+		$i++;
+		$str="";
+		// $str .= "<th>$i</th> ";
+		$str .= "<th>";
+		$log=$journal->log;
+		if ( ( "$log"=="2" ) && (check_root_priv($bd)<1) )
+			$str .= "[" . "$i";	// entry already validated, no longer modifiable
+		else
+			$str .= "[" . anchor("$rootdir/intranet/journal.php?mode=edit&id=$journal->journal_id", $i);
+		if (check_admin_priv($bd))
+			$str .= "|" . anchor("$rootdir/intranet/admin/history_journal.php?action=item&id=$journal->journal_id","log");
+		$str .= "]</th>";
+		$str .= "<td>";
+		$str .= stripSlashes($journal->journal_fullname);
+		//$str .= " (<i>$journal->journal_name</i>)";
+		$str .= " (" . anchor("$rootdir/search.php?search=journal&id=$journal->journal_id", "<i>" . stripSlashes($journal->journal_name) . "</i>") . ")";
+		$str .= " [type=$journal->journal_type]";
+		$str .= "</td>";
+		$lines .= "<tr>" . $str . "</tr>\n";
+	}
+
+	return "<table>\n" . $lines . "</table>\n" ;
+}
+
+function journal_form($mode, $id, $bd)
+{
+	if ("$id"!="")
+	{
+		$query = "SELECT * from journal WHERE journal_id = $id";
+		$res = $bd->exec_query($query);
+		$journal = $bd->fetch_object($res);
+	}
+
+	// get lists
+	$list_journaltypes[0]="-------------------- (select from list) --------------------";
+	$result = $bd->exec_query("SELECT * FROM typejournal order by typejournal_id"); 
+	while ( $ob=$bd->fetch_object($result))
+		$list_journaltypes[$ob->typejournal_id]="$ob->typejournal_id - $ob->typejournal_libelle";
+
+	echo "<table>\n";
+	
+	if ($mode=="update")
+	{
+		echo "<tr>\n";
+		echo "<th>journal_id</th>\n";
+		echo "<td>$journal->journal_id ";
+		if ($tab->log=="0")
+			echo "[created on $journal->date]";
+		if ($tab->log=="1")
+			echo "[last modified on $journal->date]";
+		if ($tab->log=="2")
+			echo "[validated on $journal->date]";
+		echo "</td>\n";
+		echo "</tr>\n";
+	}
+		echo "<tr>\n";
+		echo "<th>journal_name</th>\n";
+		echo "<td><input type=\"text\" name=\"journal_name\" value=\"" . stripSlashes($journal->journal_name) . "\" size=\"70\" maxlength=\"255\"></td>\n";
+		echo "</tr>\n";
+		echo "<tr><th></th><td>Utiliser l'abbréviation officielle du journal.</td></tr>\n";
+		echo "<tr><th>&nbsp;</th></tr>\n";
+		echo "<tr>\n";
+		echo "<th>journal_fullname</th>\n";
+		echo "<td><input type=\"text\" name=\"journal_fullname\" value=\"" . stripSlashes($journal->journal_fullname) . "\" size=\"70\" maxlength=\"255\"></td>\n";
+		echo "</tr>\n";
+		echo "<tr><th></th><td>Nom complet en toutes lettres.</td></tr>\n";
+		echo "<tr><th>&nbsp;</th></tr>\n";
+		echo "<tr>\n";
+		echo "<th>journal_type</th>\n";
+		echo "<td><select name=\"journal_type\" size=\"1\">\n";
+		foreach ($list_journaltypes as $id=>$name)
+		{
+			echo "<option value=\"$id\"";
+			if ($id==$journal->journal_type) echo " selected";
+			echo ">$name</option>\n";
+		}
+		echo "</tr>\n";
+
+	echo "</table>\n";
+}
+
+function journal_fixed($id, $bd)
+{
+	$query = "SELECT * from journal WHERE journal_id = $id";
+	$res = $bd->exec_query($query);
+	$journal = $bd->fetch_object($res);
+
+	// get lists
+	$list_journaltypes[0]="-------------------- (select from list) --------------------";
+	$result = $bd->exec_query("SELECT * FROM typejournal order by typejournal_id"); 
+	while ( $ob=$bd->fetch_object($result))
+		$list_journaltypes[$ob->typejournal_id]="$ob->typejournal_id - $ob->typejournal_libelle";
+
+	echo "<table>\n";
+		echo "<tr>\n";
+		echo "<th>journal_id</th>\n";
+		echo "<td>$journal->journal_id ";
+		if ($journal->log=="0")
+			echo "[created on $journal->date]";
+		if ($journal->log=="1")
+			echo "[last modified on $journal->date]";
+		if ($journal->log=="2")
+			echo "[validated on $journal->date]";
+		echo "</td>\n";
+		echo "</tr>\n";
+		echo "<tr>\n";
+		echo "<th>journal_name</th>\n";
+		echo "<td>" . stripSlashes($journal->journal_name) . "</td>\n";
+		echo "</tr>\n";
+		echo "<tr>\n";
+		echo "<th>journal_fullname</th>\n";
+		echo "<td>" . stripSlashes($journal->journal_fullname) . "</td>\n";
+		echo "</tr>\n";
+		echo "<tr>\n";
+		echo "<th>journal_type</th>\n";
+		echo "<td>";
+		foreach ($list_journaltypes as $id=>$name)
+		{
+			if ($id==$journal->journal_type) echo "$name";
+		}
+		echo "</td>\n";
+		echo "</tr>\n";
+	echo "</table>\n";
+}
+
+function journal_update($journal, $bd)
+{
+	$name=addSlashes($journal['journal_name']);
+	$fullname=addSlashes($journal['journal_fullname']);
+	$type=$journal['journal_type'];
+
+	$journal_id=$journal['journal_id'];
+
+	$query = "select * from journal where journal_id = '$journal_id'";
+       	$res = $bd->exec_query($query);
+	$journal_old = $bd->fetch_object ($res);
+
+	$query = "UPDATE journal SET "
+		. "journal_name='$name', journal_fullname='$fullname', "
+		. "journal_type='$type', "
+		. "log='1', date=now() "
+		. "WHERE journal_id = '$journal_id'";
+	// print ("query= $query <p>\n");
+	$res = $bd->exec_query($query);
+
+	$query = "select * from journal where journal_id = '$journal_id'";
+       	$res = $bd->exec_query($query);
+	$journal_new = $bd->fetch_object ($res);
+
+	log_entry("journal", $journal_id, "update", $journal_old, $journal_new, $bd);
+}
+
+function journal_validate($journal_id, $bd)
+{
+	$query = "select * from journal where journal_id = '$journal_id'";
+       	// print ("query= $query <p>\n");
+       	$res = $bd->exec_query($query);
+	$journal = $bd->fetch_object ($res);
+
+	$name=$journal->journal_name;
+	$fullname=$journal->journal_fullname;
+	// print ("<b>Validation de $fullname ($name).</b><br>\n");
+
+	$query = "UPDATE journal SET "
+		. "log='2', date=now() "
+               	. "WHERE journal_id = '$journal_id'";
+       	// print ("query= $query <p>\n");
+       	$res = $bd->exec_query($query);
+
+	log_entry("journal", $journal_id, "validate", $journal, "", $bd);
+}
+	
+function journal_insert($journal, $bd)
+{
+	$name=addSlashes($journal['journal_name']);
+	$fullname=addSlashes($journal['journal_fullname']);
+	$type=$journal['journal_type'];
+
+	$query = "INSERT INTO journal (journal_name, journal_fullname, journal_type, log, date) "
+			. " VALUES ( '$name', '$fullname', '$type', '0', now()) " ;
+	// print ("query= $query <p>\n");
+	$res = $bd->exec_query($query);
+
+	$name = $bd->prepare_string($name);
+	$fullname = $bd->prepare_string($fullname);
+
+	$query = "SELECT * "
+		. "FROM journal "
+		. "WHERE journal_name LIKE '%$name' "
+		. "AND journal_fullname LIKE '%$fullname%' ";
+	// print ("query= $query <p>\n");
+	$res = $bd->exec_query($query);
+	$journal = $bd->fetch_object ($res);
+	$returnid=$journal->journal_id;
+
+	log_entry("journal", $returnid, "insert", "", $journal, $bd);
+
+	// echo "returnid=$returnid <p>\n";
+	return $returnid;
+}
+
+function journal_delete($journal_id, $bd)
+{
+	$query = "select * from journal where journal_id = '$journal_id'";
+       	// print ("query= $query <p>\n");
+       	$res = $bd->exec_query($query);
+	$journal_old = $bd->fetch_object ($res);
+
+	$query = "DELETE FROM journal "
+               	. "WHERE journal_id = '$journal_id'";
+       	// print ("query= $query <p>\n");
+       	$res = $bd->exec_query($query);
+
+	log_entry("journal", $journal_id, "delete", $journal_old, "", $bd);
+}
+*/
+
+// ****************************************************************
+// Personne operations
+
+/*
+function personne_lines($bd)
+{
+	global $rootdir;
+	$query = "SELECT * FROM personne ORDER BY pers_last";
+	$result = $bd->exec_query ($query);
+
+	$lines="";
+	$i=0;
+
+	while ( $personne = $bd->fetch_object ($result) )
+	{
+		$i++;
+		$str="";
+		$str .= "<th>";
+		$log=$personne->log;
+		if ( ( "$log"=="2" ) && (check_root_priv($bd)<1) )
+			$str .= "[" . "$i";	// entry already validated, no longer modifiable
+		else
+			$str .= "[" . anchor("$rootdir/intranet/personne.php?mode=edit&id=$personne->pers_id", $i);
+
+		if (check_admin_priv($bd))
+			$str .= "|" . anchor("$rootdir/intranet/admin/history_pers.php?action=item&id=$personne->pers_id","log");
+		$str .= "]</th>";
+		$str .= "<td>";
+		$str .= stripSlashes($personne->pers_first);
+		$str .= "</td>";
+		$str .= "<td>";
+		//$str .= stripSlashes($personne->pers_last);
+		$str .= anchor("$rootdir/search.php?search=personne&id=$personne->pers_id", stripSlashes($personne->pers_last));
+		$str .= "</td>";
+		$lines .= "<tr>" . $str . "</tr>\n";
+	}
+
+	return "<table>\n" . $lines . "</table>\n" ;
+}
+
+function personne_form($mode, $id, $bd)
+{
+	if ("$id"!="")
+	{
+		$query = "SELECT * from personne WHERE pers_id = $id";
+		$res = $bd->exec_query($query);
+		$personne = $bd->fetch_object($res);
+	}
+
+	echo "<table>\n";
+
+	if ($mode=="update")
+	{
+		echo "<tr>\n";
+		echo "<th>pers_id</th>\n";
+		echo "<td>$personne->pers_id ";
+		if ($personne->log=="0")
+			echo "[created on $personne->date]";
+		if ($personne->log=="1")
+			echo "[last modified on $personne->date]";
+		if ($personne->log=="2")
+			echo "[validated on $personne->date]";
+		echo "</td>\n";
+		echo "</tr>\n";
+	}
+		echo "<tr><th></th><td>Utiliser des majuscules seulement pour les initiales du prénom (<i>pers_first</i>) et du nom (<i>pers_last</i>), des minuscules pour tout le reste. Mettre le prénom en entier.</td></tr>";
+		echo "<tr>\n";
+		echo "<th>pers_first</th>\n";
+		echo "<td><input type=\"text\" name=\"pers_first\" value=\"" . stripSlashes($personne->pers_first) ."\" size=\"50\" maxlength=\"255\"></td>\n";
+		echo "</tr>\n";
+		echo "<tr>\n";
+		echo "<th>pers_last</th>\n";
+		echo "<td><input type=\"text\" name=\"pers_last\" value=\"" . stripSlashes($personne->pers_last) ."\" size=\"50\" maxlength=\"255\"></td>\n";
+		echo "</tr>\n";
+
+	echo "</table>\n";
+}
+
+function personne_fixed($id, $bd)
+{
+	$query = "SELECT * from personne WHERE pers_id = $id";
+	$res = $bd->exec_query($query);
+	$personne = $bd->fetch_object($res);
+
+	echo "<table>\n";
+		echo "<tr>\n";
+		echo "<th>pers_id</th>\n";
+		echo "<td>$personne->pers_id ";
+		if ($personne->log=="0")
+			echo "[created on $personne->date]";
+		if ($personne->log=="1")
+			echo "[last modified on $personne->date]";
+		if ($personne->log=="2")
+			echo "[validated on $personne->date]";
+		echo "</td>\n";
+		echo "</tr>\n";
+
+		echo "<tr>\n";
+		echo "<th>pers_first</th>\n";
+		echo "<td>" . stripslashes($personne->pers_first) . "</td>\n";
+		echo "</tr>\n";
+		echo "<tr>\n";
+		echo "<th>pers_last</th>\n";
+		echo "<td>" . stripslashes($personne->pers_last) . "</td>\n";
+		echo "</tr>\n";
+	echo "</table>\n";
+}
+
+function personne_update($personne, $bd)
+{
+	$first=addSlashes($personne['pers_first']);
+	$last=addSlashes($personne['pers_last']);
+
+	$pers_id=$personne['pers_id'];
+
+	$query = "select * from personne where pers_id = '$pers_id'";
+       	$res = $bd->exec_query($query);
+	$personne_old = $bd->fetch_object ($res);
+
+	$query = "UPDATE personne SET "
+		. "pers_first='$first', pers_last='$last', "
+		. "log='1', date=now() "
+		. "WHERE pers_id = '$pers_id'";
+	// print ("query= $query <p>\n");
+	$res = $bd->exec_query($query);
+
+	$query = "select * from personne where pers_id = '$pers_id'";
+       	$res = $bd->exec_query($query);
+	$personne_new = $bd->fetch_object ($res);
+
+	log_entry("personne", $pers_id, "update", $personne_old, $personne_new, $bd);
+}
+
+function personne_validate($pers_id, $bd)
+{
+	$query = "select * from personne where pers_id = '$pers_id'";
+       	$res = $bd->exec_query($query);
+	$personne = $bd->fetch_object ($res);
+
+	$first=$personne->pers_first;
+	$last=$personne->pers_last;
+	//print ("<b>Validation de $first $last.</b><br>\n");
+
+	$query = "UPDATE personne SET "
+		. "log='2', date=now() "
+               	. "WHERE pers_id = '$pers_id'";
+       	// print ("query= $query <p>\n");
+       	$res = $bd->exec_query($query);
+
+	log_entry("personne", $pers_id, "validate", $personne, "", $bd);
+}
+
+function personne_insert($personne, $bd)
+{
+	$first=addSlashes($personne['pers_first']);
+	$last=addSlashes($personne['pers_last']);
+	$query = "INSERT INTO personne (pers_first, pers_last, log, date) "
+		. " VALUES ( '$first', '$last', '0', now()) " ;
+	// print ("query= $query <p>\n");
+	$res = $bd->exec_query($query);
+
+	$query = "SELECT * "
+		. "FROM personne "
+		. "WHERE pers_first LIKE '%$first' "
+		. "AND pers_last LIKE '%$last%' ";
+	// print ("query= $query <p>\n");
+	$res = $bd->exec_query($query);
+	$personne = $bd->fetch_object ($res);
+	$returnid=$personne->pers_id;
+
+	log_entry("personne", $returnid, "insert", "", $personne, $bd);
+	return $returnid;
+}
+
+function personne_delete($pers_id, $bd)
+{
+	$query = "select * from personne where pers_id = '$pers_id'";
+       	$res = $bd->exec_query($query);
+	$personne_old = $bd->fetch_object ($res);
+
+	$query = "DELETE FROM personne "
+               	. "WHERE pers_id = '$pers_id'";
+       	// print ("query= $query <p>\n");
+       	$res = $bd->exec_query($query);
+
+	log_entry("personne", $pers_id, "delete", $personne_old, "", $bd);
+}
+*/
+
+// ****************************************************************
+// Institution operations
+
+function institution_lines($bd)
+{
+	global $rootdir;
+	$query = "SELECT * FROM institution ORDER BY institution_name";
+	$result = $bd->exec_query ($query);
+
+	$lines="";
+	$i=0;
+
+	while ( $institution = $bd->fetch_object ($result) )
+	{
+		$i++;
+		$str="";
+		// $str .= "<th>$i</th> ";
+		$str .= "<th>";
+		$log=$institution->log;
+		if ( ( "$log"=="2" ) && (check_root_priv($bd)<1) )
+			$str .= "[" . "$i";	// entry already validated, no longer modifiable
+		else
+			$str .= "[" . anchor("$rootdir/intranet/institution.php?mode=edit&id=$institution->institution_id", $i);
+		//if (check_admin_priv($bd))
+			//$str .= "|" . anchor("$rootdir/intranet/admin/history_institution.php?action=item&id=$institution->institution_id","log");
+		$str .= "]</th>";
+		$str .= "<td>";
+		$str .= stripSlashes($institution->institution_name);
+		$str .= " ($institution->institution_short)";
+		// $journalname=anchor("$rootdir/search.php?search=journal&id=$journal->journal_id", "<i>" . stripSlashes($journal->journal_name) . "</i>");
+		//$str .= " ($journalname)";
+		$str .= "</td>";
+		$lines .= "<tr>" . $str . "</tr>\n";
+	}
+
+	return "<table>\n" . $lines . "</table>\n" ;
+}
+
+function institution_form($mode, $id, $bd)
+{
+	if ("$id"!="")
+	{
+		$query = "SELECT * from institution WHERE institution_id = $id";
+		$res = $bd->exec_query($query);
+		$institution = $bd->fetch_object($res);
+	}
+
+	echo "<table>\n";
+	
+	if ($mode=="update")
+	{
+		echo "<tr>\n";
+		echo "<th>institution_id</th>\n";
+		echo "<td>$institution->institution_id ";
+		if ($tab->log=="0")
+			echo "[created on $institution->date]";
+		if ($tab->log=="1")
+			echo "[last modified on $institution->date]";
+		if ($tab->log=="2")
+			echo "[validated on $institution->date]";
+		echo "</td>\n";
+		echo "</tr>\n";
+	}
+		echo "<tr>\n";
+		echo "<th>institution_name</th>\n";
+		echo "<td><input type=\"text\" name=\"institution_name\" value=\"" . stripSlashes($institution->institution_name) . "\" size=\"70\" maxlength=\"255\"></td>\n";
+		echo "</tr>\n";
+		echo "<tr><th></th><td>Nom complet en toutes lettres.</td></tr>\n";
+		echo "<tr><th>&nbsp;</th></tr>\n";
+		echo "<tr>\n";
+		echo "<th>institution_short</th>\n";
+		echo "<td><input type=\"text\" name=\"institution_short\" value=\"" . stripSlashes($institution->institution_short) . "\" size=\"70\" maxlength=\"255\"></td>\n";
+		echo "</tr>\n";
+		echo "<tr><th></th><td>Abbréviation ou sigle.</td></tr>\n";
+		echo "<tr><th>&nbsp;</th></tr>\n";
+
+	echo "</table>\n";
+}
+	
+function institution_insert($institution, $bd)
+{
+	$name=addSlashes($institution['institution_name']);
+	$short=addSlashes($institution['institution_short']);
+
+	$query = "INSERT INTO institution (institution_name, institution_short, log, date) "
+			. " VALUES ( '$name', '$short', '0', now()) " ;
+	// print ("query= $query <p>\n");
+	$res = $bd->exec_query($query);
+
+	$name = $bd->prepare_string($name);
+	$short = $bd->prepare_string($short);
+
+	$query = "SELECT * "
+		. "FROM institution "
+		. "WHERE institution_name LIKE '%$name' "
+		. "AND institution_short LIKE '%$short%' ";
+	// print ("query= $query <p>\n");
+	$res = $bd->exec_query($query);
+	$institution = $bd->fetch_object ($res);
+	$returnid=$institution->institution_id;
+
+	log_entry("institution", $returnid, "insert", "", $institution, $bd);
+
+	// echo "returnid=$returnid <p>\n";
+	return $returnid;
+}
+
+function institution_fixed($id, $bd)
+{
+	$query = "SELECT * from institution WHERE institution_id = $id";
+	$res = $bd->exec_query($query);
+	$institution = $bd->fetch_object($res);
+
+	echo "<table>\n";
+		echo "<tr>\n";
+		echo "<th>institution_id</th>\n";
+		echo "<td>$institution->institution_id ";
+		if ($institution->log=="0")
+			echo "[created on $institution->date]";
+		if ($institution->log=="1")
+			echo "[last modified on $institution->date]";
+		if ($institution->log=="2")
+			echo "[validated on $institution->date]";
+		echo "</td>\n";
+		echo "</tr>\n";
+		echo "<tr>\n";
+		echo "<th>institution_name</th>\n";
+		echo "<td>" . stripSlashes($institution->institution_name) . "</td>\n";
+		echo "</tr>\n";
+		echo "<tr>\n";
+		echo "<th>institution_short</th>\n";
+		echo "<td>" . stripSlashes($institution->institution_short) . "</td>\n";
+		echo "</tr>\n";
+	echo "</table>\n";
+}
+
+function institution_update($institution, $bd)
+{
+	$name=addSlashes($institution['institution_name']);
+	$short=addSlashes($institution['institution_short']);
+
+	$institution_id=$institution['institution_id'];
+
+	$query = "select * from institution where institution_id = '$institution_id'";
+       	$res = $bd->exec_query($query);
+	$institution_old = $bd->fetch_object ($res);
+
+	$query = "UPDATE institution SET "
+		. "institution_name='$name', institution_short='$short', "
+		. "log='1', date=now() "
+		. "WHERE institution_id = '$institution_id'";
+	// print ("query= $query <p>\n");
+	$res = $bd->exec_query($query);
+
+	$query = "select * from institution where institution_id = '$institution_id'";
+       	$res = $bd->exec_query($query);
+	$institution_new = $bd->fetch_object ($res);
+
+	log_entry("institution", $institution_id, "update", $institution_old, $institution_new, $bd);
+}
+
+function institution_validate($institution_id, $bd)
+{
+	$query = "select * from institution where institution_id = '$institution_id'";
+       	// print ("query= $query <p>\n");
+       	$res = $bd->exec_query($query);
+	$institution = $bd->fetch_object ($res);
+
+	$name=$institution->institution_name;
+	$short=$institution->institution_short;
+	// print ("<b>Validation de $name ($short).</b><br>\n");
+
+	$query = "UPDATE institution SET "
+		. "log='2', date=now() "
+               	. "WHERE institution_id = '$institution_id'";
+       	// print ("query= $query <p>\n");
+       	$res = $bd->exec_query($query);
+
+	log_entry("institution", $institution_id, "validate", $institution, "", $bd);
+}
+
+function institution_delete($institution_id, $bd)
+{
+	$query = "select * from institution where institution_id = '$institution_id'";
+       	// print ("query= $query <p>\n");
+       	$res = $bd->exec_query($query);
+	$institution_old = $bd->fetch_object ($res);
+
+	$query = "DELETE FROM institution "
+               	. "WHERE institution_id = '$institution_id'";
+       	// print ("query= $query <p>\n");
+       	$res = $bd->exec_query($query);
+
+	log_entry("institution", $institution_id, "delete", $institution_old, "", $bd);
+}
+
+?>

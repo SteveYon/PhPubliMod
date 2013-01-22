@@ -1,0 +1,222 @@
+Installation de PHPUBLI --- Serveur php/mysql pour gérer, chercher, mettre
+en ligne et formater les notices bibliographiques de documents scientifiques
+
+--------------------------------------------------------------------------------
+
+Prérequis
+=========
+Un serveur web avec PHP et un serveur MYSQL.
+
+Le système a été mis au point avec php-5.2.5, mysql-5.0.5 et httpd-2.2.6,
+mais devrait fonctionner avec une large gamme de versions puisqu'au aucune
+fonctionnalité spéciale n'est utilisée.
+
+
+Étapes pour l'installation
+==========================
+L'installation est très simple, il suffit de configurer quelques variables,
+de créer et d'initialiser la base de données et d'installer les scripts PHP.
+
+Cela peut se faire de manière complètement manuelle ou semi-automatique
+(interface web).
+
+
+===========================
+ I. INSTALLATION MANUELLE
+===========================
+
+Créer et initialiser la base de données
+=======================================
+
+Le fichier "phpubli_create.sql" crée la base de données phpubli (vide),
+l'exécuter en se connectant au serveur mysql en tant qu'administrateur.
+Le fichier "phpubli_load.sql" crée toutes les tables nécessaires et charge
+quelques données initiales.
+
+Configurations recommandées avant d'exécuter les fichiers phpubli_{create,load}.sql:
+* phpubli_create.sql ligne 7: modifier "phpubli_login" et "phpubli_password"
+* phpubli_load.sql lignes 478-482: adapter les noms des équipes de recherche
+* phpubli_load.sql lignes 1161-3: par défaut, trois utilisateurs sont créés :
+	- root : superadministrateur (password=phpubli)
+	- admin1 : administrateur de l'équipe de recherche 1 (password=phpubli_admin1)
+	- user1 : un utilisateur de l'équipe de recherche 1 (password=phpubli_user1)
+Les mots de passe sont enregistrés dans la base par leur valeur md5. Il
+est *vivement* recommandé de modifier les mots de passe par défaut (et
+d'ajuster les champs 'u_mail'...).
+
+
+Configurations avant d'installer les scripts PHP
+================================================
+
+Il est recommandé de faire ces modifications avant d'installer les scripts
+sur le serveur.
+
+* phpubli/connexion_param.php: renseigner correctement les paramètres de
+connexion à la base mysql.
+
+* phpubli/param_labo.php: renseigner les informations sur le laboratoire
+qui héberge le site.
+
+* phpubli/functions_local.php: 
+fonctions titlebanner() et navigationbar() - remplacer par les éléments tels
+qu'ils apparaissent sur d'autres pages web du laboratoire (ou laisser vide).
+fonction warning() - modifier (ou supprimer) le message qui s'affiche sur la
+plupart des pages.
+
+* lmfa_publi.css: définition du style de mise en page.
+
+
+Installer les scripts PHP
+=========================
+
+Avant d'installer les scripts il est recommandé d'avoir fait les configurations
+expliquées dans la section précédente.
+
+Tous les scripts php sont dans le répertoire phpubli/. C'est ce répertoire
+qu'il faut copier dans son ensemble vers le serveur qui hébergera le site.
+
+Par exemple, si l'url http://www.monlabo.org/index.php correspond au fichier
+/usr/local/www/public_html/index.php, il suffit de déplacer le répertoire
+phpubli vers /usr/local/www/public_html/phpubli.
+Alors, l'url http://www.monlabo.org/phpubli/index.php pointera
+sur la page d'accueil de la production scientifique.
+
+Après l'installation des scripts il est recommandé d'effacer le
+répertoire install/ et les fichiers connexion_para.default.php et
+param_labo.default.php.
+
+
+===================================
+ II. INSTALLATION SEMI-AUTOMATIQUE
+===================================
+
+Cette procédure utilise une interface web, il faut donc commencer par
+installer les scripts PHP sur le serveur.
+
+
+Installer les scripts PHP
+=========================
+
+Tous les scripts php sont dans le répertoire phpubli/. C'est ce répertoire
+qu'il faut copier dans son ensemble vers le serveur qui hébergera le site.
+
+Par exemple, si l'url http://www.monlabo.org/index.php correspond au fichier
+/usr/local/www/public_html/index.php, il suffit de déplacer le répertoire
+phpubli vers /usr/local/www/public_html/phpubli.
+Alors, l'url http://www.monlabo.org/phpubli/index.php pointera
+sur la page d'accueil de la production scientifique.
+
+
+Initialisation et configuration de la base de données
+=====================================================
+
+Pointer un browser vers http://www.monlabo.org/phpubli/install/index.php et
+suivre les étapes de l'installation.
+
+[Pour créer la base de données (vide) on peut utiliser le
+fichier "phpubli_create.sql".
+Il est recommandé de modifier les valeurs par défaut (phpubli_login,
+phpubli_password, ...) avant de l'exécuter en se connectant au serveur mysql
+en tant qu'administrateur.]
+
+À la fin, effacer le répertoire install/,
+les fichiers connexion_para.default.php et param_labo.default.php
+et protéger en écriture le fichier connexion_param.php, param_labo.php.
+
+
+Derniers règlages à faire éventuellement à la main
+==================================================
+
+* phpubli/functions_local.php: 
+fonctions titlebanner() et navigationbar() - remplacer par les éléments tels
+qu'ils apparaissent sur d'autres pages web du laboratoire (ou laisser vide).
+fonction warning() - modifier (ou supprimer) le message qui s'affiche sur la
+plupart des pages.
+
+* lmfa_publi.css: définition du style de mise en page.
+
+
+
+
+
+
+
+Arborescence du site
+====================
+
+
+L'interrogation de la base se fait avec les scripts dans phpubli/
+La modification du contenu de la base se fait dans phpubli/intranet/
+L'administration de la base se fait dans phpubli/intranet/admin
+
+
+Contenu de phpubli/
+
+include.php		définition de constantes et inclusion de tous les fichiers auxiliaires
+
+connexion_param.php	paramètres de connexion à la base de données
+auth.php		routines pour authentification des utilisateurs connectés
+param_labo.php		défintion de variables contenant des informations sur le labo
+
+html.php		routines élémentaires produisant du code html
+php.php			routines php bas niveau
+mysql.class.php		définition de la classe mysql
+
+functions.php		routines php de manipulations/affichage des recherches dans la base
+functions_export.php	export des données dans différents formats (bibtex, xml...)
+functions_layout.php	mise en page du html
+functions_local.php	routines à modifier localement (adresse, mentions...)
+functions_phpubli.php	routines d'identification du logiciel
+
+
+index.php	page d'accueil
+search.php	formulaire de recherche dans la base
+selection.php	affichage des documents sélectionnées (pour export)
+export.php	export de la sélection sous différents formats
+
+faq.php		foire aux questions
+
+
+phpubli/intranet/	espace intranet, réservé aux opérations (modifications, ajouts...) sur le contenu de la base.
+
+include.php
+functions.php
+functions_document.php
+functions_personne.php
+functions_journal.php
+functions_conference.php
+functions_proceedings.php
+functions_publisher.php
+
+index.php	menu d'accueil - liste des opérations possibles
+login.php	
+logout.php
+document.php
+personne.php
+journal.php
+institution.php
+publisher.php
+conference.php
+last_document.php
+
+
+phpubli/intranet/admin	espace réservé aux administrateurs de la base
+
+index.php
+functions.php
+history_document.php
+history_journal.php
+history_pers.php
+history_login.php
+mail.php
+
+
+phpubli/intranet/superadmin
+
+index.php
+readonly.php
+charentities.php
+personne_minuscules.php
+users.php
+functions_users.php
+
