@@ -2,7 +2,7 @@
 /*****************************************************************************
  * Copyright (C) 2007-2009 CNRS
  *
- * Author: Benoît PIER  <http://www.lmfa.ec-lyon.fr/perso/Benoit.Pier>
+ * Author: BenoÃ®t PIER  <http://www.lmfa.ec-lyon.fr/perso/Benoit.Pier>
  *
  * This file is part of PHPUBLI-1.0
  *
@@ -98,20 +98,27 @@ function navigationbar()
 	//Les sous menus de publications
 	print("<li>");
 	print("<ul>\n");
-	     print("<li><a href=\"/ajout\"");
+	    //Le sous menu Ajouter
+	    // print("<li><a href=\"/ajout\"");
+	      print("<li><a href=\"$rootdir/phpubli-1.0/phpubli/intranet/document.php\"");
 	    if ($item == "ajout") print(" class=\"active\"");
 	    print(">Ajout</a></li>\n");
 	    
-	    print("<li><a href=\"/modif\"");
+	    //Le sous menu Modifier 
+	   // print("<li><a href=\"/modif\"");
+	   print("<li><a href=\"$rootdir/phpubli-1.0/phpubli/intranet/last_document.php\"");
 	    if ($item == "modif") print(" class=\"active\"");
-	    print(">Modif</a></li>\n");
+	    print(">Modifier</a></li>\n");
 	    
-	    print("<li><a href=\"/recherche\"");
+	     //Le sous menu Rechercher
+	    //print("<li><a href=\"/recherche\"");
+	    print("<li><a href=\"$rootdir/phpubli-1.0/phpubli/search.php\"");
 	    if ($item == "recherche") print(" class=\"active\"");
 	    print(">Recherche</a></li>\n");
 	print("</ul>\n");
 	
-	print("<a href=\"/publi\"");
+	//print("<a href=\"/publi\"");
+	print("<a href=#");
 	if ($item == "publi") print(" class=\"active\"");
 	print(">Publications</a>");
 	
@@ -167,7 +174,7 @@ function legal()
 	global $LAB;
 	global $URL_WEBMASTER;
 	$year=date("Y");
-	// on met l'année en chiffres romains... un petit clin d'oeil à la BBC
+	// on met l'annÃ©e en chiffres romains... un petit clin d'oeil Ã  la BBC
 	$romyear=array("2005"=>"MMV", "2006"=>"MMVI", "2007"=>"MMVII", "2008"=>"MMVIII", "2009"=>"MMIX", "2010"=>"MMX", "2011"=>"MMXI","2012"=>"MMXII","2013"=>"MMXIII","2014"=>"MMXIV","2015"=>"MMXV", "2016"=>"MMXVI", );
 
 	$date = date ("d/m/Y - H:i:s");
@@ -182,9 +189,9 @@ function legal()
 function warning()
 {
 	// ce message s'affiche en bas des principales pages du site.
-	print "<b>!!!! phase expérimentale, la base de données n'est ni complète ni vraiment au point !!!!</b><br>\n";
-	// print "<b>!!!! phase de mise en place&nbsp;: à part les articles et les thèses, la base de données est encore très incomplète&nbsp;!!!!</b><br>\n";
-	// print "<b>!!!! à part les documents récents, la base de données est encore très incomplète&nbsp;!!!!</b><br>\n";
+	print "<b>!!!! phase expÃ©rimentale, la base de donnÃ©es n'est ni complÃ¨te ni vraiment au point !!!!</b><br>\n";
+	// print "<b>!!!! phase de mise en place&nbsp;: Ã  part les articles et les thÃ¨ses, la base de donnÃ©es est encore trÃ¨s incomplÃ¨te&nbsp;!!!!</b><br>\n";
+	// print "<b>!!!! Ã  part les documents rÃ©cents, la base de donnÃ©es est encore trÃ¨s incomplÃ¨te&nbsp;!!!!</b><br>\n";
 }
 
 ?>
