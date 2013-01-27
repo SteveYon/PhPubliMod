@@ -23,6 +23,7 @@
 	$localdir="intranet";
 	$filename="document.php";
 	require_once ("$rootdir/include.php");
+	require_once ("$rootdir/functions_export.php");
 	require_once ("include.php");
 
 	$bd = new MySQL(UNAME, UPASSWORD, BASE, SERVER);
@@ -305,6 +306,7 @@ if ( (isSet($_GET['mode'])) || ($displayid!="") )
 				$hal_search_url=hal_search($bd, $doc_id);
 				echo "Effectuer une " . anchor_ext($hal_search_url, "recherche") . " dans l'archive ouverte HAL, pour vérifier que le document n'y figure pas déjà.<br>\n";
 				echo "Créer un " . anchor("./export_notice_hal.php?docid=$doc_id", "fichier XML") ." pour " . anchor_ext("http://import.ccsd.cnrs.fr/importXML.php", "transférer automatiquement") ." les données ci-dessus vers HAL.<br><br>\n";
+				echo "Créer un " . anchor("./export_bibtex.php?docid=$doc_id", "fichier Bibtex") ." pour " . anchor_ext("http://import.ccsd.cnrs.fr/importXML.php", "transférer automatiquement") ." les données ci-dessus vers HAL.<br><br>\n";
 			}
 
 			if (check_admin_priv($bd)>0)
