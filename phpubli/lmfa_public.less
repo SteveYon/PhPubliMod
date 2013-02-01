@@ -1,8 +1,10 @@
 /*************************************************************
  Less file from based on lmfa_publi.css
  *************************************************************/
-@colorBandeau: #0072ff;
 /*bleu origine: #0072ff*/
+
+@colorBandeau: #999;
+@colorSouligne: #999;
 
 body { 
 	font-size: 100%;
@@ -45,8 +47,8 @@ a img
 	position: absolute;
 	width: 100%;
 
-        border-bottom: solid 1px #0072ff;
-        border-top: solid 1px #0072ff;
+        border-bottom: solid 1px @colorBandeau;
+        border-top: solid 1px @colorBandeau;
         background-color: #eee;
         text-align: right;
 }
@@ -176,9 +178,9 @@ a img
 	margin-bottom: 0.5em;
 	font-size: 90%;
 
-	border-top: 1px #0072ff solid;
-	border-right: 1px #0072ff solid;
-	border-bottom: 1px #0072ff solid;
+	border-top: 1px @colorBandeau solid;
+	border-right: 1px @colorBandeau solid;
+	border-bottom: 1px @colorBandeau solid;
 	text-align: left;
 	background-color: #eee;
 }
@@ -211,7 +213,7 @@ a img
 #lhsmenu a:visited.active
 {
 	color: #0072ff;
-	border-bottom: solid 3px #0072ff;
+	border-bottom: solid 3px @colorBandeau;
 	background-color: #ddd;
 }
 
