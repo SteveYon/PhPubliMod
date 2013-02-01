@@ -34,7 +34,9 @@ function csslink()
 	global $rootdir;
 	global $imagesdir;
 	print("<link rel=\"shortcut icon\" href=\"$rootdir/$imagesdir/labo.ico\">\n");
-	print("<link rel=\"stylesheet\" type=\"text/css\" href=\"$rootdir/lmfa_publi.css\">\n");
+	//print("<link rel=\"stylesheet\" type=\"text/css\" href=\"$rootdir/lmfa_publi.css\">\n");
+	print("<link rel=\"stylesheet/less\" href=\"$rootdir/lmfa_public.less\" type=\"text/css\">\n");
+	print("<script src=\"$rootdir/less-1.3.3.min.js\"></script>\n");
 }
 
 function preamble()
