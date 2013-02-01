@@ -953,6 +953,9 @@ echo "typedocid=$typedocid";
 		echo "</tr>\n";
 
 	echo "</table>\n";
+
+	//****
+
 }
 
 function document_data_update($document, $bd)
@@ -1028,6 +1031,7 @@ function document_data_update($document, $bd)
 	$query = "select * from document where doc_id = '$doc_id'";
        	$res = $bd->exec_query($query);
 	$document_new = $bd->fetch_object ($res);
+
 
 	log_entry("document", $doc_id, "update", $document_old, $document_new, $bd);
 }
