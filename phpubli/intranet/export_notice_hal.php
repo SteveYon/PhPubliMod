@@ -27,6 +27,7 @@
 
 	$bd = new MySQL(UNAME, UPASSWORD, BASE, SERVER);
 
+
 	$exportfilename="HAL.xml";
 
 	$docid=$_GET['docid'];

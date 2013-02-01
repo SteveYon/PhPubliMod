@@ -28,6 +28,22 @@ function leftmenu_admin($item)
 	print("<div id=lhsmenu>\n");
 	print("<ul>\n");
 
+	$currentuser=current_user($bd);
+	if (!empty($currentuser))
+	{
+		$status=check_login($bd);
+		print("<li>&nbsp;</li>\n");
+		print("<li>&nbsp;Bonjour : $currentuser&nbsp;</li>&nbsp;\n");
+
+		if ($status==2)
+		{
+			print("<li><a href=\"$rootdir/intranet/superadmin\"");
+			if ($item == "superadmin") print(" class=restractive");
+			else print(" class=restr");
+			print(">superadmin</a></li>\n");
+		}
+	}
+	
 	print("<li><a href=\"$rootdir/index.php\"");
 	print(">Publications</a></li>\n");
 	print("<li>&nbsp;</li>\n");
@@ -66,21 +82,7 @@ function leftmenu_admin($item)
 	print(">mail</a></li>\n");
 
 
-	$currentuser=current_user($bd);
-	if (!empty($currentuser))
-	{
-		$status=check_login($bd);
-		print("<li>&nbsp;</li>\n");
-		print("<li>&nbsp;user: $currentuser&nbsp;</li>&nbsp;\n");
 
-		if ($status==2)
-		{
-			print("<li><a href=\"$rootdir/intranet/superadmin\"");
-			if ($item == "superadmin") print(" class=restractive");
-			else print(" class=restr");
-			print(">superadmin</a></li>\n");
-		}
-	}
 
 	print("</ul>\n");
 	print("</div>\n");

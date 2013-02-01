@@ -644,6 +644,7 @@ function document_data_fixed($doc_id, $bd)
 
 	echo "</table>\n";
 }
+//fonction qui permet d'afficher le formulaire en fonction de la base de donnée
 function document_data_form($typedoc_id, $mode, $doc_id, $bd)
 {
 	// mode is either "insert" or "update"
@@ -659,7 +660,7 @@ echo "typedocid=$typedocid";
 		$document = $bd->fetch_object($res);
 		$typedocid=$document->typedoc_id;	// override the value given as argument
 	}
-	if ("$typedocid"!="")	// get typdoc name to only display fields that are relevant
+	if ("$typedocid"!="")	// get typedoc name to only display fields that are relevant
 	{
 		$result = $bd->exec_query("SELECT typedoc_libelle FROM typedoc WHERE typedoc_id='$typedoc_id' ");
 		$ob=$bd->fetch_object($result);
@@ -735,7 +736,7 @@ echo "typedocid=$typedocid";
 	if ("$typedocid" != "")	// no choice, transmit by hidden field
 	{
 		echo "<tr>\n";
-		echo "<th>typedoc_id</th>\n";
+		echo "<th>Type de Document</th>\n";
 		echo "<td>";
 		foreach ($list_typedoc as $id=>$name)
 		{

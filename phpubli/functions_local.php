@@ -67,7 +67,7 @@ function navigationbar()
 	print("<div id=\"navbarlmfa\">\n");
 	print("<ul>\n");
 	//print("<li><a href=\"/connecter\"");//intranet/index.php
-	print("<li><a href=\"$rootdir/phpubli-1.0/phpubli/intranet/login.php\"");
+	print("<li><a href=\"$rootdir/PhPubliMod/phpubli/intranet/login.php\"");
 	
 	//print("<li><a href="intranet/index.php");
 	if ($item == "connecter") print(" class=\"restractive\"");
@@ -100,19 +100,19 @@ function navigationbar()
 	print("<ul>\n");
 	    //Le sous menu Ajouter
 	    // print("<li><a href=\"/ajout\"");
-	      print("<li><a href=\"$rootdir/phpubli-1.0/phpubli/intranet/document.php\"");
+	      print("<li><a href=\"$rootdir/PhPubliMod/phpubli/intranet/document.php\"");
 	    if ($item == "ajout") print(" class=\"active\"");
 	    print(">Ajout</a></li>\n");
 	    
 	    //Le sous menu Modifier 
 	   // print("<li><a href=\"/modif\"");
-	   print("<li><a href=\"$rootdir/phpubli-1.0/phpubli/intranet/last_document.php\"");
+	   print("<li><a href=\"$rootdir/PhPubliMod/phpubli/intranet/last_document.php\"");
 	    if ($item == "modif") print(" class=\"active\"");
 	    print(">Modifier</a></li>\n");
 	    
 	     //Le sous menu Rechercher
 	    //print("<li><a href=\"/recherche\"");
-	    print("<li><a href=\"$rootdir/phpubli-1.0/phpubli/search.php\"");
+	    print("<li><a href=\"$rootdir/PhPubliMod/phpubli/search.php\"");
 	    if ($item == "recherche") print(" class=\"active\"");
 	    print(">Recherche</a></li>\n");
 	print("</ul>\n");
@@ -140,7 +140,7 @@ function navigationbar()
 	print("<li><div style=float:right>&nbsp;</div></li>\n");
 
 	//print("<li><a href=\"/\"");
-	print("<li><a href=\"$rootdir/phpubli-1.0/phpubli/index.php\"");
+	print("<li><a href=\"$rootdir/PhPubliMod/phpubli/index.php\"");
 	if ($item == "") print(" class=\"active\"");
 	print(">Accueil</a></li>\n");
 

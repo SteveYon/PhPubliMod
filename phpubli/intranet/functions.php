@@ -41,6 +41,29 @@ function leftmenu_intranet($item)
 	print("<div id=lhsmenu>\n");
 	print("<ul>\n");
 
+	$currentuser=current_user($bd);
+	if (!empty($currentuser))
+	{
+		$status=check_login($bd);
+		print("<li>&nbsp;</li>\n");
+		print("<li>&nbsp;Bonjour : $currentuser&nbsp;</li>&nbsp;\n");
+
+		if ($status>0)
+		{
+			print("<li><a href=\"$rootdir/intranet/admin\"");
+			if ($item == "admin") print(" class=restractive");
+			else print(" class=restr");
+			print(">admin</a></li>\n");
+		}
+		if ($status==2)
+		{
+			print("<li><a href=\"$rootdir/intranet/superadmin\"");
+			if ($item == "superadmin") print(" class=restractive");
+			else print(" class=restr");
+			print(">superadmin</a></li>\n");
+		}
+	}
+	
 	print("<li><a href=\"$rootdir/\"");
 	if ($item == "") print(" class=active");
 	print(">Publications</a></li>\n");
@@ -94,28 +117,7 @@ function leftmenu_intranet($item)
 	else print(" class=restr");
 	print(">conférences</a></li>\n");
         */
-	$currentuser=current_user($bd);
-	if (!empty($currentuser))
-	{
-		$status=check_login($bd);
-		print("<li>&nbsp;</li>\n");
-		print("<li>&nbsp;user: $currentuser&nbsp;</li>&nbsp;\n");
 
-		if ($status>0)
-		{
-			print("<li><a href=\"$rootdir/intranet/admin\"");
-			if ($item == "admin") print(" class=restractive");
-			else print(" class=restr");
-			print(">admin</a></li>\n");
-		}
-		if ($status==2)
-		{
-			print("<li><a href=\"$rootdir/intranet/superadmin\"");
-			if ($item == "superadmin") print(" class=restractive");
-			else print(" class=restr");
-			print(">superadmin</a></li>\n");
-		}
-	}
 
 	print("</ul>\n");
 	print("</div>\n");
