@@ -2,7 +2,7 @@
 -- Database: `phpubli`
 -- 
 
-USE `phpubli`;
+USE `phpublibdd`;
 
 -- --------------------------------------------------------
 
@@ -15,7 +15,7 @@ CREATE TABLE `audience` (
   `id` int(4) NOT NULL default '0',
   `libelle` varchar(255) NOT NULL default '',
   PRIMARY KEY  (`id`)
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 -- 
 -- Dumping data for table `audience`
@@ -43,7 +43,7 @@ CREATE TABLE `conference` (
   `log` int(10) NOT NULL default '0',
   `date` datetime NOT NULL default '0000-00-00 00:00:00',
   PRIMARY KEY  (`conference_id`)
-) TYPE=MyISAM AUTO_INCREMENT=73 ;
+) ENGINE=MyISAM AUTO_INCREMENT=73 ;
 
 -- 
 -- Dumping data for table `conference`
@@ -135,7 +135,7 @@ CREATE TABLE `country` (
   `iso3` char(3) default NULL,
   `numcode` smallint(6) default NULL,
   PRIMARY KEY  (`iso`)
-) ENGINE=MyISAM;---TYPE=MyISAM;
+) ENGINE = MYISAM ;
 
 -- 
 -- Dumping data for table `country`

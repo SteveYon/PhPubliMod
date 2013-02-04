@@ -15,7 +15,7 @@ CREATE TABLE `audience` (
   `id` int(4) NOT NULL default '0',
   `libelle` varchar(255) NOT NULL default '',
   PRIMARY KEY  (`id`)
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 -- 
 -- Dumping data for table `audience`
@@ -43,7 +43,7 @@ CREATE TABLE `conference` (
   `log` int(10) NOT NULL default '0',
   `date` datetime NOT NULL default '0000-00-00 00:00:00',
   PRIMARY KEY  (`conference_id`)
-) TYPE=MyISAM AUTO_INCREMENT=73 ;
+) ENGINE=MyISAM AUTO_INCREMENT=73 ;
 
 -- 
 -- Dumping data for table `conference`
@@ -135,7 +135,7 @@ CREATE TABLE `country` (
   `iso3` char(3) default NULL,
   `numcode` smallint(6) default NULL,
   PRIMARY KEY  (`iso`)
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 -- 
 -- Dumping data for table `country`
@@ -412,7 +412,7 @@ CREATE TABLE `document` (
   `proceedings_id` int(10) default NULL,
   `lang` char(2) NOT NULL default 'EN',
   PRIMARY KEY  (`doc_id`)
-) TYPE=MyISAM AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM AUTO_INCREMENT=1 ;
 
 -- 
 -- Dumping data for table `document`
@@ -428,7 +428,7 @@ DROP TABLE IF EXISTS `flags`;
 CREATE TABLE `flags` (
   `name` varchar(255) default NULL,
   `value` int(10) unsigned default NULL
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 -- 
 -- Dumping data for table `flags`
@@ -447,7 +447,7 @@ CREATE TABLE `fonction` (
   `fonction_id` int(10) unsigned NOT NULL auto_increment,
   `fonction_libelle` varchar(255) default NULL,
   PRIMARY KEY  (`fonction_id`)
-) TYPE=MyISAM AUTO_INCREMENT=4 ;
+) ENGINE=MyISAM AUTO_INCREMENT=4 ;
 
 -- 
 -- Dumping data for table `fonction`
@@ -469,7 +469,7 @@ CREATE TABLE `groupes` (
   `g_name` varchar(16) NOT NULL default '',
   `g_fullname` varchar(255) NOT NULL default '',
   PRIMARY KEY  (`g_id`)
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 -- 
 -- Dumping data for table `groupes`
@@ -500,7 +500,7 @@ CREATE TABLE `history` (
   `date_entry` datetime NOT NULL default '0000-00-00 00:00:00',
   `date_checked` datetime default NULL,
   PRIMARY KEY  (`id`)
-) TYPE=MyISAM AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM AUTO_INCREMENT=1 ;
 
 -- 
 -- Dumping data for table `history`
@@ -520,7 +520,7 @@ CREATE TABLE `institution` (
   `log` int(10) unsigned NOT NULL default '0',
   `date` datetime NOT NULL default '0000-00-00 00:00:00',
   PRIMARY KEY  (`institution_id`)
-) TYPE=MyISAM AUTO_INCREMENT=8 ;
+) ENGINE=MyISAM AUTO_INCREMENT=8 ;
 
 -- 
 -- Dumping data for table `institution`
@@ -551,7 +551,7 @@ CREATE TABLE `journal` (
   `log` int(10) unsigned NOT NULL default '0',
   `date` datetime NOT NULL default '0000-00-00 00:00:00',
   PRIMARY KEY  (`journal_id`)
-) TYPE=MyISAM AUTO_INCREMENT=202 ;
+) ENGINE=MyISAM AUTO_INCREMENT=202 ;
 
 -- 
 -- Dumping data for table `journal`
@@ -741,7 +741,7 @@ CREATE TABLE `language` (
   `iso` char(2) NOT NULL default '',
   `name` varchar(255) NOT NULL default '',
   PRIMARY KEY  (`iso`)
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 -- 
 -- Dumping data for table `language`
@@ -946,7 +946,7 @@ CREATE TABLE `participer` (
   `log` int(10) unsigned NOT NULL default '0',
   `date` datetime NOT NULL default '0000-00-00 00:00:00',
   PRIMARY KEY  (`id`)
-) TYPE=MyISAM AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM AUTO_INCREMENT=1 ;
 
 -- 
 -- Dumping data for table `participer`
@@ -967,7 +967,7 @@ CREATE TABLE `personne` (
   `log` int(10) unsigned NOT NULL default '0',
   `date` datetime NOT NULL default '0000-00-00 00:00:00',
   PRIMARY KEY  (`pers_id`)
-) TYPE=MyISAM AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM AUTO_INCREMENT=1 ;
 
 -- 
 -- Dumping data for table `personne`
@@ -983,7 +983,7 @@ DROP TABLE IF EXISTS `priv`;
 CREATE TABLE `priv` (
   `priv_id` int(2) NOT NULL default '0',
   `priv_libelle` varchar(64) NOT NULL default ''
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 -- 
 -- Dumping data for table `priv`
@@ -1007,7 +1007,7 @@ CREATE TABLE `publisher` (
   `log` int(10) unsigned NOT NULL default '0',
   `date` datetime NOT NULL default '0000-00-00 00:00:00',
   PRIMARY KEY  (`publisher_id`)
-) TYPE=MyISAM AUTO_INCREMENT=20 ;
+) ENGINE=MyISAM AUTO_INCREMENT=20 ;
 
 -- 
 -- Dumping data for table `publisher`
@@ -1043,7 +1043,7 @@ CREATE TABLE `soustypedoc` (
   `soustypedoc_id` int(10) unsigned NOT NULL default '0',
   `soustypedoc_libelle` varchar(255) default NULL,
   PRIMARY KEY  (`soustypedoc_id`)
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 -- 
 -- Dumping data for table `soustypedoc`
@@ -1068,7 +1068,7 @@ CREATE TABLE `tables` (
   `table_id` int(10) unsigned NOT NULL auto_increment,
   `table_name` varchar(255) NOT NULL default '',
   PRIMARY KEY  (`table_id`)
-) TYPE=MyISAM AUTO_INCREMENT=13 ;
+) ENGINE=MyISAM AUTO_INCREMENT=13 ;
 
 -- 
 -- Dumping data for table `tables`
@@ -1099,7 +1099,7 @@ CREATE TABLE `typedoc` (
   `typedoc_name` varchar(255) NOT NULL default '',
   `order` int(4) NOT NULL default '0',
   PRIMARY KEY  (`typedoc_id`)
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 -- 
 -- Dumping data for table `typedoc`
@@ -1123,7 +1123,7 @@ CREATE TABLE `typejournal` (
   `typejournal_id` int(8) NOT NULL default '0',
   `typejournal_libelle` varchar(255) NOT NULL default '',
   PRIMARY KEY  (`typejournal_id`)
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 -- 
 -- Dumping data for table `typejournal`
@@ -1151,13 +1151,13 @@ CREATE TABLE `user` (
   `u_groupid` int(10) unsigned NOT NULL default '0',
   `u_status` int(10) unsigned NOT NULL default '0',
   PRIMARY KEY  (`u_id`)
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 -- 
 -- Dumping data for table `user`
 -- 
 
--- INSERT INTO `user` (`u_id`, `u_name`, `u_first`, `u_mail`, `u_login`, `u_password`, `u_groupid`, `u_status`) VALUES (0, 'root', '', 'root@phpubli.org', 'root', 'eda87bffb97f791c3d0e78a5a54be278', 0, 2);
--- INSERT INTO `user` (`u_id`, `u_name`, `u_first`, `u_mail`, `u_login`, `u_password`, `u_groupid`, `u_status`) VALUES (1, 'admin1', '', 'admin1@phpubli.org', 'admin1', '9027350bf05be72120ae27c02b7b9491', 1, 1);
--- INSERT INTO `user` (`u_id`, `u_name`, `u_first`, `u_mail`, `u_login`, `u_password`, `u_groupid`, `u_status`) VALUES (2, 'user1', '', 'user1@phpubli.org', 'user1', '95542d9f989eacf9d9a26ea221b9fedc', 1, 0);
+INSERT INTO `user` (`u_id`, `u_name`, `u_first`, `u_mail`, `u_login`, `u_password`, `u_groupid`, `u_status`) VALUES (0, 'root', '', 'root@phpubli.org', 'root', 'eda87bffb97f791c3d0e78a5a54be278', 0, 2);
+INSERT INTO `user` (`u_id`, `u_name`, `u_first`, `u_mail`, `u_login`, `u_password`, `u_groupid`, `u_status`) VALUES (1, 'admin1', '', 'admin1@phpubli.org', 'admin1', '9027350bf05be72120ae27c02b7b9491', 1, 1);
+INSERT INTO `user` (`u_id`, `u_name`, `u_first`, `u_mail`, `u_login`, `u_password`, `u_groupid`, `u_status`) VALUES (2, 'user1', '', 'user1@phpubli.org', 'user1', '95542d9f989eacf9d9a26ea221b9fedc', 1, 0);
 

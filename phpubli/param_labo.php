@@ -20,12 +20,12 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-$LABO="[NOM DU LABORATOIRE]";
-$LAB="[SIGLE DU LABO]";
-$ADRLABO1="( CNRS - UNIVERSITE - ..... )";
-$ADRLABO2="ADRESSE";
-$ADRLABO3="RUE";
-$ADRLABO4="12345 XXXX, FRANCE ";
+$LABO="Laboratoire d'Informatique, du Traitement de l'Information et des Systèmes";
+$LAB="LITIS";
+$ADRLABO1="Université du Havre";
+$ADRLABO2="25";
+$ADRLABO3="Rue Philippe Lebon";
+$ADRLABO4="76600 Le Havre, FRANCE ";
 $ADRLABO5="";
 $LABO_HALID="[IDENTIFIANT HAL DU LABO]";
 $URL_WEBMASTER="http://www.monlabo.org/people/phpubli.webmaster";
