@@ -149,7 +149,7 @@ function navigationbar(){
 	if ($item == "") print(" class=\"active\"");
 	print(">Accueil</a></li>\n");
 	print("<li>\n");
-	print("<a href=\"/\"><img src=\"$imagesdir/LOGO_LABO.png\" alt=\"back to $LAB (logo)\"></a>&nbsp;&nbsp;$LABO\n");
+	print("<img src=\"$imagesdir/LOGO_LABO.png\" alt=\"back to $LAB (logo)\">\n");
 	print("</li>\n");
 	print("</ul>\n");
 	print("</div>\n");
