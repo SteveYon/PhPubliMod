@@ -83,15 +83,15 @@ echo "DOCUMENT_EDIT <br>\n";
 
 		echo "<tr>\n";
 		echo "<th>title</th>\n";
-		echo "<td><input type=\"text\" name=\"title\" value=\"" . stripSlashes($document->title) . "\" size=\"70\" maxlength=\"255\"></td>\n";
+		echo "<td><input type=\"text\" name=\"title\" value=\"" . stripSlashes($document->title) . "\" size=\"120\" maxlength=\"255\"></td>\n";
 		echo "</tr>\n";
 		echo "<tr>\n";
 		echo "<th>year</th>\n";
-		echo "<td><input type=\"text\" name=\"year\" value=\"" . $document->year . "\" size=\"4\" maxlength=\"4\"></td>\n";
+		echo "<td><input type=\"text\" name=\"year\" value=\"" . $document->year . "\" size=\"120\" maxlength=\"4\"></td>\n";
 		echo "</tr>\n";
 		echo "<tr>\n";
 		echo "<th>volume</th>\n";
-		echo "<td><input type=\"text\" name=\"volume\" value=\"" . stripSlashes($document->volume) . "\" size=\"4\" maxlength=\"255\"></td>\n";
+		echo "<td><input type=\"text\" name=\"volume\" value=\"" . stripSlashes($document->volume) . "\" size=\"120\" maxlength=\"255\"></td>\n";
 		echo "</tr>\n";
 
 		echo "<tr><th></th><td>Pour saisir les pages&nbsp:</td></tr>\n";
@@ -100,23 +100,23 @@ echo "DOCUMENT_EDIT <br>\n";
 
 		echo "<tr>\n";
 		echo "<th>pages_start</th>\n";
-		echo "<td><input type=\"text\" name=\"pages_start\" value=\"" . $document->pages_start . "\" size=\"12\" maxlength=\"255\"></td>\n";
+		echo "<td><input type=\"text\" name=\"pages_start\" value=\"" . $document->pages_start . "\" size=\"120\" maxlength=\"255\"></td>\n";
 		echo "</tr>\n";
 		echo "<tr>\n";
 		echo "<th>pages_end</th>\n";
-		echo "<td><input type=\"text\" name=\"pages_end\" value=\"" . $document->pages_end . "\" size=\"12\" maxlength=\"255\"></td>\n";
+		echo "<td><input type=\"text\" name=\"pages_end\" value=\"" . $document->pages_end . "\" size=\"120\" maxlength=\"255\"></td>\n";
 		echo "</tr>\n";
 		echo "<tr>\n";
 		echo "<th>eid</th>\n";
-		echo "<td><input type=\"text\" name=\"pages_eid\" value=\"" . $document->pages_eid . "\" size=\"12\" maxlength=\"255\"></td>\n";
+		echo "<td><input type=\"text\" name=\"pages_eid\" value=\"" . $document->pages_eid . "\" size=\"120\" maxlength=\"255\"></td>\n";
 		echo "</tr>\n";
 		echo "<tr>\n";
 		echo "<th>pages_num</th>\n";
-		echo "<td><input type=\"text\" name=\"pages_num\" value=\"" . $document->pages_num . "\" size=\"12\" maxlength=\"255\"></td>\n";
+		echo "<td><input type=\"text\" name=\"pages_num\" value=\"" . $document->pages_num . "\" size=\"120\" maxlength=\"255\"></td>\n";
 		echo "</tr>\n";
 		echo "<tr>\n";
 		echo "<th>doi</th>\n";
-		echo "<td><input type=\"text\" name=\"doi\" value=\"" . stripSlashes($document->doi) . "\" size=\"70\" maxlength=\"255\"></td>\n";
+		echo "<td><input type=\"text\" name=\"doi\" value=\"" . stripSlashes($document->doi) . "\" size=\"120\" maxlength=\"255\"></td>\n";
 		echo "</tr>\n";
 		echo "<tr>\n";
 		echo "<th>journal</th>\n";
@@ -131,7 +131,7 @@ echo "DOCUMENT_EDIT <br>\n";
 		echo "</tr>\n";
 		echo "<tr>\n";
 		echo "<th>note</th>\n";
-		echo "<td><input type=\"text\" name=\"note\" value=\"" . stripSlashes($document->note) . "\" size=\"70\" maxlength=\"255\"></td>\n";
+		echo "<td><input type=\"text\" name=\"note\" value=\"" . stripSlashes($document->note) . "\" size=\"120\" maxlength=\"255\"></td>\n";
 		echo "</tr>\n";
 		echo "<tr>\n";
 		echo "<th>groupe</th>\n";
@@ -258,15 +258,15 @@ function document_form($mode, $tab, $bd)
 
 		echo "<tr>\n";
 		echo "<th>title</th>\n";
-		echo "<td><input type=\"text\" name=\"title\" value=\"" . stripSlashes($tab->title) . "\" size=\"70\" maxlength=\"255\"></td>\n";
+		echo "<td><input type=\"text\" name=\"title\" value=\"" . stripSlashes($tab->title) . "\" size=\"120\" maxlength=\"255\"></td>\n";
 		echo "</tr>\n";
 		echo "<tr>\n";
 		echo "<th>year</th>\n";
-		echo "<td><input type=\"text\" name=\"year\" value=\"" . $tab->year . "\" size=\"4\" maxlength=\"4\"></td>\n";
+		echo "<td><input type=\"text\" name=\"year\" value=\"" . $tab->year . "\" size=\"120\" maxlength=\"4\"></td>\n";
 		echo "</tr>\n";
 		echo "<tr>\n";
 		echo "<th>volume</th>\n";
-		echo "<td><input type=\"text\" name=\"volume\" value=\"" . stripSlashes($tab->volume) . "\" size=\"4\" maxlength=\"255\"></td>\n";
+		echo "<td><input type=\"text\" name=\"volume\" value=\"" . stripSlashes($tab->volume) . "\" size=\"120\" maxlength=\"255\"></td>\n";
 		echo "</tr>\n";
 
 		echo "<tr><th></th><td>Pour saisir les pages&nbsp:</td></tr>\n";
@@ -275,23 +275,23 @@ function document_form($mode, $tab, $bd)
 
 		echo "<tr>\n";
 		echo "<th>pages_start</th>\n";
-		echo "<td><input type=\"text\" name=\"pages_start\" value=\"" . $tab->pages_start . "\" size=\"12\" maxlength=\"255\"></td>\n";
+		echo "<td><input type=\"text\" name=\"pages_start\" value=\"" . $tab->pages_start . "\" size=\"120\" maxlength=\"255\"></td>\n";
 		echo "</tr>\n";
 		echo "<tr>\n";
 		echo "<th>pages_end</th>\n";
-		echo "<td><input type=\"text\" name=\"pages_end\" value=\"" . $tab->pages_end . "\" size=\"12\" maxlength=\"255\"></td>\n";
+		echo "<td><input type=\"text\" name=\"pages_end\" value=\"" . $tab->pages_end . "\" size=\"120\" maxlength=\"255\"></td>\n";
 		echo "</tr>\n";
 		echo "<tr>\n";
 		echo "<th>eid</th>\n";
-		echo "<td><input type=\"text\" name=\"pages_eid\" value=\"" . $tab->pages_eid . "\" size=\"12\" maxlength=\"255\"></td>\n";
+		echo "<td><input type=\"text\" name=\"pages_eid\" value=\"" . $tab->pages_eid . "\" size=\"120\" maxlength=\"255\"></td>\n";
 		echo "</tr>\n";
 		echo "<tr>\n";
 		echo "<th>pages_num</th>\n";
-		echo "<td><input type=\"text\" name=\"pages_num\" value=\"" . $tab->pages_num . "\" size=\"12\" maxlength=\"255\"></td>\n";
+		echo "<td><input type=\"text\" name=\"pages_num\" value=\"" . $tab->pages_num . "\" size=\"120\" maxlength=\"255\"></td>\n";
 		echo "</tr>\n";
 		echo "<tr>\n";
 		echo "<th>doi</th>\n";
-		echo "<td><input type=\"text\" name=\"doi\" value=\"" . stripSlashes($tab->doi) . "\" size=\"70\" maxlength=\"255\"></td>\n";
+		echo "<td><input type=\"text\" name=\"doi\" value=\"" . stripSlashes($tab->doi) . "\" size=\"120\" maxlength=\"255\"></td>\n";
 		echo "</tr>\n";
 		echo "<tr>\n";
 		echo "<th>journal</th>\n";
@@ -306,7 +306,7 @@ function document_form($mode, $tab, $bd)
 		echo "</tr>\n";
 		echo "<tr>\n";
 		echo "<th>note</th>\n";
-		echo "<td><input type=\"text\" name=\"note\" value=\"" . stripSlashes($tab->note) . "\" size=\"70\" maxlength=\"255\"></td>\n";
+		echo "<td><input type=\"text\" name=\"note\" value=\"" . stripSlashes($tab->note) . "\" size=\"120\" maxlength=\"255\"></td>\n";
 		echo "</tr>\n";
 		echo "<tr>\n";
 		echo "<th>groupe</th>\n";
@@ -462,7 +462,7 @@ function document_data_fixed($doc_id, $bd)
 		echo "</tr>\n";
 
 		echo "<tr>\n";
-		echo "<th>soustypedoc_id</th>\n";
+		echo "<th>Sous-Type de Document</th>\n";
 		echo "<td>";
 		if ("$list_soustypedoc" != "")
 		foreach ($list_soustypedoc as $id=>$name)
@@ -761,7 +761,7 @@ echo "typedocid=$typedocid";
 		echo "</tr>\n";
 	}
 		echo "<tr>\n";
-		echo "<th>soustypedoc_id</th>\n";
+		echo "<th>Sous-Type de Document</th>\n";
 		echo "<td><select name=\"soustypedoc_id\" size=\"1\">\n";
 		if ("$list_soustypedoc" != "")
 		foreach ($list_soustypedoc as $id=>$name)
@@ -816,8 +816,8 @@ echo "typedocid=$typedocid";
 
 		echo "<tr><th></th><td>Pour les titres (mêmes en anglais) n'utiliser de majuscule initiale que pour le premier mot et les noms propres.</td></tr>\n";
 		echo "<tr>\n";
-		echo "<th>document title</th>\n";
-		echo "<td><input type=\"text\" name=\"title\" value=\"" . stripSlashes($document->title) . "\" size=\"70\" maxlength=\"255\"></td>\n";
+		echo "<th>Titre</th>\n";
+		echo "<td><input type=\"text\" name=\"title\" value=\"" . stripSlashes($document->title) . "\" size=\"120\" maxlength=\"255\"></td>\n";
 		echo "</tr>\n";
 
 
@@ -844,15 +844,15 @@ echo "typedocid=$typedocid";
 	if ( ("$typedoc_libelle"!="conference_proceeding") && ("$typedoc_libelle"!="conference_abstract") )
 	{
 		echo "<tr>\n";
-		echo "<th>year</th>\n";
-		echo "<td><input type=\"text\" name=\"year\" value=\"" . $document->year . "\" size=\"4\" maxlength=\"4\"></td>\n";
+		echo "<th>Année</th>\n";
+		echo "<td><input type=\"text\" name=\"year\" value=\"" . $document->year . "\" size=\"120\" maxlength=\"4\"></td>\n";
 		echo "</tr>\n";
 	}
 
 	if ( ("$typedoc_libelle"=="") || ("$typedoc_libelle"=="article") )
 	{
 		echo "<tr>\n";
-		echo "<th>journal</th>\n";
+		echo "<th>Journal</th>\n";
 		echo "<td><select name=\"journal_id\" size=\"1\">\n";
 		foreach ($list_journal as $id=>$name)
 		{
@@ -867,8 +867,8 @@ echo "typedocid=$typedocid";
 	if ( ("$typedoc_libelle"=="") || ("$typedoc_libelle"=="article") )
 	{
 		echo "<tr>\n";
-		echo "<th>volume</th>\n";
-		echo "<td><input type=\"text\" name=\"volume\" value=\"" . stripSlashes($document->volume) . "\" size=\"4\" maxlength=\"255\"></td>\n";
+		echo "<th>Volume</th>\n";
+		echo "<td><input type=\"text\" name=\"volume\" value=\"" . stripSlashes($document->volume) . "\" size=\"120\" maxlength=\"255\"></td>\n";
 		echo "</tr>\n";
 	}
 	if ( ("$typedoc_libelle"=="") || ("$typedoc_libelle"=="article") || ("$typedoc_libelle"=="conference_proceeding") )
@@ -878,20 +878,20 @@ echo "typedocid=$typedocid";
 		echo "<tr><th></th><td>utiliser \"<i>eid</i> (<i>pages_num</i> pages)\" quand le document est identifié par un numéro.</td></tr>\n";
 
 		echo "<tr>\n";
-		echo "<th>pages_start</th>\n";
-		echo "<td><input type=\"text\" name=\"pages_start\" value=\"" . $document->pages_start . "\" size=\"12\" maxlength=\"255\"></td>\n";
+		echo "<th>Début</th>\n";
+		echo "<td><input type=\"text\" name=\"pages_start\" value=\"" . $document->pages_start . "\" size=\"120\" maxlength=\"255\"></td>\n";
 		echo "</tr>\n";
 		echo "<tr>\n";
-		echo "<th>pages_end</th>\n";
-		echo "<td><input type=\"text\" name=\"pages_end\" value=\"" . $document->pages_end . "\" size=\"12\" maxlength=\"255\"></td>\n";
+		echo "<th>Fin</th>\n";
+		echo "<td><input type=\"text\" name=\"pages_end\" value=\"" . $document->pages_end . "\" size=\"120\" maxlength=\"255\"></td>\n";
 		echo "</tr>\n";
 		echo "<tr>\n";
 		echo "<th>eid</th>\n";
-		echo "<td><input type=\"text\" name=\"pages_eid\" value=\"" . $document->pages_eid . "\" size=\"12\" maxlength=\"255\"></td>\n";
+		echo "<td><input type=\"text\" name=\"pages_eid\" value=\"" . $document->pages_eid . "\" size=\"120\" maxlength=\"255\"></td>\n";
 		echo "</tr>\n";
 		echo "<tr>\n";
-		echo "<th>pages_num</th>\n";
-		echo "<td><input type=\"text\" name=\"pages_num\" value=\"" . $document->pages_num . "\" size=\"12\" maxlength=\"255\"></td>\n";
+		echo "<th>Nombre de Pages</th>\n";
+		echo "<td><input type=\"text\" name=\"pages_num\" value=\"" . $document->pages_num . "\" size=\"120\" maxlength=\"255\"></td>\n";
 		echo "</tr>\n";
 	}
 	if ( ("$typedoc_libelle"=="") || ("$typedoc_libelle"=="these") )
@@ -911,21 +911,21 @@ echo "typedocid=$typedocid";
 
 		echo "<tr>\n";
 		echo "<th>doi</th>\n";
-		echo "<td><input type=\"text\" name=\"doi\" value=\"" . stripSlashes($document->doi) . "\" size=\"70\" maxlength=\"255\"></td>\n";
+		echo "<td><input type=\"text\" name=\"doi\" value=\"" . stripSlashes($document->doi) . "\" size=\"120\" maxlength=\"255\"></td>\n";
 		echo "</tr>\n";
 
-		echo "<tr><th></th><td>Indiquer l'identifiant du dépôt dans HAL, comme hal-01234567 ou tel-01234567</td></tr>\n";
+		//echo "<tr><th></th><td>Indiquer l'identifiant du dépôt dans HAL, comme hal-01234567 ou tel-01234567</td></tr>\n";
 		echo "<tr>\n";
-		echo "<th>hal</th>\n";
+		echo "<th>Identifiant HAL</th>\n";
 		echo "<td>http://hal.archives-ouvertes.fr/<input type=\"text\" name=\"hal\" value=\"" . stripSlashes($document->hal) . "\" size=\"50\" maxlength=\"255\"></td>\n";
 		echo "</tr>\n";
 
 		echo "<tr>\n";
-		echo "<th>note</th>\n";
-		echo "<td><input type=\"text\" name=\"note\" value=\"" . stripSlashes($document->note) . "\" size=\"70\" maxlength=\"255\"></td>\n";
+		echo "<th>Nombreote</th>\n";
+		echo "<td><input type=\"text\" name=\"note\" value=\"" . stripSlashes($document->note) . "\" size=\"120\" maxlength=\"255\"></td>\n";
 		echo "</tr>\n";
 		echo "<tr>\n";
-		echo "<th>groupe</th>\n";
+		echo "<th>Groupes</th>\n";
 		echo "<td>\n";
 
 		foreach ($list_groupes as $id=>$name)
@@ -941,7 +941,7 @@ echo "typedocid=$typedocid";
 		echo "</tr>\n";
 
 		echo "<tr>\n";
-		echo "<th>langue</th>\n";
+		echo "<th>Langue</th>\n";
 		echo "<td><select name=\"lang\" size=\"1\">\n";
 		foreach ($list_lang as $id=>$name)
 		{

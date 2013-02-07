@@ -255,20 +255,37 @@ a img
 #mainarea
 {
 	width: 79%;
+	heigth: 100%;
 	float: right;
 	margin-top: 3em;
 	margin-bottom: 0.5em;
 	padding-right: 1em;
+	padding-bottom: 1em;
 	font-size: 100%;
 
 	background-color: #fff;
 	color: #003366;
+
+	border-top: 1px @colorBandeau solid;
+	border-right: 1px @colorBandeau solid;
+	border-left: 1px @colorBandeau solid;
+	border-bottom: 1px @colorBandeau solid;
+
+
+}
+
+#mainarea th,td{
+text-align : left;
+
+	
 }
 
 #mainarea a:link
 {
 	text-decoration: underline;
 	color: #0072ff;
+		padding-left: 1em;
+
 }
 #mainarea a:visited
 {
@@ -289,8 +306,11 @@ a img
 	/* font-size: 85%; */
 	margin-top: 8px;
 	margin-bottom: 8px;
+
 	/* text-indent: 2em; */
 	text-align: justify;
+
+
 }
 
 #mainarea h1,
@@ -300,8 +320,9 @@ a img
 #mainarea h5
 {
 	margin-top: 0;
-	padding-left: 0;
 	padding-right: 0;
+	padding-left: 1em;
+
 }
 
 #mainarea h1
