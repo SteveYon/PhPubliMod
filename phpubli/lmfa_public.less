@@ -10,6 +10,7 @@
 @colorGris: #EEE;
 @colorLiens: #1B6896;
 @colorBackground: #789;
+@colorConnexion: #B9121B;
 
 body { 
 	font-size: 100%;
@@ -90,7 +91,7 @@ a img
 	text-decoration: none;
 
 	float: right;
-	color: #0072ff;
+	color: @colorLiens;
 	border-bottom: solid 3px #eee;
 
 }
@@ -99,12 +100,19 @@ a img
 #navbarlmfa a:visited.active
 {
 	color: TEXTMEDIUM;
-	border-bottom: solid 3px #0072ff;
+	border-bottom: solid 3px @colorSouligne;
 	background-color: #ddd;
 	
 		/*background-color:red;*/
 }
 
+#navbarlmfa img{
+		border: none;
+	vertical-align: middle;
+	position: absolute; 
+left: 0px; 
+top: 0px;
+}
 
 #navbarlmfa a:link.active,
 #navbarlmfa a:visited.active
@@ -114,12 +122,12 @@ a img
 
 #navbarlmfa a.restr
 {
-	color: red;
+	color: @colorConnexion;
 	background-color: #eee;
 }
 #navbarlmfa a.restr:hover
 {
-	border-bottom: solid 3px red;
+	border-bottom: solid 3px @colorConnexion;
 	color: #cc0000;
 	background-color: #ddd;
 

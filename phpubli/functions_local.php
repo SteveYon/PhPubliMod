@@ -51,14 +51,16 @@ function titlebanner()
 	global $rootdir;
 	global $imagesdir;
 	print("<!-- begin title banner -->\n");
-	print("<div id=\"banner\">\n");
-	print("<a href=\"/\"><img src=\"$imagesdir/LOGO_LABO.png\" alt=\"back to $LAB (logo)\"></a>&nbsp;&nbsp;$LABO\n");
-	print("</div>\n");
+	//print("<div id=\"banner\">\n");
+	//print("<a href=\"/\"><img src=\"$imagesdir/LOGO_LABO.png\" alt=\"back to $LAB (logo)\"></a>&nbsp;&nbsp;$LABO\n");
+	//print("</div>\n");
 	print("<!-- end title banner -->\n");
 }
 
-function navigationbar()
-{
+function navigationbar(){
+	
+	global $imagesdir; //Modif 7/02/2013
+
 	print("<!-- begin main navigation bar -->\n");
 
 	// Debut du menu horizontal, tel qu'il est utilise sur toutes les pages web du labo
@@ -66,13 +68,16 @@ function navigationbar()
 	$item="publi";
 	print("<div id=\"navbarlmfa\">\n");
 	print("<ul>\n");
+
+
+
 	//print("<li><a href=\"/connecter\"");//intranet/index.php
 	print("<li><a href=\"$rootdir/PhPubliMod/phpubli/intranet/login.php\"");
 	
 	//print("<li><a href="intranet/index.php");
 	if ($item == "connecter") print(" class=\"restractive\"");
 	else print(" class=\"restr\"");
-	print(">connecter</a></li>\n");
+	print(">Connecter</a></li>\n");
 	
 	//print("<li><a href=\"/intranet\"");
 	//if ($item == "intranet") print(" class=\"restractive\"");
@@ -143,7 +148,9 @@ function navigationbar()
 	print("<li><a href=\"$rootdir/PhPubliMod/phpubli/index.php\"");
 	if ($item == "") print(" class=\"active\"");
 	print(">Accueil</a></li>\n");
-
+	print("<li>\n");
+	print("<a href=\"/\"><img src=\"$imagesdir/LOGO_LABO.png\" alt=\"back to $LAB (logo)\"></a>&nbsp;&nbsp;$LABO\n");
+	print("</li>\n");
 	print("</ul>\n");
 	print("</div>\n");
 
