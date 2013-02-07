@@ -5,14 +5,19 @@
 
 @colorBandeau: #999;
 @colorSouligne: #999;
+@colorTexte: #000000;
+@colorTexteBandeau: #333333;
+@colorGris: #EEE;
+@colorLiens: #1B6896;
+@colorBackground: #789;
 
 body { 
 	font-size: 100%;
 	font-family: Verdana, Helvetica, Arial, sans-serif;
 	margin: 0;
 	padding: 0;
-	background-color: #fff;
-	color: #003366;
+	background-color: @colorBackground;
+	/*color: #003366;*/
 }
 
 a img
@@ -31,6 +36,8 @@ a img
 	font-size: 140%;
 	font-weight: bold;
 	text-align: left;
+	color: @colorTexteBandeau;
+	font-size: 75%;
 }
 #banner img
 {
@@ -160,8 +167,8 @@ a img
 
 #footer
 {
-	border-top: 1px #0072ff solid;
-	border-bottom: 1px #0072ff solid;
+	border-top: 1px @colorBandeau solid;
+	border-bottom: 1px @colorBandeau solid;
 	background-color: #eee;
 	clear: both;
 }
@@ -190,7 +197,7 @@ a img
 {
 	padding: 0;
 	list-style-type: none;
-	color: #0072ff;
+	color: @colorLiens;
 }
 #lhsmenu ul ul
 {
@@ -204,7 +211,7 @@ a img
 {
 	display: block;
 	text-decoration: none;
-	color: #0072ff;
+	color: @colorLiens;
 	border-bottom: solid 3px #eee;
 	padding: 0.2em 1em 0.2em 1em;
 }
@@ -212,7 +219,7 @@ a img
 #lhsmenu a:link.active,
 #lhsmenu a:visited.active
 {
-	color: #0072ff;
+	color: @colorLiens;
 	border-bottom: solid 3px @colorBandeau;
 	background-color: #ddd;
 }
@@ -255,7 +262,7 @@ a img
 #mainarea
 {
 	width: 79%;
-	heigth: 100%;
+	/*height: 100%;*/
 	float: right;
 	margin-top: 3em;
 	margin-bottom: 0.5em;
@@ -264,7 +271,7 @@ a img
 	font-size: 100%;
 
 	background-color: #fff;
-	color: #003366;
+	color: @colorTexte;
 
 	border-top: 1px @colorBandeau solid;
 	border-right: 1px @colorBandeau solid;
@@ -327,11 +334,11 @@ text-align : left;
 
 #mainarea h1
 {
-	color: #fff;
-	background-color: @colorBandeau;
+	color:@colorTexteBandeau;/*Couleur TEXT H1*/
+	background-color: @colorGris;
 	padding-top: 6px;
 	padding-bottom: 6px;
-	font-size: 200%;
+	font-size: 130%;
 	text-align: center;
 	width: 100%;
 }
@@ -340,7 +347,7 @@ text-align : left;
 #mainarea h4,
 #mainarea h5
 {
-	color: #0072ff;
+	/*color: #0072ff;*/
 	background-color: #fff;
 }
 #mainarea h2
