@@ -4,3 +4,7 @@ PhPubli est un logiciel sous licence Open Source, c'est pourquoi nous nous somme
 Projet.
 
 Il est écrit en PHP et utilise une base de donnée MySQL.
+
+--> A faire:
+		- Ajout sous menu gauche Publication
+		- De même pour Intranet
