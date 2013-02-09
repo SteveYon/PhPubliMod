@@ -1,4 +1,4 @@
-<?php
+<?php session_start();
 /*****************************************************************************
  * Copyright (C) 2007-2009 CNRS
  *
@@ -60,6 +60,9 @@ function titlebanner()
 function navigationbar(){
 	
 	global $imagesdir; //Modif 7/02/2013
+	global $bd;
+
+	$currentuser=current_user($bd);
 
 	print("<!-- begin main navigation bar -->\n");
 
@@ -77,7 +80,20 @@ function navigationbar(){
 	//print("<li><a href="intranet/index.php");
 	if ($item == "connecter") print(" class=\"restractive\"");
 	else print(" class=\"restr\"");
-	print(">Connecter</a></li>\n");
+
+	//revoir ce code
+	if (empty($currentuser)){	
+		print("<li><a href=\"$rootdir/PhPubliMod/phpubli/intranet/login.php\"");
+		if ($item == "connecter") print(" class=\"restractive\"");
+		else print(" class=\"restr\"");
+		print(">Connexion</a></li>\n");
+	}else{ 
+		print("<li><a href=\"$rootdir/PhPubliMod/phpubli/intranet/logout.php\"");
+		if ($item == "deconnecter") print(" class=\"restractive\"");
+		else print(" class=\"restr\"");
+		print(">Deconnexion</a></li>\n");
+	}
+	
 	
 	//print("<li><a href=\"/intranet\"");
 	//if ($item == "intranet") print(" class=\"restractive\"");

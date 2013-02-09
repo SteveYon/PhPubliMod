@@ -75,15 +75,18 @@ function leftmenu_intranet($item)
 	print(">Intranet</a></li>\n");
 	print("<li>&nbsp;</li>\n");
 	
+	if (empty($currentuser))
+	{
 	print("<li><a href=\"$rootdir/intranet/login.php\"");
 	if ($item == "login") print(" class=restractive");
 	else print(" class=restr");
-	print(">login</a></li>\n");
-	
+	print(">Connexion</a></li>\n");
+	}else{
 	print("<li><a href=\"$rootdir/intranet/logout.php\"");
 	if ($item == "logout") print(" class=restractive");
 	else print(" class=restr");
-	print(">logout</a></li>\n");
+	print(">Déconnexion</a></li>\n");
+	}
 	/*
 	print("<li><a href=\"$rootdir/intranet/document.php\"");
 	if ($item == "doc") print(" class=restractive");

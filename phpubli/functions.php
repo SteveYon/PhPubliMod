@@ -53,7 +53,7 @@ function search_form($tab, $bd)
 	echo "<form method='post' action='search.php' name='form'>\n";
 	echo "<input type='hidden' name=\"action\" value=\"searchnow\">\n";
 	echo "<table>\n";
-	echo "<tr><td><b>auteur</b></td>\n";
+	echo "<tr><td><b>Auteur</b></td>\n";
 	echo "<td><select name=\"test_author\" size=\"1\">";
 	foreach ($test_string as $id=>$name)
                 {
@@ -63,7 +63,7 @@ function search_form($tab, $bd)
                 }
 	echo "</select><input type='text' name=\"author\" value=\"" . $tab['author'] . "\" size='20' maxlength='40'>";
 	echo "</td></tr>\n";
-	echo "<tr><td><b>année</b></td>\n";
+	echo "<tr><td><b>Année</b></td>\n";
 	echo "<td><select name=\"test_year\" size=\"1\">";
 	foreach ($test_year as $id=>$name)
                 {
@@ -73,7 +73,7 @@ function search_form($tab, $bd)
                 }
 	echo "</select><input type='text' name=\"year\" value=\"" . $tab['year'] . "\" size='4' maxlength='4'>";
 	echo "</td></tr>\n";
-	echo "<tr><td><b>type de document</b></td>\n";
+	echo "<tr><td><b>Type de Document</b></td>\n";
 	echo "<td><select name=\"typedoc_id\" size=\"1\">";
 	foreach ($list_typedoc as $id=>$name)
                 {
@@ -82,7 +82,7 @@ function search_form($tab, $bd)
                         echo ">$name</option>\n";
                 }
 	echo "</select></td></tr>\n";
-	echo "<tr><td><b>groupe</b></td>\n";
+	echo "<tr><td><b>Groupe</b></td>\n";
 	echo "<td><select name=\"groupe\" size=\"1\">";
 	foreach ($list_groupe as $id=>$name)
                 {

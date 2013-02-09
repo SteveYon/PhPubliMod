@@ -64,10 +64,7 @@ if (empty($currentuser))
 	echo "Pour faire des opérations sur la base de données, vous devez d'abord vous identifier ";
 	echo "(<a href=\"$rootdir/intranet/login.php\">login</a>).<br>\n";
 }
-else
-{
-	echo "Vous êtes identifié(e) comme $currentuser.<br>\n";
-}
+else{
 
 print "<h2>Modifications récentes</h2>\n";
 
@@ -122,7 +119,7 @@ print "<a href=\"$rootdir/$localdir/publisher.php\">Liste des éditeurs commercia
 print "<a href=\"$rootdir/$localdir/conference.php\">Liste des conférences</a><br>\n";
 
 print "<a href=\"$rootdir/$localdir/document.php?doc=proceedings_book\">Liste des livres d'actes d'une conférence</a><br>\n";
-
+}
 ?>
 
 </div>
