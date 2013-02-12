@@ -22,26 +22,23 @@
 
 // ****************************************************************
 // authentification functions
+/*
+*Fichier modifié par Adrien UWINDEKWE MatIS 2013
+*Motivations: Adapter ce fichier pour mettre en place l'identification LDAP
+*/
 
-function current_user($bd)
+
+function current_user()
 {
 	$current_user="";
-	if ( isset($_SESSION['id']) && (!empty($_SESSION['id'])) && isset($_SESSION['login']) && isset($_SESSION['status']) && isset($_SESSION['group']) && isset($_SESSION['site']) && ($_SESSION['site']=="phpubli") )
+	if ((isset($_SESSION['id']) && (!empty($_SESSION['id']))) || isset($_SESSION['login']) && isset($_SESSION['group']) && isset($_SESSION['site']) && ($_SESSION['site']=="phpubli") )
 	{
-		$query="select * from user where `u_id`=" . $_SESSION['id'];
-		// print "$query<br>";
-		$result=$bd->exec_query($query);
-		if (mysql_num_rows($result)==1)
-		{
-			$ob=$bd->fetch_object($result);
-			if ( ($_SESSION['login']=="$ob->u_login") && ($_SESSION['status']=="$ob->u_status") && ($_SESSION['group']=="$ob->u_groupid") )
-			$current_user= $ob->u_first . " " . $ob->u_name;
-		}
+		$current_user= $_SESSION['login'];
 	}
 	return $current_user;
 }
 
-function current_group($bd)
+function current_group()
 {
 	$current_group="";
 	if ( isset($_SESSION['group']) )
@@ -49,10 +46,33 @@ function current_group($bd)
 	return $current_group;
 }
 
-function check_user($login, $password, $bd)
+function check_user($login, $password)
 {
+
 	$response="";
-	$query="select * from user where `u_login`='$login' and `u_password`=md5('$password')";
+	$LDAPHost = SERVERLDAP;       //Le 
+	$dn =ADMINDN; //Le DN de l'admin
+	$racine = LDAPROOT;  //Racine à partir de laquelle les recherches sont faites
+	$LDAPUser = UNAMELDAP;        //Login admin permettant d'effectuer les recherches de bases
+	$LDAPUserPassword = UPASSWORDLDAP; //Mot de passe admin
+	$LDAPFieldsToFind = array("cn", "givenname", "homedirectory", "mail", "ou", "uid", "status");//Les champs utiles pour la connexion
+    
+	$cnx = ldap_connect($LDAPHost) or die("Could not connect to LDAP");
+	ldap_set_option($cnx, LDAP_OPT_PROTOCOL_VERSION, 3);  
+	ldap_set_option($cnx, LDAP_OPT_REFERRALS, 0);         
+	ldap_bind($cnx,$dn,$LDAPUserPassword) or die("Could not bind to LDAP");
+  				error_reporting (E_ALL ^ E_NOTICE);  
+	$filter="(cn=$login)"; 
+	$sr=ldap_search($cnx, $racine, $filter, $LDAPFieldsToFind);
+	$info = ldap_get_entries($cnx, $sr);
+
+	$entry = ldap_first_entry($cnx, $sr);
+	$dnUser = ldap_get_dn($cnx, $entry);	
+	$resConnection = ldap_bind($cnx,$dnUser,$password);
+	if($resConnection==1){
+		$response=$login;	
+	}
+	/*$query="select * from user where `u_login`='$login' and `u_password`=md5('$password')";
 	// print "$query <br>\n";
 	$result=$bd->exec_query($query);
 	if (mysql_num_rows($result)==1)
@@ -60,13 +80,13 @@ function check_user($login, $password, $bd)
 		$ob=$bd->fetch_object($result);	
 		$_SESSION['id']=$ob->u_id;
 		$response=$ob->u_login;
-	}
+	}*/
 	return $response;
 }
 
 function check_login($bd)
 {
-	$currentuser=current_user($bd);
+	$currentuser=current_user();
 	global $rootdir;
 	if (empty($currentuser))
 	{
@@ -87,9 +107,9 @@ function check_login($bd)
 	}
 }
 
-function check_status($bd)
+function check_status()
 {
-	$currentuser=current_user($bd);
+	$currentuser=current_user();
 	if (empty($currentuser))
 	{
 		$status=-1;
@@ -101,9 +121,9 @@ function check_status($bd)
 	return $status;
 }
 
-function check_admin_priv($bd)
+function check_admin_priv()
 {
-	$currentuser=current_user($bd);
+	$currentuser=current_user();
 	if (empty($currentuser))
 	{
 		$priv=0;
@@ -117,9 +137,9 @@ function check_admin_priv($bd)
 	return $priv;
 }
 
-function check_admin_login($bd)
+function check_admin_login()
 {
-	$currentuser=current_user($bd);
+	$currentuser=current_user();
 	global $rootdir;
 	if (empty($currentuser))
 	{
@@ -140,9 +160,9 @@ function check_admin_login($bd)
 	}
 }
 
-function check_root_priv($bd)
+function check_root_priv()
 {
-	$currentuser=current_user($bd);
+	$currentuser=current_user();
 	if (empty($currentuser))
 	{
 		$priv=0;
@@ -156,9 +176,9 @@ function check_root_priv($bd)
 	return $priv;
 }
 
-function check_root_login($bd)
+function check_root_login()
 {
-	$currentuser=current_user($bd);
+	$currentuser=current_user();
 	global $rootdir;
 	if (empty($currentuser))
 	{

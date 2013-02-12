@@ -29,7 +29,7 @@
 	$bd = new MySQL(UNAME, UPASSWORD, BASE, SERVER);
 
 	// check if there is a user logged in
-	$currentuser=current_user($bd);
+	$currentuser=current_user();
 
 ?>
 <?php preamble(); ?>

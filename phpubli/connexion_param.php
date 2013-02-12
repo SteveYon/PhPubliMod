@@ -20,9 +20,16 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-define('UNAME', "phpubli_login");
-define('UPASSWORD', "phpubli_password");
+define('UNAME', "adrien");
+define('UPASSWORD', "root");
 define('SERVER', "localhost");
 define('BASE', "phpubli");
 
+// Modifié par Adrien UWINDEKWE MatIS 2013
+//Paramètres LDAP
+define('UNAMELDAP', "admin");
+define('UPASSWORDLDAP', "root");
+define('SERVERLDAP', "127.0.0.1");
+define('ADMINDN', "CN=admin, DC=example,DC=com");
+define('LDAPROOT', "ou=LITIS, DC=example,DC=com");//Noeud à partir duquel on fait des recherches des membres LITIS...
 ?>

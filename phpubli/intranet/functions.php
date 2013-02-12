@@ -41,7 +41,7 @@ function leftmenu_intranet($item)
 	print("<div id=lhsmenu>\n");
 	print("<ul>\n");
 
-	$currentuser=current_user($bd);
+	$currentuser=current_user();
 	if (!empty($currentuser))
 	{
 		$status=check_login($bd);

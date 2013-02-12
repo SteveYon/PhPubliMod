@@ -20,10 +20,10 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-define('UNAME', "ali");
-define('UPASSWORD', "admin");
+define('UNAME', "adrien");
+define('UPASSWORD', "root");
 define('SERVER', "localhost");
-define('BASE', "phpubli_BASE");
+define('BASE', "phpubli");
 
 /*
 define('UNAME', "phpubli_UNAME");

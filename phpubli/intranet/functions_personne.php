@@ -22,15 +22,17 @@
 
 // ****************************************************************
 // Personne operations
+//Fichier modifié par Adrien UWINDEKWE MatIS 2012-2013.
+//le but est d'afficher les personnes présentes dans l'annuaire LDAP
 
 function personne_lines($bd)
 {
 	global $rootdir;
-	$query = "SELECT * FROM personne ORDER BY pers_last";
-	$result = $bd->exec_query ($query);
+	/*$query = "SELECT * FROM personne ORDER BY pers_last";
+	$result = $bd->exec_query ($query);*/
 
 	$lines="";
-	$i=0;
+	/*$i=0;
 
 	while ( $personne = $bd->fetch_object ($result) )
 	{
@@ -54,8 +56,28 @@ function personne_lines($bd)
 		$str .= anchor("$rootdir/search.php?search=personne&id=$personne->pers_id", stripSlashes($personne->pers_last));
 		$str .= "</td>";
 		$lines .= "<tr>" . $str . "</tr>\n";
-	}
-
+	}*/
+	$LDAPHost = SERVERLDAP;       //Le serveur LDAP
+	$dn =ADMINDN; //Le DN de l'admin ldap
+	$racine = LDAPROOT;  //La racine à partir duquel on effectues des recherches dans la base ldap
+	$LDAPUser = UNAMELDAP;        //login permettant d'effectuer les opérations de bases dans la base ldap
+	$LDAPUserPassword = UPASSWORDLDAP; //Mot de passe admin
+	$LDAPFieldsToFind = array("cn", "ou");//Les champs utiles pour la connexion
+   
+	$cnx = ldap_connect($LDAPHost) or die("Could not connect to LDAP");
+	ldap_set_option($cnx, LDAP_OPT_PROTOCOL_VERSION, 3); 
+	ldap_set_option($cnx, LDAP_OPT_REFERRALS, 0);        
+	ldap_bind($cnx,$dn,$LDAPUserPassword) or die("Could not bind to LDAP");
+ 				error_reporting (E_ALL ^ E_NOTICE); 
+	$filter="(cn=*)"; //Permet de selectionner les cn
+	$sr=ldap_search($cnx, $racine, $filter, $LDAPFieldsToFind);
+	$info = ldap_get_entries($cnx, $sr);
+	for ($x=0; $x<$info["count"]; $x++) {
+	    $ou=$info[$x]['ou'][0];
+	    $nam=$info[$x]['cn'][0];
+	    $exploded=ldap_explode_dn ($ou, 1);
+	    $lines .= "<tr><td>[$ou]</td> <td>$nam\n</td></tr>";
+	} 
 	return "<table>\n" . $lines . "</table>\n" ;
 }
 

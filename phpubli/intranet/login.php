@@ -32,40 +32,47 @@ $redirectpage=$filename;
 
 if ( (isset($_POST['action'])) && ($_POST['action']=="login") )
 {
-//print ("login <br>");
 	if (isset($_POST['connect']))
 	{
-//print ("connect <br>");
-		// if ( isset($_POST['login']) & !empty($_POST['login']) & isset($_POST['plogin']) & !empty($_POST['plogin']) )
 		if ( isset($_POST['login']) && isset($_POST['plogin']) )
 		{
 			$login=$_POST['login'];
 			$password=$_POST['plogin'];
-			$query = "SELECT * FROM user WHERE `u_login` = '$login' AND `u_password` =md5('$password')";
-			//print( "$query <br>\n");
-			$result=$bd->exec_query($query);
-			if (mysql_num_rows($result)==1)	// login success
+			/*
+			 *Modifications ajoutées dans le but de vérifier si les utilisateurs sont dans l'annuaire ldap
+			*/
+			$LDAPHost = SERVERLDAP;       //Le serveur LDAP
+  			$dn =ADMINDN; //Le DN de l'admin ldap
+  			$racine = LDAPROOT;  //La racine à partir duquel on effectues des recherches dans la base ldap
+  			$LDAPUser = UNAMELDAP;        //login permettant d'effectuer les opérations de bases dans la base ldap
+  			$LDAPUserPassword = UPASSWORDLDAP; //Mot de passe admin
+  			$LDAPFieldsToFind = array("cn", "ou", "uid", "status");//Les champs utiles pour la connexion
+    
+  			$cnx = ldap_connect($LDAPHost) or die("Could not connect to LDAP");
+  			ldap_set_option($cnx, LDAP_OPT_PROTOCOL_VERSION, 3); 
+  			ldap_set_option($cnx, LDAP_OPT_REFERRALS, 0);        
+  			ldap_bind($cnx,$dn,$LDAPUserPassword) or die("Could not bind to LDAP");
+  				error_reporting (E_ALL ^ E_NOTICE); 
+  			$filter="(cn=$login)"; //Permet de selectionner les cn
+  			$sr=ldap_search($cnx, $racine, $filter, $LDAPFieldsToFind);
+  			$info = ldap_get_entries($cnx, $sr);
+
+			$entry = ldap_first_entry($cnx, $sr);
+    			$dnUser = ldap_get_dn($cnx, $entry);	
+			$resConnection = ldap_bind($cnx,$dnUser,$password);
+		
+
+			if($resConnection==1)//Connection OK
 			{
-				$ob=$bd->fetch_object($result);
-				$_SESSION['id']=$ob->u_id;
-				$_SESSION['login']=$ob->u_login;
-				$_SESSION['status']=$ob->u_status;
-				$_SESSION['group']=$ob->u_groupid;
+				$_SESSION['id']=$info[0]['uid'][0];
+				$_SESSION['login']=$login;
+				$_SESSION['status']=$info[0]['status'][0];
+				$_SESSION['group']=$info[0]['ou'][0];
 				$_SESSION['site']="phpubli";
 				$redirectpage="index.php";
+				
 
-				$query="insert into history (u_id, action, date_entry) values (" 
-					. "'" . $ob->u_id . "', 'login', now()  )";
-				$result=$bd->exec_query($query);
-				if ( (maintenance($bd)>0) && ($ob->u_status!=2) )
-				{
- 					if(isset($_SESSION['id']))   unset ($_SESSION['id']);
-                			if(isset($_SESSION['login']))   unset ($_SESSION['login']);
-                			if(isset($_SESSION['status']))  unset ($_SESSION['status']);
-                			if(isset($_SESSION['group']))   unset ($_SESSION['group']);
-                			if(isset($_SESSION['site']))    unset ($_SESSION['site']);
-					$redirectpage="login.php?mode=maintenance";
-				}
+				
 			}
 			else
 			{
