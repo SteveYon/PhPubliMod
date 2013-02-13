@@ -72,8 +72,11 @@ print "<a href=\"$rootdir/$localdir/last_document.php?limit=20\">Liste des derni
 
 print "<h2>Saisir de nouvelles données</h2>\n";
 
-print "<a href=\"$rootdir/$localdir/document.php?doc=article&mode=insert\">Ajouter un article</a><br>\n";
+print "<a href=\"$rootdir/$localdir/document.php?doc=article&mode=insert\">Ajouter un article depuis le formulaire</a><br>\n";
 
+print "<a href=\"$rootdir/$localdir/document.php?doc=article&mode=insert\">Ajouter un article depuis un fichier</a><br>\n";
+
+/*
 print "<a href=\"$rootdir/$localdir/document.php?doc=these&mode=insert\">Ajouter une thèse/hdr</a><br>\n";
 
 print "<a href=\"$rootdir/$localdir/document.php?doc=conference_proceeding&mode=insert\">Ajouter une communication (invitée ou non) dans une conférence avec actes publiés</a><br>\n";
@@ -95,11 +98,11 @@ print "<a href=\"$rootdir/$localdir/publisher.php?mode=insert\">Ajouter un édite
 print "<a href=\"$rootdir/$localdir/conference.php?mode=insert\">Ajouter une conférence</a><br>\n";
 
 print "<a href=\"$rootdir/$localdir/document.php?doc=proceedings_book&mode=insert\">Ajouter un livre d'actes d'une conférence</a><br>\n";
-
+*/
 print "<h2>Modifier des données existantes</h2>\n";
 
 print "<a href=\"$rootdir/$localdir/document.php?doc=article\">Liste des articles</a><br>\n";
-
+/*
 print "<a href=\"$rootdir/$localdir/document.php?doc=these\">Liste des thèses/hdr</a><br>\n";
 
 print "<a href=\"$rootdir/$localdir/document.php?doc=conference_proceeding\">Liste des communications dans une conférence avec actes publiés</a><br>\n";
@@ -119,6 +122,11 @@ print "<a href=\"$rootdir/$localdir/publisher.php\">Liste des éditeurs commercia
 print "<a href=\"$rootdir/$localdir/conference.php\">Liste des conférences</a><br>\n";
 
 print "<a href=\"$rootdir/$localdir/document.php?doc=proceedings_book\">Liste des livres d'actes d'une conférence</a><br>\n";
+*/
+
+print "<h2>Supprimer des données existantes</h2>\n";
+
+print "<a href=\"$rootdir/$localdir/document.php?doc=article\">Supprimer des articles</a><br>\n";
 }
 ?>
 
