@@ -347,28 +347,28 @@ if ( "$query" != "")
 	}
 
 	// DOI icon
-	$lines .= "<tr><td></td></tr>\n<tr><td></td><td>" . anchor_ext_icon("http://www.doi.org/", "doi.ico")
-			. ":</td><td>Lien " . anchor("http://www.doi.org/", "DOI") . " vers le document original"
-			. " </td></tr>\n";
+	//$lines .= "<tr><td></td></tr>\n<tr><td></td><td>" . anchor_ext_icon("http://www.doi.org/", "doi.ico")
+	//		. ":</td><td>Lien " . anchor("http://www.doi.org/", "DOI") . " vers le document original"
+	//		. " </td></tr>\n";
 
-	// HAL icon
-	$lines .= "<tr><td></td></tr>\n<tr><td></td><td>" . anchor_ext_icon("http://hal.archives-ouvertes.fr/", "hal.ico")
-			. ":</td><td>Accéder au document dans l'archive ouverte "
-			. anchor("http://hal.archives-ouvertes.fr/", "HAL (Hyperarticles en ligne)")
-			. " </td></tr>\n";
+	//HAL icon
+	//$lines .= "<tr><td></td></tr>\n<tr><td></td><td>" . anchor_ext_icon("http://hal.archives-ouvertes.fr/", "hal.ico")
+	//		. ":</td><td>Accéder au document dans l'archive ouverte "
+	//		. anchor("http://hal.archives-ouvertes.fr/", "HAL (Hyperarticles en ligne)")
+	//		. " </td></tr>\n";
 
 	// google icon
-	$lines .= "<tr><td></td></tr>\n<tr><td></td><td>" . anchor_ext_icon("http://scholar.google.fr/", "google.ico")
-			. ":</td><td>Recherche du document avec "
-			. anchor("http://scholar.google.fr/", "Google Scholar")
-			. " </td></tr>\n";
+	//$lines .= "<tr><td></td></tr>\n<tr><td></td><td>" . anchor_ext_icon("http://scholar.google.fr/", "google.ico")
+	//		. ":</td><td>Recherche du document avec "
+	//		. anchor("http://scholar.google.fr/", "Google Scholar")
+	//		. " </td></tr>\n";
 
 	echo "<form method=\"post\" action=\"selection.php\">\n";
 	echo "<table>" . $lines . "</table>\n";
-	// echo "<input type=\"hidden\" name=\"currentselection\">\n";
+	echo "<input type=\"hidden\" name=\"currentselection\">\n";
 	echo "<input type=\"submit\" name=\"addtoselection\" value=\"add selected items to marked list\">\n";
 	echo "<input type=\"submit\" name=\"addalltoselection\" value=\"add all items to marked list\">\n";
-	// echo "<input type=\"submit\" name=\"clearselection\" value=\"clear selection\">\n";
+	echo "<input type=\"submit\" name=\"clearselection\" value=\"clear selection\">\n";
 	echo "</form>\n";
 }
 
@@ -383,7 +383,7 @@ else
 	search_form($NULL_SEARCH, $bd);
 }
 
-warning(); 
+//warning(); 
 ?>
 
 </div>
