@@ -383,7 +383,7 @@ else
 	search_form($NULL_SEARCH, $bd);
 }
 
-//warning(); 
+warning(); 
 ?>
 
 </div>

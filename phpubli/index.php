@@ -48,16 +48,13 @@
 <h1>Production scientifique du <?php echo $LABO; ?></h1>
 
 <p>
-	<h5>Bienvenue sur le portail de Gestion des articles de rechercher du laboratoire LITIS:</h5>
-	<p>A partir de cette application vous pourrez:
-	<p>Consulter des articles
-	<p>Gérer les articles
-	<ul>
-		<li>Ajouter un article</li>
-		<li>Supprimer un article</li>
-		<li>Modifier un article</li>
-	</ul>
-	<p>Les identifiants de connexion sont vos identifiants LDAP, si vous n'en avez pas, contactez l'administrateur de se site.
+	<h5>Bienvenue sur le portail de Gestion des Artciles de rechercher du laboratoire LITIS:</h5>
+	<p>
+	A partir de se Portail vous pourrez:
+	<p>
+	Gérer les articles
+	<p>
+	Consulter des articles
 	<!--
 
 <a href="./search.php">Recherche d'articles, de thèses, de congrès&hellip; dans la base de données</a>

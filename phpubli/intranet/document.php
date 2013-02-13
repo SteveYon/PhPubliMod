@@ -340,7 +340,7 @@ if ( (isSet($_GET['mode'])) || ($displayid!="") )
 		document_data_form($typedoc_id, "insert", "", $bd);
 		echo "</center>\n";
 		echo "<input type=\"submit\" name=\"insertdocumentdata\" value=\"enregistrer les données, puis ajouter des auteurs, éditeurs...\"><br>\n";
-		echo "<input type=\"file\" name=\"import_file\" value=\"Depuis un Fichier Bibtex\"><br>\n";
+		echo "<input type=\"submit\" name=\"\" value=\"Depuis un Fichier Bibtex\"><br>\n";
 		echo "</form>\n";
 	}
 
