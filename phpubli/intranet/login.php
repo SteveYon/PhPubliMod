@@ -48,31 +48,64 @@ if ( (isset($_POST['action'])) && ($_POST['action']=="login") )
   			$LDAPUserPassword = UPASSWORDLDAP; //Mot de passe admin
   			$LDAPFieldsToFind = array("cn", "ou", "uid", "status");//Les champs utiles pour la connexion
     
-  			$cnx = ldap_connect($LDAPHost) or die("Could not connect to LDAP");
+  			$cnx = ldap_connect($LDAPHost);
   			ldap_set_option($cnx, LDAP_OPT_PROTOCOL_VERSION, 3); 
   			ldap_set_option($cnx, LDAP_OPT_REFERRALS, 0);        
-  			ldap_bind($cnx,$dn,$LDAPUserPassword) or die("Could not bind to LDAP");
-  				error_reporting (E_ALL ^ E_NOTICE); 
-  			$filter="(cn=$login)"; //Permet de selectionner les cn
-  			$sr=ldap_search($cnx, $racine, $filter, $LDAPFieldsToFind);
-  			$info = ldap_get_entries($cnx, $sr);
+  			$connexionAdmin = ldap_bind($cnx,$dn,$LDAPUserPassword);
+			if($connexionAdmin){ 
+	  			$filter="(cn=$login)"; //Permet de selectionner les cn
+	  			$sr=ldap_search($cnx, $racine, $filter, $LDAPFieldsToFind);
+	  			$info = ldap_get_entries($cnx, $sr);
 
-			$entry = ldap_first_entry($cnx, $sr);
-    			$dnUser = ldap_get_dn($cnx, $entry);	
-			$resConnection = ldap_bind($cnx,$dnUser,$password);
+				$entry = ldap_first_entry($cnx, $sr);
+	    			$dnUser = ldap_get_dn($cnx, $entry);	
+				$resConnection = ldap_bind($cnx,$dnUser,$password);
 		
 
-			if($resConnection==1)//Connection LDAP OK
-			{
-				$_SESSION['id']=$info[0]['uid'][0];
-				$_SESSION['login']=$login;
-				$_SESSION['status']=$info[0]['status'][0];
-				$_SESSION['group']=$info[0]['ou'][0];
-				$_SESSION['site']="phpubli";
-				$redirectpage="index.php";
+				if($resConnection==1)//Connection LDAP OK
+				{
+					$_SESSION['id']=$info[0]['uid'][0];
+					$_SESSION['login']=$login;
+					$_SESSION['status']=$info[0]['status'][0];
+					$_SESSION['group']=$info[0]['ou'][0];
+					$_SESSION['site']="phpubli";
+					$redirectpage="index.php";
 				
 
 				
+				}else
+				{
+					//Verification si l'utilisateur est le super-utilisateur donc se trouve dans la base de l'application
+					$query = "SELECT * FROM user WHERE `u_login` = '$login' AND `u_password` =md5('$password')";
+					$result=$bd->exec_query($query);
+					if (mysql_num_rows($result)==1)	// login success
+					{
+						$ob=$bd->fetch_object($result);
+						$_SESSION['id']=$ob->u_id;
+						$_SESSION['login']=$ob->u_login;
+						$_SESSION['status']=$ob->u_status;
+						$_SESSION['group']=$ob->u_groupid;
+						$_SESSION['site']="phpubli";
+						$redirectpage="index.php";
+
+						$query="insert into history (u_id, action, date_entry) values (" 
+							. "'" . $ob->u_id . "', 'login', now()  )";
+						$result=$bd->exec_query($query);
+						if ( (maintenance($bd)>0) && ($ob->u_status!=2) )
+						{
+		 					if(isset($_SESSION['id']))   unset ($_SESSION['id']);
+							if(isset($_SESSION['login']))   unset ($_SESSION['login']);
+							if(isset($_SESSION['status']))  unset ($_SESSION['status']);
+							if(isset($_SESSION['group']))   unset ($_SESSION['group']);
+							if(isset($_SESSION['site']))    unset ($_SESSION['site']);
+							$redirectpage="login.php?mode=maintenance";
+						}
+					}
+					else
+					{
+						$redirectpage="login.php?mode=failed";
+					}
+				}
 			}else{
 				//Verification si l'utilisateur est le super-utilisateur donc se trouve dans la base de l'application
 				$query = "SELECT * FROM user WHERE `u_login` = '$login' AND `u_password` =md5('$password')";
@@ -186,4 +219,3 @@ print("</form>\n");
 </body>
 
 </html>
-
