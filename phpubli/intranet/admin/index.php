@@ -49,7 +49,7 @@
 
 <?php head(); ?>
 
-<?php leftmenu_admin(""); ?>
+<!-- <?php leftmenu_admin(""); ?>-->
 
 <!-- start main panel -->
 <div id=mainarea>

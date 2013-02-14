@@ -179,7 +179,7 @@ if (isset($_GET['mode']))
 {
 	$mode=$_GET['mode'];
 	if ("$mode"=="failed")
-	echo "<b>Login failed, try again.</b><br>\n";
+	echo "<b>Erreur de connexion, réessayer.</b><br>\n";
 	if ("$mode"=="maintenance")
 	echo "<b>Database currently readonly, try again later.</b><br>\n";
 }
@@ -191,11 +191,11 @@ print("<center>\n");
 print("<input type=\"hidden\" name=\"action\" value=\"login\">\n");
 print("<table>\n");
 print("<tr>\n");
-print("<td>Login:</td>\n");
+print("<td>Identifiant:</td>\n");
 print("<td><input type=\"text\" name=\"login\" maxlength=\"20\"></td>\n");
 print("</tr>\n");
 print("<tr>\n");
-print("<td>Password:</td>\n");
+print("<td>Mot de Passe:</td>\n");
 print("<td><input type=\"password\" name=\"plogin\" maxlength=\"20\"></td>\n");
 print("</tr>\n");
 print("<tr>\n");

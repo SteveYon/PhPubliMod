@@ -48,7 +48,7 @@ function leftmenu_intranet($item)
 		print("<li>&nbsp;</li>\n");
 		print("<li>&nbsp;Bonjour : $currentuser&nbsp;</li>&nbsp;\n");
 
-		if ($status>0)
+		/*if ($status>0)
 		{
 			print("<li><a href=\"$rootdir/intranet/admin\"");
 			if ($item == "admin") print(" class=restractive");
@@ -61,7 +61,7 @@ function leftmenu_intranet($item)
 			if ($item == "superadmin") print(" class=restractive");
 			else print(" class=restr");
 			print(">superadmin</a></li>\n");
-		}
+		}*/
 	}
 	
 	print("<li><a href=\"$rootdir/\"");

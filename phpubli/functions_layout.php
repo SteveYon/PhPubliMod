@@ -28,6 +28,8 @@ function doctype()
 function metadata()
 {
 	print("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=iso-8859-1\">\n");
+	//print(" <meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\" />");
+
 }
 function csslink()
 {

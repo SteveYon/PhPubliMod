@@ -81,7 +81,6 @@ function navigationbar(){
 	if ($item == "connecter") print(" class=\"restractive\"");
 	else print(" class=\"restr\"");
 
-	//revoir ce code
 	if (empty($currentuser)){	
 		print("<li><a href=\"$rootdir/PhPubliMod/phpubli/intranet/login.php\"");
 		if ($item == "connecter") print(" class=\"restractive\"");
