@@ -74,7 +74,7 @@ print "<h2>Saisir de nouvelles données</h2>\n";
 
 print "<a href=\"$rootdir/$localdir/document.php?doc=article&mode=insert\">Ajouter un article depuis le formulaire</a><br>\n";
 
-print "<a href=\"$rootdir/$localdir/document.php?doc=article&mode=insert\">Ajouter un article depuis un fichier</a><br>\n";
+print "<a href=\"$rootdir/$localdir/document.php?doc=fichier&mode=import\">Ajouter un article depuis un fichier</a><br>\n";
 
 /*
 print "<a href=\"$rootdir/$localdir/document.php?doc=these&mode=insert\">Ajouter une thèse/hdr</a><br>\n";

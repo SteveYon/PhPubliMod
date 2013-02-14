@@ -295,24 +295,27 @@ if ( (isSet($_GET['mode'])) || ($displayid!="") )
 			echo "<form method=\"post\" action=\"document.php$docflag\" name=\"form\">\n";
 			echo "<input type=\"hidden\" name=\"action\" value=\"mode_edit\">\n";
 			echo "<input type=\"hidden\" name=\"doc_id\" value=\"$doc_id\">\n";
-			echo "<input type=\"submit\" name=\"editdocumentdata\" value=\"modifier les données (sauf personnes)\">\n";
-			echo "<input type=\"submit\" name=\"editdocumentauth\" value=\"modifier les personnes\">\n";
-			echo "<input type=\"submit\" name=\"deletedocument\" value=\"supprimer le document\"><br>\n";
+			echo "<input type=\"submit\" name=\"editdocumentdata\" value=\"Modifier les données\"><br>\n";
+			echo "<input type=\"submit\" name=\"editdocumentauth\" value=\"Modifier les auteurs\"><br>\n";
+			echo "<input type=\"submit\" name=\"deletedocument\" value=\"Supprimer ce document\"><br>\n";
 
 			if ( "$document->hal"=="")
 			{
 				echo "<br>";
 				echo "L'identifiant HAL n'est pas renseigné.<br>";
 				$hal_search_url=hal_search($bd, $doc_id);
+				//echo "Créer un " . anchor("./export_notice_hal.php?docid=$doc_id", "fichier XML") ." pour " . anchor_ext("http://import.ccsd.cnrs.fr/importXML.php", "transférer automatiquement") ." les données ci-dessus vers HAL.<br><br>\n";
+				//echo "Créer un " . anchor("./export_bibtex.php?docid=$doc_id", "fichier Bibtex") ." pour " . anchor_ext("http://import.ccsd.cnrs.fr/importXML.php", "transférer automatiquement") ." les données ci-dessus vers HAL.<br><br>\n";
+				echo "Créer un " . anchor("./export_notice_hal.php?docid=$doc_id", "fichier XML") . "<br>\n";
+				echo "Créer un " . anchor("./export_bibtex.php?docid=$doc_id", "fichier Bibtex") ."<br><br>\n";
 				echo "Effectuer une " . anchor_ext($hal_search_url, "recherche") . " dans l'archive ouverte HAL, pour vérifier que le document n'y figure pas déjà.<br>\n";
-				echo "Créer un " . anchor("./export_notice_hal.php?docid=$doc_id", "fichier XML") ." pour " . anchor_ext("http://import.ccsd.cnrs.fr/importXML.php", "transférer automatiquement") ." les données ci-dessus vers HAL.<br><br>\n";
-				echo "Créer un " . anchor("./export_bibtex.php?docid=$doc_id", "fichier Bibtex") ." pour " . anchor_ext("http://import.ccsd.cnrs.fr/importXML.php", "transférer automatiquement") ." les données ci-dessus vers HAL.<br><br>\n";
+
 			}
 
-			if (check_admin_priv($bd)>0)
+			/*if (check_admin_priv($bd)>0)
 			{
                			echo "<br>Si vous êtes sûr(e) que les données sont complètes et correctes, vous pouvez <input type=\"submit\" name=\"validate\" value=\"valider définitivement la saisie et empêcher les modifications ultérieures.\">\n";
-			}
+			}*/
 		}
 
 		echo "</form>";
@@ -342,6 +345,14 @@ if ( (isSet($_GET['mode'])) || ($displayid!="") )
 		echo "<input type=\"submit\" name=\"insertdocumentdata\" value=\"enregistrer les données, puis ajouter des auteurs, éditeurs...\"><br>\n";
 		echo "<input type=\"submit\" name=\"\" value=\"Depuis un Fichier Bibtex\"><br>\n";
 		echo "</form>\n";
+	}
+
+	if ($_GET['mode']=="import"){
+		if ("$typedoc" == "fichier"){
+		echo "<form method=\"post\" action=\"document.php$docflag\" name=\"form\">\n";
+		document_data_import($typedoc_id, "insert", "", $bd);
+		echo "</form>\n";
+		}
 	}
 
 /*
@@ -412,12 +423,12 @@ if ( (!isSet($_GET['mode'])) and  (!isSet($_POST['action'])) )
 
 	echo document_lines($bd, $typedoc_id);
 }
-	echo anchor("document.php?doc=article&mode=insert", "Ajouter un nouvel article") . "<br>";
+	/*echo anchor("document.php?doc=article&mode=insert", "Ajouter un nouvel article") . "<br>";
 	echo anchor("document.php?doc=these&mode=insert", "Ajouter une nouvelle thèse") . "<br>";
 	echo anchor("document.php?doc=conference_proceeding&mode=insert", "Ajouter une nouvelle communication dans une conférence avec actes publiés") . "<br>";
 	echo anchor("document.php?doc=conference_abstract&mode=insert", "Ajouter une nouvelle communication dans une conférence sans actes") . "<br>";
 	echo anchor("document.php?doc=proceedings_book&mode=insert", "Ajouter un nouveau livre d'actes d'une conférence") . "<br>";
-	echo anchor("document.php?doc=book&mode=insert", "Ajouter un nouveau livre") . "<br>";
+	echo anchor("document.php?doc=book&mode=insert", "Ajouter un nouveau livre") . "<br>";*/
 
 ?>
 

@@ -958,6 +958,17 @@ echo "typedocid=$typedocid";
 
 }
 
+function document_data_import($typedoc_id, $mode, $doc_id, $bd){
+	echo "<input type=\"hidden\" name=\"action\" value=\"import\"><br>\n";
+	echo"<label>Vous pouvez copier coller un fichier Bibtex</label><br> \n";
+	echo"<textarea rows=\"4\" cols=\"50\"></textarea><br> \n";
+	echo"<label>Vous pouvez également importer depuis un fichier</label><br> \n";
+	echo "<input type=\"file\" name=\"\" value=\"Depuis un Fichier Bibtex\"><br> \n";
+	echo "<input type=\"submit\" name=\"\" value=\"Envoyer\"><br>\n";
+
+
+}
+
 function document_data_update($document, $bd)
 {
 	$typedoc_id=$document['typedoc_id'];
