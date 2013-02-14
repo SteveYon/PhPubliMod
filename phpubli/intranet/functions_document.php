@@ -966,6 +966,15 @@ function document_data_import($typedoc_id, $mode, $doc_id, $bd){
 	echo "<input type=\"file\" name=\"\" value=\"Depuis un Fichier Bibtex\"><br> \n";
 	echo "<input type=\"submit\" name=\"\" value=\"Envoyer\"><br>\n";
 
+	/*echo"<textarea id=\"bibtex_input\" style=\"display:none;\">
+@book{book1,
+  author = \"Donald Knuth\",
+  title = \"Concrete Mathematics\"
+}
+</textarea>";
+echo"<div id=\"bibtex_display\"></div>";*/
+
+
 
 }
 

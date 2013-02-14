@@ -157,7 +157,7 @@ if ( (isset($_POST['action'])) && ($_POST['action']=="login") )
 <html>
 
 <head>
-<title>Publications du LMFA</title>
+<title>Publications du Laboratoire</title>
 <?php csslink(); ?>
 <?php metadata(); ?>
 </head>

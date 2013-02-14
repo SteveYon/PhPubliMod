@@ -209,7 +209,7 @@ function document_lines($bd, $tid)
 	}
 	if ($flag_ext>0)
 	{
-		$lines .= "<tr><td></td></tr>\n<tr><td></td><td>*:</td><td>Publication hors LMFA</td></tr>\n";
+		$lines .= "<tr><td></td></tr>\n<tr><td></td><td>*:</td><td>Publication hors LITIS</td></tr>\n";
 	}
 	return "<table>\n" . $lines . "</table>\n" ;
 }
@@ -362,11 +362,11 @@ function document_singleline(&$i, $document, $bd, &$flag)
 		$str .= "</td>";
 		$lines .= "<tr>" . $str . "</tr>\n";
 
-	if ("$typedoc_libelle"=="article")
+	/*if ("$typedoc_libelle"=="article")
 	{
 		$str="<td></td><td></td>";
 		$str .= "<td $style>";
-		$query = "SELECT * FROM journal WHERE journal_id=$document->journal_id";
+		$query = "SELECT * FROM journal WHERE 'journal_id'=$document->journal_id";
 		$jresult = $bd->exec_query ($query);
 		$journal = $bd->fetch_object ($jresult);
 		// $str .= "<i>$journal->journal_name</i> ";
@@ -411,7 +411,7 @@ function document_singleline(&$i, $document, $bd, &$flag)
 
 		$str .= "</td>";
 		$lines .= "<tr>" . $str . "</tr>\n";
-	}
+	}*/
 	if ("$typedoc_libelle"=="these")
 	{
 		$str = "<td></td><td></td><td $style>";

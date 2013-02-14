@@ -414,13 +414,15 @@ if ( (isSet($_GET['mode'])) || ($displayid!="") )
 
 if ( (!isSet($_GET['mode'])) and  (!isSet($_POST['action'])) )
 {
-	echo anchor("document.php?doc=article&mode=insert", "Ajouter un nouvel article") . "<br>";
+	/*echo anchor("document.php?doc=article&mode=insert", "Ajouter e un nouvel article") . "<br>";
 	echo anchor("document.php?doc=these&mode=insert", "Ajouter une nouvelle thèse") . "<br>";
 	echo anchor("document.php?doc=conference_proceeding&mode=insert", "Ajouter une nouvelle communication dans une conférence avec actes publiés") . "<br>";
 	echo anchor("document.php?doc=conference_abstract&mode=insert", "Ajouter une nouvelle communication dans une conférence sans actes") . "<br>";
 	echo anchor("document.php?doc=proceedings_book&mode=insert", "Ajouter un nouveau livre d'actes d'une conférence") . "<br>";
-	echo anchor("document.php?doc=book&mode=insert", "Ajouter un nouveau livre") . "<br>";
+	echo anchor("document.php?doc=book&mode=insert", "Ajouter un nouveau livre") . "<br>";*/
 
+	//pour les articles
+	$typedoc_id=4;
 	echo document_lines($bd, $typedoc_id);
 }
 	/*echo anchor("document.php?doc=article&mode=insert", "Ajouter un nouvel article") . "<br>";

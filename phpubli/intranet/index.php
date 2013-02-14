@@ -65,11 +65,11 @@ if (empty($currentuser))
 	echo "(<a href=\"$rootdir/intranet/login.php\">login</a>).<br>\n";
 }
 else{
-
+/*
 print "<h2>Modifications récentes</h2>\n";
 
 print "<a href=\"$rootdir/$localdir/last_document.php?limit=20\">Liste des derniers documents modifiés</a><br>\n";
-
+*/	
 print "<h2>Saisir de nouvelles données</h2>\n";
 
 print "<a href=\"$rootdir/$localdir/document.php?doc=article&mode=insert\">Ajouter un article depuis le formulaire</a><br>\n";
