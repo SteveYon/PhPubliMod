@@ -1,7 +1,5 @@
--- 
--- Database: `phpubli`
--- 
-
+-- Base de Donnée MySQL
+-- La base doit être mise en place au préalable.
 USE `phpubli`;
 
 -- --------------------------------------------------------
@@ -17,13 +15,6 @@ CREATE TABLE `audience` (
   PRIMARY KEY  (`id`)
 ) ENGINE=MyISAM;
 
--- 
--- Dumping data for table `audience`
--- 
-
-INSERT INTO `audience` (`id`, `libelle`) VALUES (1, 'non spécifiée');
-INSERT INTO `audience` (`id`, `libelle`) VALUES (2, 'internationale');
-INSERT INTO `audience` (`id`, `libelle`) VALUES (3, 'nationale');
 
 -- --------------------------------------------------------
 
@@ -44,82 +35,6 @@ CREATE TABLE `conference` (
   `date` datetime NOT NULL default '0000-00-00 00:00:00',
   PRIMARY KEY  (`conference_id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=73 ;
-
--- 
--- Dumping data for table `conference`
--- 
-
-INSERT INTO `conference` (`conference_id`, `conference_title`, `conference_date_start`, `conference_date_end`, `conference_city`, `conference_country_code`, `conference_audience`, `log`, `date`) VALUES (1, 'Seventh European Turbulence Conference', '1998-06-30', '1998-07-03', 'Saint-Jean-Cap-Ferrat', 'FR', 2, 0, '2008-02-08 15:27:24');
-INSERT INTO `conference` (`conference_id`, `conference_title`, `conference_date_start`, `conference_date_end`, `conference_city`, `conference_country_code`, `conference_audience`, `log`, `date`) VALUES (2, 'Eigth European Turbulence Conference', '2000-06-27', '2000-06-30', 'Barcelona', 'ES', 2, 0, '2008-02-08 15:29:31');
-INSERT INTO `conference` (`conference_id`, `conference_title`, `conference_date_start`, `conference_date_end`, `conference_city`, `conference_country_code`, `conference_audience`, `log`, `date`) VALUES (3, 'Ninth European Turbulence Conference', '2002-07-02', '2002-07-05', 'Southampton', 'GB', 2, 0, '2008-02-08 15:31:04');
-INSERT INTO `conference` (`conference_id`, `conference_title`, `conference_date_start`, `conference_date_end`, `conference_city`, `conference_country_code`, `conference_audience`, `log`, `date`) VALUES (4, 'Tenth  European Turbulence Conference', '2004-06-29', '2004-07-02', 'Trondheim', 'NO', 2, 0, '2008-02-08 15:32:16');
-INSERT INTO `conference` (`conference_id`, `conference_title`, `conference_date_start`, `conference_date_end`, `conference_city`, `conference_country_code`, `conference_audience`, `log`, `date`) VALUES (5, '6th International Conference on Multiphase Flow', '2007-07-09', '2007-07-13', 'Leipzig', 'DE', 2, 0, '2008-02-08 17:45:02');
-INSERT INTO `conference` (`conference_id`, `conference_title`, `conference_date_start`, `conference_date_end`, `conference_city`, `conference_country_code`, `conference_audience`, `log`, `date`) VALUES (7, 'International Symposium on Snow, Avalanches and Impact of the Forest Cover', '2000-05-22', '2000-05-26', 'Innsbruck', 'AT', 2, 0, '2008-02-12 14:50:23');
-INSERT INTO `conference` (`conference_id`, `conference_title`, `conference_date_start`, `conference_date_end`, `conference_city`, `conference_country_code`, `conference_audience`, `log`, `date`) VALUES (8, 'Euromech Fluid Mechanics Conference 6', '2006-06-26', '2006-06-30', 'Stockholm', 'SE', 2, 0, '2008-02-19 16:49:33');
-INSERT INTO `conference` (`conference_id`, `conference_title`, `conference_date_start`, `conference_date_end`, `conference_city`, `conference_country_code`, `conference_audience`, `log`, `date`) VALUES (9, 'Second international conference on \\"Energy transfer in magnetohydrodynamic flows\\"', '1994-09-00', '1994-09-00', 'Aussois', 'FR', 2, 0, '2008-02-20 17:53:10');
-INSERT INTO `conference` (`conference_id`, `conference_title`, `conference_date_start`, `conference_date_end`, `conference_city`, `conference_country_code`, `conference_audience`, `log`, `date`) VALUES (10, 'Third international conference on \\"Transfer phenomena in magneto-hydrodynamic and electro-conducting flows\\"', '1997-09-00', '1997-09-00', 'Aussois', 'FR', 2, 0, '2008-02-20 17:55:13');
-INSERT INTO `conference` (`conference_id`, `conference_title`, `conference_date_start`, `conference_date_end`, `conference_city`, `conference_country_code`, `conference_audience`, `log`, `date`) VALUES (11, 'IUTAM Symposium on Computational Physics and New Perspectives in Turbulence', '2006-09-11', '2006-09-14', 'Nagoya', 'JP', 2, 2, '2008-02-22 15:27:14');
-INSERT INTO `conference` (`conference_id`, `conference_title`, `conference_date_start`, `conference_date_end`, `conference_city`, `conference_country_code`, `conference_audience`, `log`, `date`) VALUES (12, '10es Journées de la matière condensée', '2006-08-28', '2006-09-01', 'Toulouse', 'FR', 2, 0, '2008-03-07 10:17:45');
-INSERT INTO `conference` (`conference_id`, `conference_title`, `conference_date_start`, `conference_date_end`, `conference_city`, `conference_country_code`, `conference_audience`, `log`, `date`) VALUES (13, 'MicroTAS 2007', '2007-10-07', '2007-10-11', 'Paris', 'FR', 2, 0, '2008-03-07 10:41:37');
-INSERT INTO `conference` (`conference_id`, `conference_title`, `conference_date_start`, `conference_date_end`, `conference_city`, `conference_country_code`, `conference_audience`, `log`, `date`) VALUES (14, 'GDR Turbulence', '2008-03-31', '2008-04-02', 'Lyon', 'FR', 3, 0, '2008-04-09 19:42:10');
-INSERT INTO `conference` (`conference_id`, `conference_title`, `conference_date_start`, `conference_date_end`, `conference_city`, `conference_country_code`, `conference_audience`, `log`, `date`) VALUES (15, 'Eleventh European Turbulence Conference', '2007-06-25', '2007-06-28', 'Porto', 'PT', 2, 1, '2008-05-05 11:31:09');
-INSERT INTO `conference` (`conference_id`, `conference_title`, `conference_date_start`, `conference_date_end`, `conference_city`, `conference_country_code`, `conference_audience`, `log`, `date`) VALUES (16, 'Summer School Eurotherm 79 \\"Mixing and Heat Transfer in Chemical Reaction processes\\"', '2006-07-31', '2006-08-05', 'Cargèse', 'FR', 2, 1, '2008-05-05 15:39:00');
-INSERT INTO `conference` (`conference_id`, `conference_title`, `conference_date_start`, `conference_date_end`, `conference_city`, `conference_country_code`, `conference_audience`, `log`, `date`) VALUES (17, 'Microfluidique 2006', '2006-12-12', '2000-12-14', 'Toulouse', 'FR', 3, 0, '2008-05-05 15:42:45');
-INSERT INTO `conference` (`conference_id`, `conference_title`, `conference_date_start`, `conference_date_end`, `conference_city`, `conference_country_code`, `conference_audience`, `log`, `date`) VALUES (18, 'International Congress on Crystal Growth-15', '2007-08-12', '2007-08-17', 'Salt Lake City', 'US', 2, 0, '2008-05-07 16:27:21');
-INSERT INTO `conference` (`conference_id`, `conference_title`, `conference_date_start`, `conference_date_end`, `conference_city`, `conference_country_code`, `conference_audience`, `log`, `date`) VALUES (19, '18ème Congrès français de mécanique', '2007-08-27', '2007-08-31', 'Grenoble', 'FR', 3, 0, '2008-05-07 16:34:53');
-INSERT INTO `conference` (`conference_id`, `conference_title`, `conference_date_start`, `conference_date_end`, `conference_city`, `conference_country_code`, `conference_audience`, `log`, `date`) VALUES (20, 'Euromech Fluid Mechanics Conference 5', '2003-08-24', '2003-08-28', 'Toulouse', 'FR', 2, 0, '2008-05-07 16:47:53');
-INSERT INTO `conference` (`conference_id`, `conference_title`, `conference_date_start`, `conference_date_end`, `conference_city`, `conference_country_code`, `conference_audience`, `log`, `date`) VALUES (21, 'International Congress on Crystal Growth-14', '2004-08-09', '2004-08-13', 'Grenoble', 'FR', 2, 1, '2008-05-07 16:53:53');
-INSERT INTO `conference` (`conference_id`, `conference_title`, `conference_date_start`, `conference_date_end`, `conference_city`, `conference_country_code`, `conference_audience`, `log`, `date`) VALUES (22, '35th Congress on Space Research', '2004-07-18', '2004-07-25', 'Paris', 'FR', 2, 0, '2008-05-07 16:53:27');
-INSERT INTO `conference` (`conference_id`, `conference_title`, `conference_date_start`, `conference_date_end`, `conference_city`, `conference_country_code`, `conference_audience`, `log`, `date`) VALUES (23, '17ème Congrès français de mécanique', '2005-08-29', '2005-09-02', 'Troyes', 'FR', 3, 0, '2008-05-07 17:01:35');
-INSERT INTO `conference` (`conference_id`, `conference_title`, `conference_date_start`, `conference_date_end`, `conference_city`, `conference_country_code`, `conference_audience`, `log`, `date`) VALUES (24, 'Colloque sur les Arcs Electriques', '2005-03-14', '2005-03-15', 'Orléans', 'FR', 3, 0, '2008-05-07 17:02:47');
-INSERT INTO `conference` (`conference_id`, `conference_title`, `conference_date_start`, `conference_date_end`, `conference_city`, `conference_country_code`, `conference_audience`, `log`, `date`) VALUES (25, 'Small-scale turbulence: Theory, Phenomenology and Applications', '2007-08-13', '2007-08-25', 'Cargèse', 'FR', 1, 0, '2008-05-13 09:45:23');
-INSERT INTO `conference` (`conference_id`, `conference_title`, `conference_date_start`, `conference_date_end`, `conference_city`, `conference_country_code`, `conference_audience`, `log`, `date`) VALUES (26, '5th Int. Symposium on Turbulence and Shear Flow Phenomena', '2007-08-27', '2007-08-29', 'Munich', 'DE', 2, 0, '2008-05-13 10:09:37');
-INSERT INTO `conference` (`conference_id`, `conference_title`, `conference_date_start`, `conference_date_end`, `conference_city`, `conference_country_code`, `conference_audience`, `log`, `date`) VALUES (27, 'GDR Phénix', '2008-06-16', '2008-06-17', 'Lyon', 'FR', 3, 0, '2008-09-09 12:03:13');
-INSERT INTO `conference` (`conference_id`, `conference_title`, `conference_date_start`, `conference_date_end`, `conference_city`, `conference_country_code`, `conference_audience`, `log`, `date`) VALUES (28, 'Journées AUM / AFM 2008', '2008-08-27', '2008-08-29', 'Mulhouse', 'FR', 3, 0, '2008-09-12 15:54:22');
-INSERT INTO `conference` (`conference_id`, `conference_title`, `conference_date_start`, `conference_date_end`, `conference_city`, `conference_country_code`, `conference_audience`, `log`, `date`) VALUES (29, 'Euromech Fluid Mechanics Conference 7', '2008-09-14', '2008-09-18', 'Manchester', 'GB', 2, 1, '2008-10-01 15:41:02');
-INSERT INTO `conference` (`conference_id`, `conference_title`, `conference_date_start`, `conference_date_end`, `conference_city`, `conference_country_code`, `conference_audience`, `log`, `date`) VALUES (30, 'Journées de la S.H.F. Mécanique des Fluides Numérique', '1989-00-00', '1989-00-00', 'Paris', 'FR', 3, 1, '2008-09-30 11:53:22');
-INSERT INTO `conference` (`conference_id`, `conference_title`, `conference_date_start`, `conference_date_end`, `conference_city`, `conference_country_code`, `conference_audience`, `log`, `date`) VALUES (31, 'Lecture series on Introduction to the numerical solution of industrial flows, Von Karman Institute', '1986-00-00', '1986-00-00', 'Bruxelles', 'BE', 2, 0, '2008-09-30 11:54:31');
-INSERT INTO `conference` (`conference_id`, `conference_title`, `conference_date_start`, `conference_date_end`, `conference_city`, `conference_country_code`, `conference_audience`, `log`, `date`) VALUES (32, 'Microfluidique 2004', '2004-12-14', '2004-12-16', 'Toulouse', 'FR', 3, 0, '2008-10-01 10:15:35');
-INSERT INTO `conference` (`conference_id`, `conference_title`, `conference_date_start`, `conference_date_end`, `conference_city`, `conference_country_code`, `conference_audience`, `log`, `date`) VALUES (33, 'XXI International Congress of Theoretical and Applied Mechanics', '2004-08-15', '2004-08-21', 'Varsovie', 'PL', 2, 0, '2008-10-01 11:49:58');
-INSERT INTO `conference` (`conference_id`, `conference_title`, `conference_date_start`, `conference_date_end`, `conference_city`, `conference_country_code`, `conference_audience`, `log`, `date`) VALUES (34, 'European Geophysical Society XXVII General Assembly', '2002-04-21', '2002-04-26', 'Nice', 'FR', 2, 0, '2008-10-01 15:49:54');
-INSERT INTO `conference` (`conference_id`, `conference_title`, `conference_date_start`, `conference_date_end`, `conference_city`, `conference_country_code`, `conference_audience`, `log`, `date`) VALUES (35, 'DFD APS Meeting', '1997-11-23', '1997-11-25', 'San Francisco', 'US', 2, 0, '2008-10-01 15:57:03');
-INSERT INTO `conference` (`conference_id`, `conference_title`, `conference_date_start`, `conference_date_end`, `conference_city`, `conference_country_code`, `conference_audience`, `log`, `date`) VALUES (36, 'Euromech European Fluid Mechanics Conference 3', '1997-09-15', '1997-09-18', 'Göttingen', 'DE', 2, 0, '2008-10-01 16:02:45');
-INSERT INTO `conference` (`conference_id`, `conference_title`, `conference_date_start`, `conference_date_end`, `conference_city`, `conference_country_code`, `conference_audience`, `log`, `date`) VALUES (37, 'International Conference on Non Linearity, Bifurcations, Chaos: the door to the future', '1996-09-16', '1996-09-18', 'Lodz-Dobieszkow', 'PL', 2, 0, '2008-10-01 16:09:40');
-INSERT INTO `conference` (`conference_id`, `conference_title`, `conference_date_start`, `conference_date_end`, `conference_city`, `conference_country_code`, `conference_audience`, `log`, `date`) VALUES (38, 'NATO Advanced Study institute: Mixing: Chaos and Turbulence', '1996-07-07', '1996-07-20', 'Cargèse', 'FR', 2, 0, '2008-10-01 16:28:02');
-INSERT INTO `conference` (`conference_id`, `conference_title`, `conference_date_start`, `conference_date_end`, `conference_city`, `conference_country_code`, `conference_audience`, `log`, `date`) VALUES (39, 'Eurotherm 39, Heat Transfer Enhancement by Lagrangian Chaos and Turbulence', '1994-00-00', '1994-00-00', 'Nantes', 'FR', 2, 0, '2008-10-01 16:44:23');
-INSERT INTO `conference` (`conference_id`, `conference_title`, `conference_date_start`, `conference_date_end`, `conference_city`, `conference_country_code`, `conference_audience`, `log`, `date`) VALUES (40, 'Computational Fluid Dynamic Applied to process engineering - Les rencontres scientifiques de  	l\\''IFP', '1994-00-00', '1994-00-00', 'Solaize', 'FR', 3, 0, '2008-10-01 16:50:06');
-INSERT INTO `conference` (`conference_id`, `conference_title`, `conference_date_start`, `conference_date_end`, `conference_city`, `conference_country_code`, `conference_audience`, `log`, `date`) VALUES (41, '10ème Congrès Français de Mécanique', '1991-09-02', '1991-09-06', 'Paris', 'FR', 3, 0, '2008-10-01 16:55:47');
-INSERT INTO `conference` (`conference_id`, `conference_title`, `conference_date_start`, `conference_date_end`, `conference_city`, `conference_country_code`, `conference_audience`, `log`, `date`) VALUES (42, '7th International Conference on Numerical Methods in laminar and turbulent flows', '1991-07-15', '1991-07-19', 'Stanford, California', 'US', 2, 1, '2008-10-02 16:52:45');
-INSERT INTO `conference` (`conference_id`, `conference_title`, `conference_date_start`, `conference_date_end`, `conference_city`, `conference_country_code`, `conference_audience`, `log`, `date`) VALUES (43, 'European Symposium on Computer Application in the Chemical Industry', '1989-04-23', '1989-04-26', 'Erlangen', 'DE', 2, 0, '2008-10-02 11:10:22');
-INSERT INTO `conference` (`conference_id`, `conference_title`, `conference_date_start`, `conference_date_end`, `conference_city`, `conference_country_code`, `conference_audience`, `log`, `date`) VALUES (44, '1er Congrès National de Génie des Procédés', '1987-09-21', '1987-09-23', 'Nancy', 'FR', 3, 0, '2008-10-02 15:28:36');
-INSERT INTO `conference` (`conference_id`, `conference_title`, `conference_date_start`, `conference_date_end`, `conference_city`, `conference_country_code`, `conference_audience`, `log`, `date`) VALUES (45, 'GAMM Workshop on Analysis of laminar flow over a backward facing step', '1983-00-00', '1983-00-00', 'Bièvres', 'FR', 2, 0, '2008-10-02 16:03:14');
-INSERT INTO `conference` (`conference_id`, `conference_title`, `conference_date_start`, `conference_date_end`, `conference_city`, `conference_country_code`, `conference_audience`, `log`, `date`) VALUES (46, 'Numerical methods in thermal problems', '1981-00-00', '1981-00-00', 'Venice', 'IT', 2, 0, '2008-10-02 16:09:48');
-INSERT INTO `conference` (`conference_id`, `conference_title`, `conference_date_start`, `conference_date_end`, `conference_city`, `conference_country_code`, `conference_audience`, `log`, `date`) VALUES (47, 'ERCOFTAC International Workshop on Chemical reactions in turbulent liquids', '1991-07-00', '1991-07-00', 'Lausanne', 'CH', 2, 0, '2008-10-02 16:54:33');
-INSERT INTO `conference` (`conference_id`, `conference_title`, `conference_date_start`, `conference_date_end`, `conference_city`, `conference_country_code`, `conference_audience`, `log`, `date`) VALUES (48, 'IIIe Encontro nacional de ciencias termicas', '1990-00-00', '1990-00-00', 'Itapema', 'BR', 3, 0, '2008-10-02 17:00:10');
-INSERT INTO `conference` (`conference_id`, `conference_title`, `conference_date_start`, `conference_date_end`, `conference_city`, `conference_country_code`, `conference_audience`, `log`, `date`) VALUES (49, 'Journées Internationales de THermiques', '1989-00-00', '1989-00-00', 'Alger', 'DZ', 2, 0, '2008-10-02 17:02:53');
-INSERT INTO `conference` (`conference_id`, `conference_title`, `conference_date_start`, `conference_date_end`, `conference_city`, `conference_country_code`, `conference_audience`, `log`, `date`) VALUES (50, 'Colloque CNRS Méthodes numériques performantes et phènomènes complexes en Mécanique des Fluides', '1987-00-00', '1987-00-00', 'Nice', 'FR', 3, 1, '2008-10-02 17:07:40');
-INSERT INTO `conference` (`conference_id`, `conference_title`, `conference_date_start`, `conference_date_end`, `conference_city`, `conference_country_code`, `conference_audience`, `log`, `date`) VALUES (51, '6th International Symposium on finite element methods in flow problems', '1986-00-00', '1986-00-00', 'Antibes', 'FR', 2, 0, '2008-10-02 17:08:41');
-INSERT INTO `conference` (`conference_id`, `conference_title`, `conference_date_start`, `conference_date_end`, `conference_city`, `conference_country_code`, `conference_audience`, `log`, `date`) VALUES (52, '6ème congrès français de mécanique', '1983-00-00', '1983-00-00', 'Lyon', 'FR', 3, 0, '2008-10-02 17:11:56');
-INSERT INTO `conference` (`conference_id`, `conference_title`, `conference_date_start`, `conference_date_end`, `conference_city`, `conference_country_code`, `conference_audience`, `log`, `date`) VALUES (53, 'Réseau  ‘Microfluidique et Microsystèmes Fluidiques\\''', '2007-05-29', '2007-05-29', 'Paris', 'FR', 3, 0, '2008-10-07 11:16:41');
-INSERT INTO `conference` (`conference_id`, `conference_title`, `conference_date_start`, `conference_date_end`, `conference_city`, `conference_country_code`, `conference_audience`, `log`, `date`) VALUES (54, '6th International Conference on Inverse Problems in Engineering: Theory and Practice', '2008-06-15', '2008-06-19', 'Dourdan (Paris)', 'FR', 2, 0, '2008-10-07 15:01:40');
-INSERT INTO `conference` (`conference_id`, `conference_title`, `conference_date_start`, `conference_date_end`, `conference_city`, `conference_country_code`, `conference_audience`, `log`, `date`) VALUES (55, '8th World Congress on Computational Mechanics (WCCM8)', '2008-06-30', '2008-07-05', 'Venice', 'IT', 2, 0, '2008-10-07 15:15:14');
-INSERT INTO `conference` (`conference_id`, `conference_title`, `conference_date_start`, `conference_date_end`, `conference_city`, `conference_country_code`, `conference_audience`, `log`, `date`) VALUES (56, 'Workshop Micro and Nanofluidics', '2008-06-24', '2008-06-25', 'Lyon', 'FR', 2, 0, '2008-10-09 11:24:54');
-INSERT INTO `conference` (`conference_id`, `conference_title`, `conference_date_start`, `conference_date_end`, `conference_city`, `conference_country_code`, `conference_audience`, `log`, `date`) VALUES (57, '14th AIAA/CEAS Aeroacoustics Conference', '2008-05-05', '2008-05-07', 'Vancouver', 'CA', 2, 0, '2008-12-10 12:32:32');
-INSERT INTO `conference` (`conference_id`, `conference_title`, `conference_date_start`, `conference_date_end`, `conference_city`, `conference_country_code`, `conference_audience`, `log`, `date`) VALUES (58, '7th International ERCOFTAC Symposium on Engineering Turbulence Modelling and Measurements', '2008-06-04', '2008-06-06', 'Limassol', 'CY', 1, 0, '2008-12-11 16:38:13');
-INSERT INTO `conference` (`conference_id`, `conference_title`, `conference_date_start`, `conference_date_end`, `conference_city`, `conference_country_code`, `conference_audience`, `log`, `date`) VALUES (59, '19th International Symposium on Transport Phenomena', '2008-08-17', '2008-08-20', 'Reykjavik', 'IS', 2, 0, '2008-12-11 17:22:29');
-INSERT INTO `conference` (`conference_id`, `conference_title`, `conference_date_start`, `conference_date_end`, `conference_city`, `conference_country_code`, `conference_audience`, `log`, `date`) VALUES (60, 'Acoustics\\''08', '2008-06-30', '2008-07-04', 'Paris', 'FR', 2, 0, '2008-12-12 13:12:45');
-INSERT INTO `conference` (`conference_id`, `conference_title`, `conference_date_start`, `conference_date_end`, `conference_city`, `conference_country_code`, `conference_audience`, `log`, `date`) VALUES (61, 'Ercoftac Symposium on sound source mechanisms in turbulent shear-flow', '2008-07-07', '2008-07-09', 'Poitiers', 'FR', 2, 1, '2008-12-12 13:17:05');
-INSERT INTO `conference` (`conference_id`, `conference_title`, `conference_date_start`, `conference_date_end`, `conference_city`, `conference_country_code`, `conference_audience`, `log`, `date`) VALUES (62, '18th International Symposium on Nonlinear Acoustics (ISNA)', '2008-07-07', '2008-07-10', 'Stockholm', 'SE', 2, 0, '2008-12-19 12:36:47');
-INSERT INTO `conference` (`conference_id`, `conference_title`, `conference_date_start`, `conference_date_end`, `conference_city`, `conference_country_code`, `conference_audience`, `log`, `date`) VALUES (63, '12th ISROMAC', '2008-02-17', '2008-02-22', 'Honolulu', 'US', 2, 0, '2008-12-19 12:45:30');
-INSERT INTO `conference` (`conference_id`, `conference_title`, `conference_date_start`, `conference_date_end`, `conference_city`, `conference_country_code`, `conference_audience`, `log`, `date`) VALUES (64, '37th International Congress and Exposition on Noise Control Engineering (Inter-Noise)', '2008-10-26', '2008-10-29', 'Shangai', 'CN', 2, 0, '2008-12-19 13:03:11');
-INSERT INTO `conference` (`conference_id`, `conference_title`, `conference_date_start`, `conference_date_end`, `conference_city`, `conference_country_code`, `conference_audience`, `log`, `date`) VALUES (65, '61st Annual Meeting of the APS Division of Fluid Dynamics', '2008-11-23', '2008-11-25', 'San Antonio', 'US', 2, 0, '2008-12-19 13:07:45');
-INSERT INTO `conference` (`conference_id`, `conference_title`, `conference_date_start`, `conference_date_end`, `conference_city`, `conference_country_code`, `conference_audience`, `log`, `date`) VALUES (66, 'GDR Micropesanteur Fondamentale et Appliquée', '2008-12-01', '2008-12-03', 'Aussois', 'FR', 3, 0, '2009-01-07 16:09:15');
-INSERT INTO `conference` (`conference_id`, `conference_title`, `conference_date_start`, `conference_date_end`, `conference_city`, `conference_country_code`, `conference_audience`, `log`, `date`) VALUES (67, 'JTET\\''08 - Journées Tunisiennes sur les Ecoulements et les Transferts', '2008-11-07', '2008-11-09', 'Bizerte', 'TN', 3, 0, '2009-01-08 17:52:26');
-INSERT INTO `conference` (`conference_id`, `conference_title`, `conference_date_start`, `conference_date_end`, `conference_city`, `conference_country_code`, `conference_audience`, `log`, `date`) VALUES (68, 'ICAMEM 2008 - Fourth International Conference on Advances in Mechanical Engineering and Mechanics', '2008-12-16', '2008-12-18', 'Sousse', 'TN', 2, 0, '2009-01-08 17:58:33');
-INSERT INTO `conference` (`conference_id`, `conference_title`, `conference_date_start`, `conference_date_end`, `conference_city`, `conference_country_code`, `conference_audience`, `log`, `date`) VALUES (69, 'Ampere meeting: creation of a european structure on magneto-sciences', '2007-07-10', '2007-07-11', 'Paris', 'FR', 2, 0, '2009-01-08 18:12:26');
-INSERT INTO `conference` (`conference_id`, `conference_title`, `conference_date_start`, `conference_date_end`, `conference_city`, `conference_country_code`, `conference_audience`, `log`, `date`) VALUES (70, 'GDR Micropesanteur Fondamentale et Appliquée', '2007-11-26', '2007-11-28', 'Fréjus', 'FR', 3, 0, '2009-01-08 18:16:02');
-INSERT INTO `conference` (`conference_id`, `conference_title`, `conference_date_start`, `conference_date_end`, `conference_city`, `conference_country_code`, `conference_audience`, `log`, `date`) VALUES (71, 'GDR Micropesanteur Fondamentale et Appliquée', '2005-10-17', '2005-10-19', 'Carry le Rouet', 'FR', 3, 0, '2009-01-08 18:19:43');
-INSERT INTO `conference` (`conference_id`, `conference_title`, `conference_date_start`, `conference_date_end`, `conference_city`, `conference_country_code`, `conference_audience`, `log`, `date`) VALUES (72, '7th European Coating Symposium', '2007-09-12', '2007-09-14', 'Paris', 'FR', 2, 0, '2009-02-24 17:10:55');
 
 -- --------------------------------------------------------
 
@@ -476,10 +391,6 @@ CREATE TABLE `groupes` (
 -- 
 
 -- INSERT INTO `groupes` (`g_id`, `g_name`, `g_fullname`) VALUES (1, 'grp1', 'Équipe de recherche 1');
--- INSERT INTO `groupes` (`g_id`, `g_name`, `g_fullname`) VALUES (2, 'grp2', 'Équipe de recherche 2');
--- INSERT INTO `groupes` (`g_id`, `g_name`, `g_fullname`) VALUES (3, 'grp3', 'Équipe de recherche 3');
--- INSERT INTO `groupes` (`g_id`, `g_name`, `g_fullname`) VALUES (4, 'grp4', 'Équipe de recherche 4');
--- INSERT INTO `groupes` (`g_id`, `g_name`, `g_fullname`) VALUES (5, 'exter', 'Publication hors labo');
 
 -- --------------------------------------------------------
 
@@ -522,18 +433,6 @@ CREATE TABLE `institution` (
   PRIMARY KEY  (`institution_id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=8 ;
 
--- 
--- Dumping data for table `institution`
--- 
-
-INSERT INTO `institution` (`institution_id`, `institution_name`, `institution_short`, `log`, `date`) VALUES (1, 'École centrale de Lyon', 'ECL', 0, '2007-09-18 14:23:36');
-INSERT INTO `institution` (`institution_id`, `institution_name`, `institution_short`, `log`, `date`) VALUES (2, 'Université Claude-Bernard Lyon 1', 'UCBL', 0, '2007-09-18 14:24:52');
-INSERT INTO `institution` (`institution_id`, `institution_name`, `institution_short`, `log`, `date`) VALUES (3, 'Institut national des sciences appliquées de Lyon', 'INSA Lyon', 1, '2007-09-18 14:26:24');
-INSERT INTO `institution` (`institution_id`, `institution_name`, `institution_short`, `log`, `date`) VALUES (4, 'Kungliga Tekniska Högskolan Stockholm', 'KTH Stockholm', 1, '2007-10-11 15:22:17');
-INSERT INTO `institution` (`institution_id`, `institution_name`, `institution_short`, `log`, `date`) VALUES (5, 'Technocentre Renault Guyancourt', 'Renault', 0, '2007-10-11 15:22:55');
-INSERT INTO `institution` (`institution_id`, `institution_name`, `institution_short`, `log`, `date`) VALUES (6, 'Politecnico di Torino', 'Politecnico di Torino', 0, '2007-10-12 08:25:38');
-INSERT INTO `institution` (`institution_id`, `institution_name`, `institution_short`, `log`, `date`) VALUES (7, 'Office national d\\''études et de recherches aérospatiales', 'ONERA', 0, '2007-10-12 17:42:02');
-
 -- --------------------------------------------------------
 
 -- 
@@ -552,183 +451,6 @@ CREATE TABLE `journal` (
   `date` datetime NOT NULL default '0000-00-00 00:00:00',
   PRIMARY KEY  (`journal_id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=202 ;
-
--- 
--- Dumping data for table `journal`
--- 
-
-INSERT INTO `journal` (`journal_id`, `journal_fullname`, `journal_name`, `journal_type`, `journal_audience`, `journal_peer_review`, `log`, `date`) VALUES (4, 'Houille Blanche-Revue internationale de l\\''eau', 'Houille Blanche-Rev. Int.', 1, 2, 1, 2, '2007-09-12 20:24:57');
-INSERT INTO `journal` (`journal_id`, `journal_fullname`, `journal_name`, `journal_type`, `journal_audience`, `journal_peer_review`, `log`, `date`) VALUES (5, 'International Journal for Numerical Methods in Fluids', 'Int. J. Numer. Methods Fluids', 1, 2, 1, 2, '2007-09-12 20:16:38');
-INSERT INTO `journal` (`journal_id`, `journal_fullname`, `journal_name`, `journal_type`, `journal_audience`, `journal_peer_review`, `log`, `date`) VALUES (6, 'Annual Review of Fluid Mechanics', 'Annu. Rev. Fluid Mech.', 1, 2, 1, 2, '2007-09-12 18:56:31');
-INSERT INTO `journal` (`journal_id`, `journal_fullname`, `journal_name`, `journal_type`, `journal_audience`, `journal_peer_review`, `log`, `date`) VALUES (7, 'Journal de Recherches Hydrauliques', 'Journal de Recherches Hydrauliques', 0, 2, 1, 0, '0000-00-00 00:00:00');
-INSERT INTO `journal` (`journal_id`, `journal_fullname`, `journal_name`, `journal_type`, `journal_audience`, `journal_peer_review`, `log`, `date`) VALUES (8, 'Applied Mechanics Reviews', 'Appl. Mech. Rev.', 0, 2, 1, 0, '0000-00-00 00:00:00');
-INSERT INTO `journal` (`journal_id`, `journal_fullname`, `journal_name`, `journal_type`, `journal_audience`, `journal_peer_review`, `log`, `date`) VALUES (11, 'Proc. Institution Mechanical Engineers', 'Proc. Institution Mechanical Engineers', 0, 2, 1, 0, '0000-00-00 00:00:00');
-INSERT INTO `journal` (`journal_id`, `journal_fullname`, `journal_name`, `journal_type`, `journal_audience`, `journal_peer_review`, `log`, `date`) VALUES (13, 'Journal of Heat Transfer', 'Journal of Heat Transfer', 0, 2, 1, 0, '0000-00-00 00:00:00');
-INSERT INTO `journal` (`journal_id`, `journal_fullname`, `journal_name`, `journal_type`, `journal_audience`, `journal_peer_review`, `log`, `date`) VALUES (14, 'Progress in Aerospace Sciences', 'Prog. Aerosp. Sci.', 1, 2, 1, 2, '2007-09-12 20:56:30');
-INSERT INTO `journal` (`journal_id`, `journal_fullname`, `journal_name`, `journal_type`, `journal_audience`, `journal_peer_review`, `log`, `date`) VALUES (15, 'Proceedings of the IEEE', 'Proceedings of the IEEE', 0, 2, 1, 0, '0000-00-00 00:00:00');
-INSERT INTO `journal` (`journal_id`, `journal_fullname`, `journal_name`, `journal_type`, `journal_audience`, `journal_peer_review`, `log`, `date`) VALUES (16, 'Journal of Computational Acoustics', 'J. Comput. Acoust.', 1, 2, 1, 2, '2007-09-12 19:24:36');
-INSERT INTO `journal` (`journal_id`, `journal_fullname`, `journal_name`, `journal_type`, `journal_audience`, `journal_peer_review`, `log`, `date`) VALUES (17, 'AIAA Journal', 'AIAA J.', 1, 2, 1, 2, '2007-09-12 18:53:30');
-INSERT INTO `journal` (`journal_id`, `journal_fullname`, `journal_name`, `journal_type`, `journal_audience`, `journal_peer_review`, `log`, `date`) VALUES (19, 'Theoretical and Computational Fluid Dynamics', 'Theor. Comput. Fluid Dyn.', 1, 2, 1, 2, '2007-09-12 19:26:36');
-INSERT INTO `journal` (`journal_id`, `journal_fullname`, `journal_name`, `journal_type`, `journal_audience`, `journal_peer_review`, `log`, `date`) VALUES (20, 'Journal of Propulsion and Power', 'J. Propul. Power', 1, 2, 1, 2, '2007-09-12 20:41:58');
-INSERT INTO `journal` (`journal_id`, `journal_fullname`, `journal_name`, `journal_type`, `journal_audience`, `journal_peer_review`, `log`, `date`) VALUES (21, 'International Journal Thermal Sciences', 'Int. J. Therm. Sci.', 1, 2, 1, 2, '2007-09-12 20:31:11');
-INSERT INTO `journal` (`journal_id`, `journal_fullname`, `journal_name`, `journal_type`, `journal_audience`, `journal_peer_review`, `log`, `date`) VALUES (22, 'Chemical Engineering Science', 'Chem. Eng. Sci.', 1, 2, 1, 2, '2007-09-12 19:14:16');
-INSERT INTO `journal` (`journal_id`, `journal_fullname`, `journal_name`, `journal_type`, `journal_audience`, `journal_peer_review`, `log`, `date`) VALUES (151, 'Earth Surface Processes and Landforms', 'Earth Surf. Process. Landf.', 1, 2, 1, 2, '2007-09-12 20:03:44');
-INSERT INTO `journal` (`journal_id`, `journal_fullname`, `journal_name`, `journal_type`, `journal_audience`, `journal_peer_review`, `log`, `date`) VALUES (24, 'IMA Journal of Applied Mathematics', 'IMA J. Appl. Math.', 1, 2, 1, 1, '2007-09-12 20:25:50');
-INSERT INTO `journal` (`journal_id`, `journal_fullname`, `journal_name`, `journal_type`, `journal_audience`, `journal_peer_review`, `log`, `date`) VALUES (25, 'Advances in Chemical Physics', 'Advances in Chemical Physics', 0, 2, 1, 0, '0000-00-00 00:00:00');
-INSERT INTO `journal` (`journal_id`, `journal_fullname`, `journal_name`, `journal_type`, `journal_audience`, `journal_peer_review`, `log`, `date`) VALUES (26, 'Comptes Rendus Acad. Sci., Série IIb', 'Comptes Rendus Acad. Sci., Série IIb', 0, 2, 1, 0, '0000-00-00 00:00:00');
-INSERT INTO `journal` (`journal_id`, `journal_fullname`, `journal_name`, `journal_type`, `journal_audience`, `journal_peer_review`, `log`, `date`) VALUES (27, 'Journal of Fluid Mechanics', 'J. Fluid Mech.', 1, 2, 1, 2, '2007-09-12 20:15:04');
-INSERT INTO `journal` (`journal_id`, `journal_fullname`, `journal_name`, `journal_type`, `journal_audience`, `journal_peer_review`, `log`, `date`) VALUES (28, 'Journal of Turbomachinery', 'Journal of Turbomachinery', 0, 2, 1, 0, '0000-00-00 00:00:00');
-INSERT INTO `journal` (`journal_id`, `journal_fullname`, `journal_name`, `journal_type`, `journal_audience`, `journal_peer_review`, `log`, `date`) VALUES (29, 'Journal of Fluids Engineering', 'J. Fluids Eng.', 1, 2, 1, 1, '2008-05-23 09:19:39');
-INSERT INTO `journal` (`journal_id`, `journal_fullname`, `journal_name`, `journal_type`, `journal_audience`, `journal_peer_review`, `log`, `date`) VALUES (30, 'Revue de l''I.F.P.', 'Revue de l''I.F.P.', 0, 2, 1, 0, '0000-00-00 00:00:00');
-INSERT INTO `journal` (`journal_id`, `journal_fullname`, `journal_name`, `journal_type`, `journal_audience`, `journal_peer_review`, `log`, `date`) VALUES (31, 'Technica', 'Technica', 0, 2, 1, 0, '0000-00-00 00:00:00');
-INSERT INTO `journal` (`journal_id`, `journal_fullname`, `journal_name`, `journal_type`, `journal_audience`, `journal_peer_review`, `log`, `date`) VALUES (32, 'Revue des Ingénieurs de l''Automobile', 'Revue des Ingénieurs de l''Automobile', 0, 2, 1, 0, '0000-00-00 00:00:00');
-INSERT INTO `journal` (`journal_id`, `journal_fullname`, `journal_name`, `journal_type`, `journal_audience`, `journal_peer_review`, `log`, `date`) VALUES (33, 'Journal d''Acoustique', 'Journal d''Acoustique', 0, 2, 1, 0, '0000-00-00 00:00:00');
-INSERT INTO `journal` (`journal_id`, `journal_fullname`, `journal_name`, `journal_type`, `journal_audience`, `journal_peer_review`, `log`, `date`) VALUES (34, 'Journal de Physique (supplément)', 'Journal de Physique (supplément)', 0, 2, 1, 0, '0000-00-00 00:00:00');
-INSERT INTO `journal` (`journal_id`, `journal_fullname`, `journal_name`, `journal_type`, `journal_audience`, `journal_peer_review`, `log`, `date`) VALUES (35, 'Physics of Fluids', 'Phys. Fluids', 1, 2, 1, 2, '2007-09-12 20:18:18');
-INSERT INTO `journal` (`journal_id`, `journal_fullname`, `journal_name`, `journal_type`, `journal_audience`, `journal_peer_review`, `log`, `date`) VALUES (36, 'Journal de Physique, Colloque C3', 'Journal de Physique, Colloque C3', 0, 2, 1, 0, '0000-00-00 00:00:00');
-INSERT INTO `journal` (`journal_id`, `journal_fullname`, `journal_name`, `journal_type`, `journal_audience`, `journal_peer_review`, `log`, `date`) VALUES (37, 'ERCOFTAC Bulletin', 'ERCOFTAC Bulletin', 0, 2, 1, 0, '0000-00-00 00:00:00');
-INSERT INTO `journal` (`journal_id`, `journal_fullname`, `journal_name`, `journal_type`, `journal_audience`, `journal_peer_review`, `log`, `date`) VALUES (38, 'Physico-Chemical Hydrodynamics', 'Physico-Chemical Hydrodynamics', 0, 2, 1, 0, '0000-00-00 00:00:00');
-INSERT INTO `journal` (`journal_id`, `journal_fullname`, `journal_name`, `journal_type`, `journal_audience`, `journal_peer_review`, `log`, `date`) VALUES (39, 'Journal of the Acoustical Society of America', 'J. Acoust. Soc. Am.', 1, 2, 1, 2, '2007-09-12 20:43:15');
-INSERT INTO `journal` (`journal_id`, `journal_fullname`, `journal_name`, `journal_type`, `journal_audience`, `journal_peer_review`, `log`, `date`) VALUES (40, 'Chemical Senses', 'Chem. Senses', 1, 2, 1, 2, '2007-09-12 19:16:13');
-INSERT INTO `journal` (`journal_id`, `journal_fullname`, `journal_name`, `journal_type`, `journal_audience`, `journal_peer_review`, `log`, `date`) VALUES (41, 'Atmospheric Environment', 'Atmos. Environ.', 1, 2, 1, 2, '2007-09-12 19:01:25');
-INSERT INTO `journal` (`journal_id`, `journal_fullname`, `journal_name`, `journal_type`, `journal_audience`, `journal_peer_review`, `log`, `date`) VALUES (42, 'Journal of Hazardous Materials', 'J. Hazard. Mater.', 1, 2, 1, 2, '2007-09-12 20:38:20');
-INSERT INTO `journal` (`journal_id`, `journal_fullname`, `journal_name`, `journal_type`, `journal_audience`, `journal_peer_review`, `log`, `date`) VALUES (43, 'European Journal of Mechanics B-Fluids', 'Eur. J. Mech. B-Fluids', 1, 2, 1, 2, '2007-09-12 20:05:43');
-INSERT INTO `journal` (`journal_id`, `journal_fullname`, `journal_name`, `journal_type`, `journal_audience`, `journal_peer_review`, `log`, `date`) VALUES (44, 'International Journal of Heat and Mass Transfer', 'Int. J. Heat Mass Transf.', 1, 2, 1, 2, '2007-09-12 20:20:07');
-INSERT INTO `journal` (`journal_id`, `journal_fullname`, `journal_name`, `journal_type`, `journal_audience`, `journal_peer_review`, `log`, `date`) VALUES (45, 'JAMA : supplément à l''édition française', 'JAMA : supplément à l''édition française', 0, 2, 1, 0, '0000-00-00 00:00:00');
-INSERT INTO `journal` (`journal_id`, `journal_fullname`, `journal_name`, `journal_type`, `journal_audience`, `journal_peer_review`, `log`, `date`) VALUES (46, 'SPECTRA 2000', 'SPECTRA 2000', 0, 2, 1, 0, '0000-00-00 00:00:00');
-INSERT INTO `journal` (`journal_id`, `journal_fullname`, `journal_name`, `journal_type`, `journal_audience`, `journal_peer_review`, `log`, `date`) VALUES (47, 'Journal de Physique III', 'Journal de Physique III', 0, 2, 1, 0, '0000-00-00 00:00:00');
-INSERT INTO `journal` (`journal_id`, `journal_fullname`, `journal_name`, `journal_type`, `journal_audience`, `journal_peer_review`, `log`, `date`) VALUES (48, 'Journal de Physique IV, Colloque C1', 'Journal de Physique IV, Colloque C1', 0, 2, 1, 0, '0000-00-00 00:00:00');
-INSERT INTO `journal` (`journal_id`, `journal_fullname`, `journal_name`, `journal_type`, `journal_audience`, `journal_peer_review`, `log`, `date`) VALUES (49, 'Combustion Science and Technology', 'Combust. Sci. Technol.', 1, 2, 1, 2, '2007-09-12 19:19:29');
-INSERT INTO `journal` (`journal_id`, `journal_fullname`, `journal_name`, `journal_type`, `journal_audience`, `journal_peer_review`, `log`, `date`) VALUES (50, 'Revue Scientifique et Technique de la Défense', 'Revue Scientifique et Technique de la Défense', 0, 2, 1, 0, '0000-00-00 00:00:00');
-INSERT INTO `journal` (`journal_id`, `journal_fullname`, `journal_name`, `journal_type`, `journal_audience`, `journal_peer_review`, `log`, `date`) VALUES (51, 'Entretiens Science et Défense', 'Entretiens Science et Défense', 0, 2, 1, 0, '0000-00-00 00:00:00');
-INSERT INTO `journal` (`journal_id`, `journal_fullname`, `journal_name`, `journal_type`, `journal_audience`, `journal_peer_review`, `log`, `date`) VALUES (52, 'Revue Générale de Thermique', 'Revue Générale de Thermique', 0, 2, 1, 0, '0000-00-00 00:00:00');
-INSERT INTO `journal` (`journal_id`, `journal_fullname`, `journal_name`, `journal_type`, `journal_audience`, `journal_peer_review`, `log`, `date`) VALUES (53, 'Revue Scientifique de la SNECMA', 'Revue Scientifique de la SNECMA', 0, 2, 1, 0, '0000-00-00 00:00:00');
-INSERT INTO `journal` (`journal_id`, `journal_fullname`, `journal_name`, `journal_type`, `journal_audience`, `journal_peer_review`, `log`, `date`) VALUES (54, 'Combustion and Flame', 'Combust. Flame', 1, 2, 1, 2, '2007-09-12 19:18:38');
-INSERT INTO `journal` (`journal_id`, `journal_fullname`, `journal_name`, `journal_type`, `journal_audience`, `journal_peer_review`, `log`, `date`) VALUES (55, 'International Journal of Thermophysics', 'Int. J. Thermophys.', 1, 2, 1, 2, '2007-09-12 20:30:11');
-INSERT INTO `journal` (`journal_id`, `journal_fullname`, `journal_name`, `journal_type`, `journal_audience`, `journal_peer_review`, `log`, `date`) VALUES (56, 'Applied Scientific Research', 'Applied Scientific Research', 0, 2, 1, 0, '0000-00-00 00:00:00');
-INSERT INTO `journal` (`journal_id`, `journal_fullname`, `journal_name`, `journal_type`, `journal_audience`, `journal_peer_review`, `log`, `date`) VALUES (57, 'Applied Acoustics', 'Appl. Acoust.', 1, 2, 1, 2, '2007-09-12 18:57:50');
-INSERT INTO `journal` (`journal_id`, `journal_fullname`, `journal_name`, `journal_type`, `journal_audience`, `journal_peer_review`, `log`, `date`) VALUES (58, 'Waves in Random and Complex Media', 'Waves Random Complex Media', 1, 2, 1, 2, '2007-09-12 21:02:04');
-INSERT INTO `journal` (`journal_id`, `journal_fullname`, `journal_name`, `journal_type`, `journal_audience`, `journal_peer_review`, `log`, `date`) VALUES (59, 'Journal of Hydraulic Research', 'J. Hydraul. Res.', 1, 2, 1, 2, '2007-09-12 20:39:43');
-INSERT INTO `journal` (`journal_id`, `journal_fullname`, `journal_name`, `journal_type`, `journal_audience`, `journal_peer_review`, `log`, `date`) VALUES (60, 'Experiments in Fluids', 'Exp. Fluids', 1, 2, 1, 2, '2007-09-12 20:10:03');
-INSERT INTO `journal` (`journal_id`, `journal_fullname`, `journal_name`, `journal_type`, `journal_audience`, `journal_peer_review`, `log`, `date`) VALUES (61, 'Acustica', 'Acustica', 0, 2, 1, 0, '0000-00-00 00:00:00');
-INSERT INTO `journal` (`journal_id`, `journal_fullname`, `journal_name`, `journal_type`, `journal_audience`, `journal_peer_review`, `log`, `date`) VALUES (62, 'Journal de Physique', 'Journal de Physique', 0, 2, 1, 0, '0000-00-00 00:00:00');
-INSERT INTO `journal` (`journal_id`, `journal_fullname`, `journal_name`, `journal_type`, `journal_audience`, `journal_peer_review`, `log`, `date`) VALUES (63, 'Fluid Dynamics Research', 'Fluid Dyn. Res.', 1, 2, 1, 2, '2007-09-12 20:12:46');
-INSERT INTO `journal` (`journal_id`, `journal_fullname`, `journal_name`, `journal_type`, `journal_audience`, `journal_peer_review`, `log`, `date`) VALUES (64, 'Numerical Heat Transfer Part A-Applications', 'Numer. Heat Transf. A-Appl.', 1, 2, 1, 2, '2007-09-12 20:21:40');
-INSERT INTO `journal` (`journal_id`, `journal_fullname`, `journal_name`, `journal_type`, `journal_audience`, `journal_peer_review`, `log`, `date`) VALUES (65, 'Smart Materials and Structures', 'Smart Mat. Struct.', 1, 2, 1, 2, '2007-09-12 20:59:05');
-INSERT INTO `journal` (`journal_id`, `journal_fullname`, `journal_name`, `journal_type`, `journal_audience`, `journal_peer_review`, `log`, `date`) VALUES (66, 'Acta Acustica', 'Acta Acustica', 0, 2, 1, 0, '0000-00-00 00:00:00');
-INSERT INTO `journal` (`journal_id`, `journal_fullname`, `journal_name`, `journal_type`, `journal_audience`, `journal_peer_review`, `log`, `date`) VALUES (67, 'Journal of Crystal Growth', 'J. Cryst. Growth', 1, 2, 1, 2, '2007-09-12 20:35:06');
-INSERT INTO `journal` (`journal_id`, `journal_fullname`, `journal_name`, `journal_type`, `journal_audience`, `journal_peer_review`, `log`, `date`) VALUES (68, 'International Journal of Multiphase Flow', 'Int. J. Multiph. Flow', 1, 2, 1, 2, '2007-09-12 20:28:52');
-INSERT INTO `journal` (`journal_id`, `journal_fullname`, `journal_name`, `journal_type`, `journal_audience`, `journal_peer_review`, `log`, `date`) VALUES (69, 'Multiphase Science and Technology', 'Multiphase Science and Technology', 0, 2, 1, 0, '0000-00-00 00:00:00');
-INSERT INTO `journal` (`journal_id`, `journal_fullname`, `journal_name`, `journal_type`, `journal_audience`, `journal_peer_review`, `log`, `date`) VALUES (70, 'Journal of Computational Physics', 'J. Comput. Phys.', 1, 2, 1, 2, '2007-09-12 19:25:05');
-INSERT INTO `journal` (`journal_id`, `journal_fullname`, `journal_name`, `journal_type`, `journal_audience`, `journal_peer_review`, `log`, `date`) VALUES (71, 'Journal of Sound and Vibration', 'J. Sound Vib.', 1, 2, 1, 2, '2007-09-12 20:42:34');
-INSERT INTO `journal` (`journal_id`, `journal_fullname`, `journal_name`, `journal_type`, `journal_audience`, `journal_peer_review`, `log`, `date`) VALUES (72, 'Applied Optics', 'Appl. Optics', 1, 2, 1, 2, '2007-09-12 18:58:57');
-INSERT INTO `journal` (`journal_id`, `journal_fullname`, `journal_name`, `journal_type`, `journal_audience`, `journal_peer_review`, `log`, `date`) VALUES (73, 'Entropie', 'Entropie', 0, 2, 1, 0, '0000-00-00 00:00:00');
-INSERT INTO `journal` (`journal_id`, `journal_fullname`, `journal_name`, `journal_type`, `journal_audience`, `journal_peer_review`, `log`, `date`) VALUES (74, 'Revue Française de Mécanique', 'Revue Française de Mécanique', 0, 2, 1, 0, '0000-00-00 00:00:00');
-INSERT INTO `journal` (`journal_id`, `journal_fullname`, `journal_name`, `journal_type`, `journal_audience`, `journal_peer_review`, `log`, `date`) VALUES (75, 'International Journal of Numerical Methods for Heat and Fluid Flow', 'Int. J. Numer. Methods Heat Fluid Flow', 1, 2, 1, 2, '2007-09-12 20:14:30');
-INSERT INTO `journal` (`journal_id`, `journal_fullname`, `journal_name`, `journal_type`, `journal_audience`, `journal_peer_review`, `log`, `date`) VALUES (76, 'Journal of Flow Visualization and Image Processing', 'Journal of Flow Visualization and Image Processing', 0, 2, 1, 0, '0000-00-00 00:00:00');
-INSERT INTO `journal` (`journal_id`, `journal_fullname`, `journal_name`, `journal_type`, `journal_audience`, `journal_peer_review`, `log`, `date`) VALUES (77, 'Microgravity Quarterly', 'Microgravity Quarterly', 0, 2, 1, 0, '0000-00-00 00:00:00');
-INSERT INTO `journal` (`journal_id`, `journal_fullname`, `journal_name`, `journal_type`, `journal_audience`, `journal_peer_review`, `log`, `date`) VALUES (78, 'IMechE Conf. Transactions', 'IMechE Conf. Transactions', 0, 2, 1, 0, '0000-00-00 00:00:00');
-INSERT INTO `journal` (`journal_id`, `journal_fullname`, `journal_name`, `journal_type`, `journal_audience`, `journal_peer_review`, `log`, `date`) VALUES (79, 'Chemical Engineering Communications', 'Chem. Eng. Commun.', 1, 2, 1, 2, '2007-09-12 19:13:26');
-INSERT INTO `journal` (`journal_id`, `journal_fullname`, `journal_name`, `journal_type`, `journal_audience`, `journal_peer_review`, `log`, `date`) VALUES (80, 'Isotopes', 'Isotopes', 0, 2, 1, 0, '0000-00-00 00:00:00');
-INSERT INTO `journal` (`journal_id`, `journal_fullname`, `journal_name`, `journal_type`, `journal_audience`, `journal_peer_review`, `log`, `date`) VALUES (82, 'Journal of Thermal Science', 'Journal of Thermal Science', 0, 2, 1, 0, '0000-00-00 00:00:00');
-INSERT INTO `journal` (`journal_id`, `journal_fullname`, `journal_name`, `journal_type`, `journal_audience`, `journal_peer_review`, `log`, `date`) VALUES (83, 'Measurement Science & Technology', 'Meas. Sci. Technol.', 1, 2, 1, 2, '2007-09-12 20:51:13');
-INSERT INTO `journal` (`journal_id`, `journal_fullname`, `journal_name`, `journal_type`, `journal_audience`, `journal_peer_review`, `log`, `date`) VALUES (84, 'Lettre d''information du CNUSC', 'Lettre d''information du CNUSC', 0, 2, 1, 0, '0000-00-00 00:00:00');
-INSERT INTO `journal` (`journal_id`, `journal_fullname`, `journal_name`, `journal_type`, `journal_audience`, `journal_peer_review`, `log`, `date`) VALUES (85, 'Experimental Thermal and Fluid Science', 'Exp. Therm. Fluid Sci.', 1, 2, 1, 2, '2007-09-12 20:09:08');
-INSERT INTO `journal` (`journal_id`, `journal_fullname`, `journal_name`, `journal_type`, `journal_audience`, `journal_peer_review`, `log`, `date`) VALUES (87, 'Advances Space Research', 'Advances Space Research', 0, 2, 1, 0, '0000-00-00 00:00:00');
-INSERT INTO `journal` (`journal_id`, `journal_fullname`, `journal_name`, `journal_type`, `journal_audience`, `journal_peer_review`, `log`, `date`) VALUES (88, 'Review of Scientific Instruments', 'Rev. Sci. Instrum.', 1, 2, 1, 2, '2007-09-12 20:57:20');
-INSERT INTO `journal` (`journal_id`, `journal_fullname`, `journal_name`, `journal_type`, `journal_audience`, `journal_peer_review`, `log`, `date`) VALUES (89, 'International Journal of Heat and Fluid Flow', 'Int. J. Heat Fluid Flow', 1, 2, 1, 2, '2007-09-12 20:13:45');
-INSERT INTO `journal` (`journal_id`, `journal_fullname`, `journal_name`, `journal_type`, `journal_audience`, `journal_peer_review`, `log`, `date`) VALUES (90, 'SAE Transactions', 'SAE Transactions', 0, 2, 1, 0, '0000-00-00 00:00:00');
-INSERT INTO `journal` (`journal_id`, `journal_fullname`, `journal_name`, `journal_type`, `journal_audience`, `journal_peer_review`, `log`, `date`) VALUES (91, 'Flow Turbulence and Combustion', 'Flow Turbul. Combust.', 1, 2, 1, 2, '2007-09-12 20:10:47');
-INSERT INTO `journal` (`journal_id`, `journal_fullname`, `journal_name`, `journal_type`, `journal_audience`, `journal_peer_review`, `log`, `date`) VALUES (92, 'European Physical Journal-Applied Physics', 'Eur. Phys. J.-Appl. Phys.', 1, 2, 1, 2, '2007-09-12 20:07:28');
-INSERT INTO `journal` (`journal_id`, `journal_fullname`, `journal_name`, `journal_type`, `journal_audience`, `journal_peer_review`, `log`, `date`) VALUES (93, 'High Temperatures - High Pressures', 'High Temperatures - High Pressures', 0, 2, 1, 0, '0000-00-00 00:00:00');
-INSERT INTO `journal` (`journal_id`, `journal_fullname`, `journal_name`, `journal_type`, `journal_audience`, `journal_peer_review`, `log`, `date`) VALUES (94, 'Science in China', 'Science in China', 0, 2, 1, 0, '0000-00-00 00:00:00');
-INSERT INTO `journal` (`journal_id`, `journal_fullname`, `journal_name`, `journal_type`, `journal_audience`, `journal_peer_review`, `log`, `date`) VALUES (95, 'International Journal of Bifurcation and Chaos', 'Int. J. Bifurcation Chaos', 1, 2, 1, 2, '2007-09-12 20:27:28');
-INSERT INTO `journal` (`journal_id`, `journal_fullname`, `journal_name`, `journal_type`, `journal_audience`, `journal_peer_review`, `log`, `date`) VALUES (96, 'European Physical Journal B', 'Eur. Phys. J. B', 1, 2, 1, 2, '2007-09-12 20:06:50');
-INSERT INTO `journal` (`journal_id`, `journal_fullname`, `journal_name`, `journal_type`, `journal_audience`, `journal_peer_review`, `log`, `date`) VALUES (97, 'Journal de Chimie Physique', 'Journal de Chimie Physique', 0, 2, 1, 0, '0000-00-00 00:00:00');
-INSERT INTO `journal` (`journal_id`, `journal_fullname`, `journal_name`, `journal_type`, `journal_audience`, `journal_peer_review`, `log`, `date`) VALUES (98, 'International Journal of Transport Phenomena', 'Int. J. Transport Phen.', 0, 2, 1, 0, '0000-00-00 00:00:00');
-INSERT INTO `journal` (`journal_id`, `journal_fullname`, `journal_name`, `journal_type`, `journal_audience`, `journal_peer_review`, `log`, `date`) VALUES (99, 'Journal of Loss Prevention in the Process Industries', 'J. Loss Prev. Process Ind.', 1, 2, 1, 2, '2007-09-12 20:41:01');
-INSERT INTO `journal` (`journal_id`, `journal_fullname`, `journal_name`, `journal_type`, `journal_audience`, `journal_peer_review`, `log`, `date`) VALUES (100, 'Acta Mechanica Sinica', 'Acta Mech. Sin.', 1, 2, 1, 2, '2007-09-12 18:50:57');
-INSERT INTO `journal` (`journal_id`, `journal_fullname`, `journal_name`, `journal_type`, `journal_audience`, `journal_peer_review`, `log`, `date`) VALUES (101, 'Limnology and Oceanography', 'Limnol. Oceanogr.', 1, 2, 1, 2, '2007-09-12 20:47:50');
-INSERT INTO `journal` (`journal_id`, `journal_fullname`, `journal_name`, `journal_type`, `journal_audience`, `journal_peer_review`, `log`, `date`) VALUES (102, 'Journal of Thermal Analysis and Calorimetry', 'J. Therm. Anal. Calorim.', 1, 2, 1, 2, '2007-09-12 20:45:13');
-INSERT INTO `journal` (`journal_id`, `journal_fullname`, `journal_name`, `journal_type`, `journal_audience`, `journal_peer_review`, `log`, `date`) VALUES (103, 'Journal of Fish Biology', 'J. Fish Biol.', 1, 2, 1, 2, '2007-09-12 20:37:05');
-INSERT INTO `journal` (`journal_id`, `journal_fullname`, `journal_name`, `journal_type`, `journal_audience`, `journal_peer_review`, `log`, `date`) VALUES (104, 'Annals of the New York  Academy of Sciences', 'Ann. NY  Acad. Sci.', 1, 2, 1, 2, '2007-09-12 18:55:20');
-INSERT INTO `journal` (`journal_id`, `journal_fullname`, `journal_name`, `journal_type`, `journal_audience`, `journal_peer_review`, `log`, `date`) VALUES (105, 'Mécanique et Industries', 'Mécanique et Industries', 0, 2, 1, 0, '0000-00-00 00:00:00');
-INSERT INTO `journal` (`journal_id`, `journal_fullname`, `journal_name`, `journal_type`, `journal_audience`, `journal_peer_review`, `log`, `date`) VALUES (106, 'International Journal of Computational Fluid Dynamics', 'Int. J. Comput. Fluid Dyn.', 1, 2, 1, 2, '2007-09-12 19:23:29');
-INSERT INTO `journal` (`journal_id`, `journal_fullname`, `journal_name`, `journal_type`, `journal_audience`, `journal_peer_review`, `log`, `date`) VALUES (107, 'Combustion', 'Combustion', 0, 2, 1, 0, '0000-00-00 00:00:00');
-INSERT INTO `journal` (`journal_id`, `journal_fullname`, `journal_name`, `journal_type`, `journal_audience`, `journal_peer_review`, `log`, `date`) VALUES (108, 'Computational Mechanics', 'Comput. Mech.', 1, 2, 1, 2, '2007-09-12 19:21:46');
-INSERT INTO `journal` (`journal_id`, `journal_fullname`, `journal_name`, `journal_type`, `journal_audience`, `journal_peer_review`, `log`, `date`) VALUES (109, 'Revue Officielle de la Société Française d''O.R.L.', 'Revue Officielle de la Société Française d''O.R.L.', 0, 2, 1, 0, '0000-00-00 00:00:00');
-INSERT INTO `journal` (`journal_id`, `journal_fullname`, `journal_name`, `journal_type`, `journal_audience`, `journal_peer_review`, `log`, `date`) VALUES (110, 'Journal of Transport and Communication', 'Journal of Transport and Communication', 0, 2, 1, 0, '0000-00-00 00:00:00');
-INSERT INTO `journal` (`journal_id`, `journal_fullname`, `journal_name`, `journal_type`, `journal_audience`, `journal_peer_review`, `log`, `date`) VALUES (111, 'Proc. IMechE Part A, Journal of Power and Energy', 'Proc. IMechE Part A, Journal of Power and Energy', 0, 2, 1, 0, '0000-00-00 00:00:00');
-INSERT INTO `journal` (`journal_id`, `journal_fullname`, `journal_name`, `journal_type`, `journal_audience`, `journal_peer_review`, `log`, `date`) VALUES (112, 'Atomization and Sprays', 'Atom. Sprays', 1, 2, 1, 2, '2007-09-12 19:02:20');
-INSERT INTO `journal` (`journal_id`, `journal_fullname`, `journal_name`, `journal_type`, `journal_audience`, `journal_peer_review`, `log`, `date`) VALUES (113, 'Pour la Science - Dossier Hors-Série', 'Pour la Science - Dossier Hors-Série', 0, 2, 1, 0, '0000-00-00 00:00:00');
-INSERT INTO `journal` (`journal_id`, `journal_fullname`, `journal_name`, `journal_type`, `journal_audience`, `journal_peer_review`, `log`, `date`) VALUES (114, 'Revue Scientifique et Technique (vietnamienne)', 'Revue Scientifique et Technique (vietnamienne)', 0, 2, 1, 0, '0000-00-00 00:00:00');
-INSERT INTO `journal` (`journal_id`, `journal_fullname`, `journal_name`, `journal_type`, `journal_audience`, `journal_peer_review`, `log`, `date`) VALUES (115, 'Vietnam Journal of Mechanics, NCST of Vietnam', 'Vietnam Journal of Mechanics, NCST of Vietnam', 0, 2, 1, 0, '0000-00-00 00:00:00');
-INSERT INTO `journal` (`journal_id`, `journal_fullname`, `journal_name`, `journal_type`, `journal_audience`, `journal_peer_review`, `log`, `date`) VALUES (152, 'Experiments and Measurements in Fluid Mechanics', 'Exp. Measur. Fluid Mech.', 0, 2, 1, 0, '0000-00-00 00:00:00');
-INSERT INTO `journal` (`journal_id`, `journal_fullname`, `journal_name`, `journal_type`, `journal_audience`, `journal_peer_review`, `log`, `date`) VALUES (117, 'Trans. Japan Soc. Mech. Engrs', 'Trans. Japan Soc. Mech. Engrs', 0, 2, 1, 0, '0000-00-00 00:00:00');
-INSERT INTO `journal` (`journal_id`, `journal_fullname`, `journal_name`, `journal_type`, `journal_audience`, `journal_peer_review`, `log`, `date`) VALUES (118, 'ARI (Int. J. Phys. and Eng. Sci.)', 'ARI (Int. J. Phys. and Eng. Sci.)', 0, 2, 1, 0, '0000-00-00 00:00:00');
-INSERT INTO `journal` (`journal_id`, `journal_fullname`, `journal_name`, `journal_type`, `journal_audience`, `journal_peer_review`, `log`, `date`) VALUES (119, 'International Journal of Environment and Pollution', 'Int. J. Environ. Pollut.', 1, 2, 1, 2, '2007-09-12 20:28:10');
-INSERT INTO `journal` (`journal_id`, `journal_fullname`, `journal_name`, `journal_type`, `journal_audience`, `journal_peer_review`, `log`, `date`) VALUES (120, 'Comptes Rendus Mécanique', 'C. R. Méc.', 1, 2, 1, 2, '2007-09-12 19:20:41');
-INSERT INTO `journal` (`journal_id`, `journal_fullname`, `journal_name`, `journal_type`, `journal_audience`, `journal_peer_review`, `log`, `date`) VALUES (121, 'Journal of Fluids and Structures', 'J. Fluids Struct.', 1, 2, 1, 2, '2007-09-12 20:17:32');
-INSERT INTO `journal` (`journal_id`, `journal_fullname`, `journal_name`, `journal_type`, `journal_audience`, `journal_peer_review`, `log`, `date`) VALUES (122, 'Powder Technology', 'Powder Technol.', 1, 2, 1, 2, '2007-09-12 20:54:52');
-INSERT INTO `journal` (`journal_id`, `journal_fullname`, `journal_name`, `journal_type`, `journal_audience`, `journal_peer_review`, `log`, `date`) VALUES (123, 'Journal of Turbulence', 'J. Turbul.', 1, 2, 1, 2, '2007-09-12 20:46:32');
-INSERT INTO `journal` (`journal_id`, `journal_fullname`, `journal_name`, `journal_type`, `journal_audience`, `journal_peer_review`, `log`, `date`) VALUES (125, 'Quarterly Journal of Mechanics and Applied Mathematics', 'Q. J. Mech. Appl. Math.', 1, 2, 1, 2, '2007-09-12 21:00:21');
-INSERT INTO `journal` (`journal_id`, `journal_fullname`, `journal_name`, `journal_type`, `journal_audience`, `journal_peer_review`, `log`, `date`) VALUES (129, 'Proceedings of the Royal Society A-Mathematical Physical and Engineering Sciences', 'Proc. R. Soc. A-Math. Phys. Eng. Sci.', 1, 2, 1, 2, '2007-09-12 20:55:40');
-INSERT INTO `journal` (`journal_id`, `journal_fullname`, `journal_name`, `journal_type`, `journal_audience`, `journal_peer_review`, `log`, `date`) VALUES (130, 'International Journal of Aeroacoustics', 'Int. J. Aeroacoustics', 0, 2, 1, 0, '0000-00-00 00:00:00');
-INSERT INTO `journal` (`journal_id`, `journal_fullname`, `journal_name`, `journal_type`, `journal_audience`, `journal_peer_review`, `log`, `date`) VALUES (150, 'Boundary Layer Meteorology', 'Boundary Layer 	Meteorol.', 0, 2, 1, 1, '2008-06-11 16:33:24');
-INSERT INTO `journal` (`journal_id`, `journal_fullname`, `journal_name`, `journal_type`, `journal_audience`, `journal_peer_review`, `log`, `date`) VALUES (132, 'International Journal of Rotating Machinery', 'Int. J. Rot. Machin.', 0, 2, 1, 0, '0000-00-00 00:00:00');
-INSERT INTO `journal` (`journal_id`, `journal_fullname`, `journal_name`, `journal_type`, `journal_audience`, `journal_peer_review`, `log`, `date`) VALUES (133, 'New Journal of Physics', 'New J. Phys.', 1, 2, 1, 2, '2007-09-12 20:52:51');
-INSERT INTO `journal` (`journal_id`, `journal_fullname`, `journal_name`, `journal_type`, `journal_audience`, `journal_peer_review`, `log`, `date`) VALUES (134, 'Chinese Journal of Computational Physics', 'Chinese Journal of Computational Physics', 0, 2, 1, 0, '0000-00-00 00:00:00');
-INSERT INTO `journal` (`journal_id`, `journal_fullname`, `journal_name`, `journal_type`, `journal_audience`, `journal_peer_review`, `log`, `date`) VALUES (135, 'Cryogenics', 'Cryogenics', 1, 2, 1, 2, '2007-09-12 20:02:41');
-INSERT INTO `journal` (`journal_id`, `journal_fullname`, `journal_name`, `journal_type`, `journal_audience`, `journal_peer_review`, `log`, `date`) VALUES (136, 'AIChE journal', 'AIChE journal', 0, 2, 1, 0, '0000-00-00 00:00:00');
-INSERT INTO `journal` (`journal_id`, `journal_fullname`, `journal_name`, `journal_type`, `journal_audience`, `journal_peer_review`, `log`, `date`) VALUES (137, 'International Journal of Dynamics of Fluids', 'Int. J. Dyn. Fluids', 0, 2, 1, 0, '0000-00-00 00:00:00');
-INSERT INTO `journal` (`journal_id`, `journal_fullname`, `journal_name`, `journal_type`, `journal_audience`, `journal_peer_review`, `log`, `date`) VALUES (138, 'High Temperature Material Processes', 'High Temp. Mat. Process', 1, 2, 1, 1, '2007-09-12 20:23:52');
-INSERT INTO `journal` (`journal_id`, `journal_fullname`, `journal_name`, `journal_type`, `journal_audience`, `journal_peer_review`, `log`, `date`) VALUES (139, 'Bulletin de l\\''Union des Physiciens', 'Bulletin de l\\''Union des Physiciens', 3, 2, 1, 1, '2008-02-19 10:37:24');
-INSERT INTO `journal` (`journal_id`, `journal_fullname`, `journal_name`, `journal_type`, `journal_audience`, `journal_peer_review`, `log`, `date`) VALUES (140, 'Computer Methods in Biomechanics and Biomedical Engineering', 'Computer Methods in Biomechanics and Biomedical Engineering', 0, 2, 1, 0, '0000-00-00 00:00:00');
-INSERT INTO `journal` (`journal_id`, `journal_fullname`, `journal_name`, `journal_type`, `journal_audience`, `journal_peer_review`, `log`, `date`) VALUES (144, 'Journal of Engineering Mathematics', 'J. Eng. Math.', 1, 2, 1, 2, '2007-09-12 20:36:06');
-INSERT INTO `journal` (`journal_id`, `journal_fullname`, `journal_name`, `journal_type`, `journal_audience`, `journal_peer_review`, `log`, `date`) VALUES (145, 'Physical Review E', 'Phys. Rev. E', 1, 2, 1, 1, '2007-09-12 20:53:46');
-INSERT INTO `journal` (`journal_id`, `journal_fullname`, `journal_name`, `journal_type`, `journal_audience`, `journal_peer_review`, `log`, `date`) VALUES (146, 'Progress in Computational Fluid Dynamics', 'Prog. Comput. Fluid Dyn.', 1, 2, 1, 2, '2007-09-12 19:26:00');
-INSERT INTO `journal` (`journal_id`, `journal_fullname`, `journal_name`, `journal_type`, `journal_audience`, `journal_peer_review`, `log`, `date`) VALUES (147, 'Journal of Applied Mechanics-Transactions of the ASME', 'J. Appl. Mech.-Trans. ASME', 0, 2, 1, 0, '0000-00-00 00:00:00');
-INSERT INTO `journal` (`journal_id`, `journal_fullname`, `journal_name`, `journal_type`, `journal_audience`, `journal_peer_review`, `log`, `date`) VALUES (148, 'Physica D-Nonlinear Phenomena', 'Physica D', 1, 2, 1, 2, '2007-09-12 20:53:32');
-INSERT INTO `journal` (`journal_id`, `journal_fullname`, `journal_name`, `journal_type`, `journal_audience`, `journal_peer_review`, `log`, `date`) VALUES (149, 'Fluid Dynamics and Material Processing', 'Fluid Dyn. Material Proc.', 0, 2, 1, 0, '0000-00-00 00:00:00');
-INSERT INTO `journal` (`journal_id`, `journal_fullname`, `journal_name`, `journal_type`, `journal_audience`, `journal_peer_review`, `log`, `date`) VALUES (163, 'Journal of the Electrochemical Society', 'J. Electrochem. Soc.', 1, 2, 1, 2, '2007-09-12 20:44:17');
-INSERT INTO `journal` (`journal_id`, `journal_fullname`, `journal_name`, `journal_type`, `journal_audience`, `journal_peer_review`, `log`, `date`) VALUES (162, 'Heat and Mass Transfer', 'Heat Mass Transf.', 1, 2, 1, 2, '2007-09-12 20:19:25');
-INSERT INTO `journal` (`journal_id`, `journal_fullname`, `journal_name`, `journal_type`, `journal_audience`, `journal_peer_review`, `log`, `date`) VALUES (166, 'Progress in Astronautics and Aeronautics', 'Progress Astronautics Aeronautics', 0, 2, 1, 0, '0000-00-00 00:00:00');
-INSERT INTO `journal` (`journal_id`, `journal_fullname`, `journal_name`, `journal_type`, `journal_audience`, `journal_peer_review`, `log`, `date`) VALUES (165, 'Lecture Notes in Physics', 'Lect. Notes Phys.', 0, 2, 1, 0, '0000-00-00 00:00:00');
-INSERT INTO `journal` (`journal_id`, `journal_fullname`, `journal_name`, `journal_type`, `journal_audience`, `journal_peer_review`, `log`, `date`) VALUES (167, 'Notes on Numerical Fluid Mechanics', 'Notes Num. Fluid Mech.', 0, 2, 1, 0, '0000-00-00 00:00:00');
-INSERT INTO `journal` (`journal_id`, `journal_fullname`, `journal_name`, `journal_type`, `journal_audience`, `journal_peer_review`, `log`, `date`) VALUES (168, 'European Space Agency Publications', 'ESA Publications', 0, 2, 1, 0, '0000-00-00 00:00:00');
-INSERT INTO `journal` (`journal_id`, `journal_fullname`, `journal_name`, `journal_type`, `journal_audience`, `journal_peer_review`, `log`, `date`) VALUES (169, 'Numerical Methods in Thermal Problems', 'Num. Methods Thermal Problems', 0, 2, 1, 0, '0000-00-00 00:00:00');
-INSERT INTO `journal` (`journal_id`, `journal_fullname`, `journal_name`, `journal_type`, `journal_audience`, `journal_peer_review`, `log`, `date`) VALUES (170, 'Advances in Fluid Mechanics', 'Advances in Fluid Mechanics', 0, 2, 1, 0, '0000-00-00 00:00:00');
-INSERT INTO `journal` (`journal_id`, `journal_fullname`, `journal_name`, `journal_type`, `journal_audience`, `journal_peer_review`, `log`, `date`) VALUES (171, 'Récents Progrès en Génie des Procédés', 'Récents Progrès en Génie des Procédés', 0, 2, 1, 0, '0000-00-00 00:00:00');
-INSERT INTO `journal` (`journal_id`, `journal_fullname`, `journal_name`, `journal_type`, `journal_audience`, `journal_peer_review`, `log`, `date`) VALUES (172, 'ASME / Heat Transfer Division', 'ASME / Heat Transfer Division', 0, 2, 1, 0, '0000-00-00 00:00:00');
-INSERT INTO `journal` (`journal_id`, `journal_fullname`, `journal_name`, `journal_type`, `journal_audience`, `journal_peer_review`, `log`, `date`) VALUES (173, 'Cold Regions Science and Technology', 'Cold Reg. Sci. Tech.', 1, 2, 1, 2, '2007-09-12 19:17:44');
-INSERT INTO `journal` (`journal_id`, `journal_fullname`, `journal_name`, `journal_type`, `journal_audience`, `journal_peer_review`, `log`, `date`) VALUES (174, 'Acta Acustica united with Acustica', 'Acta Acust. United Acust.', 1, 2, 1, 2, '2007-09-12 18:49:17');
-INSERT INTO `journal` (`journal_id`, `journal_fullname`, `journal_name`, `journal_type`, `journal_audience`, `journal_peer_review`, `log`, `date`) VALUES (175, 'Journal of Hydraulic Engineering', 'Journal of Hydraulic Engineering', 0, 2, 1, 0, '0000-00-00 00:00:00');
-INSERT INTO `journal` (`journal_id`, `journal_fullname`, `journal_name`, `journal_type`, `journal_audience`, `journal_peer_review`, `log`, `date`) VALUES (176, 'Water Science and Technology', 'Water Sci. Technol.', 0, 2, 1, 1, '2008-06-11 16:27:02');
-INSERT INTO `journal` (`journal_id`, `journal_fullname`, `journal_name`, `journal_type`, `journal_audience`, `journal_peer_review`, `log`, `date`) VALUES (177, 'Computers & Fluids', 'Comput. Fluids', 1, 2, 1, 2, '2007-09-12 20:02:02');
-INSERT INTO `journal` (`journal_id`, `journal_fullname`, `journal_name`, `journal_type`, `journal_audience`, `journal_peer_review`, `log`, `date`) VALUES (178, 'Acoustical Physics', 'Acoust. Phys.', 0, 2, 1, 1, '2008-06-11 16:29:18');
-INSERT INTO `journal` (`journal_id`, `journal_fullname`, `journal_name`, `journal_type`, `journal_audience`, `journal_peer_review`, `log`, `date`) VALUES (179, 'Le journal de Mickey', 'J. Mickey', 10, 2, 1, 0, '2007-09-12 18:35:33');
-INSERT INTO `journal` (`journal_id`, `journal_fullname`, `journal_name`, `journal_type`, `journal_audience`, `journal_peer_review`, `log`, `date`) VALUES (180, 'Aeronautical Journal', 'Aeronaut. J.', 1, 2, 1, 0, '2007-11-12 14:02:35');
-INSERT INTO `journal` (`journal_id`, `journal_fullname`, `journal_name`, `journal_type`, `journal_audience`, `journal_peer_review`, `log`, `date`) VALUES (181, 'Télérama', 'Télérama', 10, 2, 1, 0, '2008-01-14 09:16:05');
-INSERT INTO `journal` (`journal_id`, `journal_fullname`, `journal_name`, `journal_type`, `journal_audience`, `journal_peer_review`, `log`, `date`) VALUES (182, 'Natural Hazards and Earth System Sciences', 'Nat. Hazards Earth Syst. Sci.', 1, 2, 1, 0, '2008-02-12 14:35:21');
-INSERT INTO `journal` (`journal_id`, `journal_fullname`, `journal_name`, `journal_type`, `journal_audience`, `journal_peer_review`, `log`, `date`) VALUES (183, 'Mechanical Systems and Signal Processing', 'Mechanical Systems and Signal Processing', 1, 2, 1, 0, '2008-04-30 18:51:27');
-INSERT INTO `journal` (`journal_id`, `journal_fullname`, `journal_name`, `journal_type`, `journal_audience`, `journal_peer_review`, `log`, `date`) VALUES (184, 'Journal of the Optical Society of America A', 'J. Opt. Soc. Am. A', 1, 2, 1, 1, '2008-04-30 19:17:07');
-INSERT INTO `journal` (`journal_id`, `journal_fullname`, `journal_name`, `journal_type`, `journal_audience`, `journal_peer_review`, `log`, `date`) VALUES (185, 'Journal of the Energy Institute', 'Journal of the Energy Institute', 1, 2, 1, 0, '2008-04-30 19:40:39');
-INSERT INTO `journal` (`journal_id`, `journal_fullname`, `journal_name`, `journal_type`, `journal_audience`, `journal_peer_review`, `log`, `date`) VALUES (186, 'Nuclear Engineering and Design', 'Nucl. Eng. Des.', 1, 2, 1, 1, '2008-04-30 19:58:14');
-INSERT INTO `journal` (`journal_id`, `journal_fullname`, `journal_name`, `journal_type`, `journal_audience`, `journal_peer_review`, `log`, `date`) VALUES (187, 'Physical Review Letters', 'Phys. Rev. Lett.', 1, 2, 1, 2, '2008-05-13 11:24:18');
-INSERT INTO `journal` (`journal_id`, `journal_fullname`, `journal_name`, `journal_type`, `journal_audience`, `journal_peer_review`, `log`, `date`) VALUES (188, 'Journal of Physics. D, Applied Physics', 'J. Phys., D. Appl. Phys.', 1, 2, 1, 1, '2008-05-26 17:07:17');
-INSERT INTO `journal` (`journal_id`, `journal_fullname`, `journal_name`, `journal_type`, `journal_audience`, `journal_peer_review`, `log`, `date`) VALUES (189, 'New Phytologist', 'New Phytol.', 1, 2, 1, 0, '2008-05-27 14:41:31');
-INSERT INTO `journal` (`journal_id`, `journal_fullname`, `journal_name`, `journal_type`, `journal_audience`, `journal_peer_review`, `log`, `date`) VALUES (190, 'Noise Control Engineering Journal', 'Noise Control Eng. J.', 1, 2, 1, 0, '2008-06-12 14:19:39');
-INSERT INTO `journal` (`journal_id`, `journal_fullname`, `journal_name`, `journal_type`, `journal_audience`, `journal_peer_review`, `log`, `date`) VALUES (191, 'Aerospace Science and Technology', 'Aerosp. Sci. Technol.', 1, 2, 1, 0, '2008-06-12 16:13:03');
-INSERT INTO `journal` (`journal_id`, `journal_fullname`, `journal_name`, `journal_type`, `journal_audience`, `journal_peer_review`, `log`, `date`) VALUES (192, 'Optics Letters', 'Opt. Lett.', 1, 2, 1, 0, '2008-09-10 15:39:22');
-INSERT INTO `journal` (`journal_id`, `journal_fullname`, `journal_name`, `journal_type`, `journal_audience`, `journal_peer_review`, `log`, `date`) VALUES (193, 'Physics of Plasmas', 'Phys. Plasmas', 1, 2, 1, 0, '2008-10-31 11:08:16');
-INSERT INTO `journal` (`journal_id`, `journal_fullname`, `journal_name`, `journal_type`, `journal_audience`, `journal_peer_review`, `log`, `date`) VALUES (194, 'Acoustique et Techniques', 'Acoust. Tech.', 0, 1, 0, 0, '2008-12-12 17:33:47');
-INSERT INTO `journal` (`journal_id`, `journal_fullname`, `journal_name`, `journal_type`, `journal_audience`, `journal_peer_review`, `log`, `date`) VALUES (195, 'Water Ressources Research', 'Water Resour. Res.', 1, 2, 1, 1, '2008-12-18 13:32:50');
-INSERT INTO `journal` (`journal_id`, `journal_fullname`, `journal_name`, `journal_type`, `journal_audience`, `journal_peer_review`, `log`, `date`) VALUES (196, 'International Review of Mechanical Engineering', 'IREME', 0, 2, 1, 1, '2009-02-23 17:14:38');
-INSERT INTO `journal` (`journal_id`, `journal_fullname`, `journal_name`, `journal_type`, `journal_audience`, `journal_peer_review`, `log`, `date`) VALUES (197, 'Physica Scripta', 'Phys. Scr.', 1, 2, 1, 0, '2009-02-17 11:31:37');
-INSERT INTO `journal` (`journal_id`, `journal_fullname`, `journal_name`, `journal_type`, `journal_audience`, `journal_peer_review`, `log`, `date`) VALUES (198, 'Combustion Theory and Modelling', 'Combust. Theory Model.', 1, 2, 1, 1, '2009-02-23 11:58:49');
-INSERT INTO `journal` (`journal_id`, `journal_fullname`, `journal_name`, `journal_type`, `journal_audience`, `journal_peer_review`, `log`, `date`) VALUES (199, 'International Review of Aerospace Engineering', 'IREASE', 0, 2, 1, 0, '2009-02-23 17:18:35');
-INSERT INTO `journal` (`journal_id`, `journal_fullname`, `journal_name`, `journal_type`, `journal_audience`, `journal_peer_review`, `log`, `date`) VALUES (200, 'International Review  on Modelling and Simulations', 'IREMOS', 0, 2, 1, 0, '2009-02-23 17:19:12');
-INSERT INTO `journal` (`journal_id`, `journal_fullname`, `journal_name`, `journal_type`, `journal_audience`, `journal_peer_review`, `log`, `date`) VALUES (201, 'European Physical Journal – Special Topics', 'Eur. Phys. J. - Spec. Top.', 1, 2, 1, 0, '2009-02-24 16:48:07');
 
 -- --------------------------------------------------------
 
@@ -1009,29 +731,6 @@ CREATE TABLE `publisher` (
   PRIMARY KEY  (`publisher_id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=20 ;
 
--- 
--- Dumping data for table `publisher`
--- 
-
-INSERT INTO `publisher` (`publisher_id`, `publisher_name`, `publisher_address`, `log`, `date`) VALUES (1, 'International Center for Numerical Methods in Engineering (CIMNE)', 'Barcelona, Spain', 0, '2008-02-08 15:22:08');
-INSERT INTO `publisher` (`publisher_id`, `publisher_name`, `publisher_address`, `log`, `date`) VALUES (2, 'Kluwer Academic Publishers', 'Dordrecht, Boston, London', 0, '2008-02-08 15:25:50');
-INSERT INTO `publisher` (`publisher_id`, `publisher_name`, `publisher_address`, `log`, `date`) VALUES (3, 'International Glaciological Society', '', 0, '2008-02-12 14:44:40');
-INSERT INTO `publisher` (`publisher_id`, `publisher_name`, `publisher_address`, `log`, `date`) VALUES (4, 'MHD Pamir publications', 'Grenoble', 0, '2008-02-20 17:58:00');
-INSERT INTO `publisher` (`publisher_id`, `publisher_name`, `publisher_address`, `log`, `date`) VALUES (5, 'Springer', 'Dordrecht, The Netherlands', 2, '2008-02-22 15:25:03');
-INSERT INTO `publisher` (`publisher_id`, `publisher_name`, `publisher_address`, `log`, `date`) VALUES (6, 'Chemical and Biological Microsystems Society', '307 Laurel Street, San Diego, California 92101-1630 USA', 0, '2008-03-07 17:35:05');
-INSERT INTO `publisher` (`publisher_id`, `publisher_name`, `publisher_address`, `log`, `date`) VALUES (7, 'Société Hydrotechnique de France', '25 rue des Favorites 75015 Paris', 1, '2008-05-05 16:12:37');
-INSERT INTO `publisher` (`publisher_id`, `publisher_name`, `publisher_address`, `log`, `date`) VALUES (8, 'Association Française de Mécanique', 'Maison de la Mécanique, 39/41 rue Louis Blanc - 92400 Courbevoie', 0, '2008-05-13 10:27:25');
-INSERT INTO `publisher` (`publisher_id`, `publisher_name`, `publisher_address`, `log`, `date`) VALUES (9, 'Cambridge University Press', 'Cambridge, United Kingdom', 0, '2008-06-18 18:48:01');
-INSERT INTO `publisher` (`publisher_id`, `publisher_name`, `publisher_address`, `log`, `date`) VALUES (10, 'Ellipses Edition Marketing S.A.', '32, rue Bargue 75740 Paris cedex 15', 0, '2008-09-09 11:49:01');
-INSERT INTO `publisher` (`publisher_id`, `publisher_name`, `publisher_address`, `log`, `date`) VALUES (11, 'Multi-Science Publishing Co', '5 Wates Way, Brentwood, Essex CM15 9TB, UK', 0, '2008-09-26 11:51:48');
-INSERT INTO `publisher` (`publisher_id`, `publisher_name`, `publisher_address`, `log`, `date`) VALUES (13, 'Pineridge Press', '54, Newton Road, Mumbles, Swansea, U.K.', 0, '2008-10-01 16:59:42');
-INSERT INTO `publisher` (`publisher_id`, `publisher_name`, `publisher_address`, `log`, `date`) VALUES (14, 'VCH Verlagsgesellschaft', 'Postfach 101161, D-6940 Wainheim (Germany)', 0, '2008-10-02 11:08:47');
-INSERT INTO `publisher` (`publisher_id`, `publisher_name`, `publisher_address`, `log`, `date`) VALUES (15, 'Éditions Lavoisier - Technique et Documentation', '11 Rue Lavoisier, Paris, Paris 75008', 0, '2008-10-02 15:25:35');
-INSERT INTO `publisher` (`publisher_id`, `publisher_name`, `publisher_address`, `log`, `date`) VALUES (16, 'Friedrich Vieweg und Sohn', '', 0, '2008-10-02 16:00:05');
-INSERT INTO `publisher` (`publisher_id`, `publisher_name`, `publisher_address`, `log`, `date`) VALUES (17, 'AIAA', '', 0, '2008-12-10 13:33:45');
-INSERT INTO `publisher` (`publisher_id`, `publisher_name`, `publisher_address`, `log`, `date`) VALUES (18, 'European Acoustics Association', '', 0, '2008-12-15 19:21:12');
-INSERT INTO `publisher` (`publisher_id`, `publisher_name`, `publisher_address`, `log`, `date`) VALUES (19, 'International Institute of Noise Control Engineering', 'Purdue University West Lafayette, USA', 0, '2008-12-19 12:55:43');
-
 -- --------------------------------------------------------
 
 -- 
@@ -1045,19 +744,6 @@ CREATE TABLE `soustypedoc` (
   PRIMARY KEY  (`soustypedoc_id`)
 ) ENGINE=MyISAM;
 
--- 
--- Dumping data for table `soustypedoc`
--- 
-
-INSERT INTO `soustypedoc` (`soustypedoc_id`, `soustypedoc_libelle`) VALUES (60, 'thèse de doctorat');
-INSERT INTO `soustypedoc` (`soustypedoc_id`, `soustypedoc_libelle`) VALUES (61, 'habilitation à diriger des recherches');
-INSERT INTO `soustypedoc` (`soustypedoc_id`, `soustypedoc_libelle`) VALUES (0, 'aucun');
-INSERT INTO `soustypedoc` (`soustypedoc_id`, `soustypedoc_libelle`) VALUES (80, 'communication non invitée');
-INSERT INTO `soustypedoc` (`soustypedoc_id`, `soustypedoc_libelle`) VALUES (81, 'communication invitée');
-INSERT INTO `soustypedoc` (`soustypedoc_id`, `soustypedoc_libelle`) VALUES (30, 'communication non invitée');
-INSERT INTO `soustypedoc` (`soustypedoc_id`, `soustypedoc_libelle`) VALUES (31, 'communication invitée');
-
--- --------------------------------------------------------
 
 -- 
 -- Table structure for table `tables`
@@ -1125,15 +811,6 @@ CREATE TABLE `typejournal` (
   PRIMARY KEY  (`typejournal_id`)
 ) ENGINE=MyISAM;
 
--- 
--- Dumping data for table `typejournal`
--- 
-
-INSERT INTO `typejournal` (`typejournal_id`, `typejournal_libelle`) VALUES (2, 'journal international à comité de lecture, non référencé dans le Web of Science');
-INSERT INTO `typejournal` (`typejournal_id`, `typejournal_libelle`) VALUES (3, 'journal national ou sans comité de lecture');
-INSERT INTO `typejournal` (`typejournal_id`, `typejournal_libelle`) VALUES (10, 'autre');
-INSERT INTO `typejournal` (`typejournal_id`, `typejournal_libelle`) VALUES (1, 'journal référencé dans le Web of Science');
-
 -- --------------------------------------------------------
 
 -- 
@@ -1157,7 +834,5 @@ CREATE TABLE `user` (
 -- Dumping data for table `user`
 -- 
 
-INSERT INTO `user` (`u_id`, `u_name`, `u_first`, `u_mail`, `u_login`, `u_password`, `u_groupid`, `u_status`) VALUES (0, 'root', '', 'root@phpubli.org', 'root', 'eda87bffb97f791c3d0e78a5a54be278', 0, 2);
-INSERT INTO `user` (`u_id`, `u_name`, `u_first`, `u_mail`, `u_login`, `u_password`, `u_groupid`, `u_status`) VALUES (1, 'admin1', '', 'admin1@phpubli.org', 'admin1', '9027350bf05be72120ae27c02b7b9491', 1, 1);
-INSERT INTO `user` (`u_id`, `u_name`, `u_first`, `u_mail`, `u_login`, `u_password`, `u_groupid`, `u_status`) VALUES (2, 'user1', '', 'user1@phpubli.org', 'user1', '95542d9f989eacf9d9a26ea221b9fedc', 1, 0);
+INSERT INTO `user` (`u_id`, `u_name`, `u_first`, `u_mail`, `u_login`, `u_password`, `u_groupid`, `u_status`) VALUES (1, 'adminLitis', '', 'admin1@phpubli.org', 'admin1', '9027350bf05be72120ae27c02b7b9491', 1, 1);
 
