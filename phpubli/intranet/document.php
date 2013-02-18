@@ -181,8 +181,8 @@ if (isSet($_POST['action']))
 		document_data_fixed($doc_id, $bd);
 		document_auth_form("insert", $doc_id, $bd, $fonction_range);
 		echo "</center>\n";
-		echo "<input type=\"submit\" name=\"insertdocumentauth\" value=\"ajouter les personnes\"><br>\n";
-		echo "<input type=\"submit\" name=\"edit\" value=\"réinitialiser\">\n";
+		echo "<input type=\"submit\" name=\"insertdocumentauth\" value=\"Valider\"><br>\n";
+		echo "<input type=\"submit\" name=\"edit\" value=\"Annuler\">\n";
 		echo "</form>\n";
 	}
 	if ($action=="editdocumentauth")
@@ -322,7 +322,9 @@ if ( (isSet($_GET['mode'])) || ($displayid!="") )
 	}
 
 	if ($_GET['mode']=="insert")
-	{
+	{			
+		echo "<center><h2>\n";
+
 		if ("$typedoc" == "article")
 			echo "Saisie d'un nouvel article<br>\n";
 		else if ("$typedoc" == "these")
@@ -337,13 +339,14 @@ if ( (isSet($_GET['mode'])) || ($displayid!="") )
 			echo "Saisie d'un nouveau livre<br>\n";
 		else
 			echo "Saisie d'un nouveau document. Attention, selon le type de document choisi, seuls certains des champs ci-dessous sont pertinents.<br>\n";
+		echo "</h2></center>\n";
+
 		echo "<form method=\"post\" action=\"document.php$docflag\" name=\"form\">\n";
 		echo "<input type=\"hidden\" name=\"action\" value=\"insert\">\n";
 		echo "<center>\n";
 		document_data_form($typedoc_id, "insert", "", $bd);
 		echo "</center>\n";
 		echo "<input type=\"submit\" name=\"insertdocumentdata\" value=\"enregistrer les données, puis ajouter des auteurs, éditeurs...\"><br>\n";
-		echo "<input type=\"submit\" name=\"\" value=\"Depuis un Fichier Bibtex\"><br>\n";
 		echo "</form>\n";
 	}
 

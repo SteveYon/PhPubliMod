@@ -2,7 +2,7 @@ Installation PhPubliMod:
 	- Récupérer dernière sources depuis github
 	- Placer dans le dossier sur lequel le serveur pointe
 	- Avec phpMyAdmin:
-		- importer les fichiers phpubli_create.sql & phpubli_load_web.php
+		- importer les fichiers phpubli_create.sql & phpubli_init.php
 Tout est OK normalement.
 
 3 users sont créés:

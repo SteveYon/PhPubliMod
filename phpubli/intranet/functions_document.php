@@ -461,7 +461,7 @@ function document_data_fixed($doc_id, $bd)
 		echo "</td>\n";
 		echo "</tr>\n";
 
-		echo "<tr>\n";
+		/*echo "<tr>\n";
 		echo "<th>Sous-Type de Document</th>\n";
 		echo "<td>";
 		if ("$list_soustypedoc" != "")
@@ -470,7 +470,7 @@ function document_data_fixed($doc_id, $bd)
 			if ($id==$document->soustypedoc_id) echo "$name";
 		}
 		echo "</td>\n";
-		echo "</tr>\n";
+		echo "</tr>\n";*/
 
 	if ( ("$typedoc_libelle"=="") || ("$typedoc_libelle"=="proceedings_book") )
 	{
@@ -652,7 +652,7 @@ function document_data_form($typedoc_id, $mode, $doc_id, $bd)
 	global $rootdir;
 	global $localdir;
 	$typedocid=$typedoc_id;
-echo "typedocid=$typedocid";
+//echo "typedocid=$typedocid";
 	if ("$doc_id"!="")
 	{
 		$query = "SELECT * from document WHERE doc_id = $doc_id";
@@ -736,11 +736,11 @@ echo "typedocid=$typedocid";
 	if ("$typedocid" != "")	// no choice, transmit by hidden field
 	{
 		echo "<tr>\n";
-		echo "<th>Type de Document</th>\n";
+		echo "<th>Document</th>\n";
 		echo "<td>";
 		foreach ($list_typedoc as $id=>$name)
 		{
-			if ($id==$typedocid) echo "$name";
+			if ($id==$typedocid) echo "Article";//echo "$name";
 		}
 		echo "<input type=\"hidden\" name=\"typedoc_id\" value=\"$typedocid\">\n";
 		echo "</td>\n";
@@ -760,7 +760,7 @@ echo "typedocid=$typedocid";
 		echo "</td>\n";
 		echo "</tr>\n";
 	}
-		echo "<tr>\n";
+		/*echo "<tr>\n";
 		echo "<th>Sous-Type de Document</th>\n";
 		echo "<td><select name=\"soustypedoc_id\" size=\"1\">\n";
 		if ("$list_soustypedoc" != "")
@@ -771,7 +771,7 @@ echo "typedocid=$typedocid";
 			echo ">$name</option>\n";
 		}
 		echo "</td>\n";
-		echo "</tr>\n";
+		echo "</tr>\n";*/
 
 	if ( ("$typedoc_libelle"=="") || ("$typedoc_libelle"=="proceedings_book") || ("$typedoc_libelle"=="conference_abstract") )
 	{
@@ -814,10 +814,9 @@ echo "typedocid=$typedocid";
 
 	}
 
-		echo "<tr><th></th><td>Pour les titres (mêmes en anglais) n'utiliser de majuscule initiale que pour le premier mot et les noms propres.</td></tr>\n";
 		echo "<tr>\n";
 		echo "<th>Titre</th>\n";
-		echo "<td><input type=\"text\" name=\"title\" value=\"" . stripSlashes($document->title) . "\" size=\"120\" maxlength=\"255\"></td>\n";
+		echo "<td><input type=\"text\" name=\"title\" value=\"" . stripSlashes($document->title) . "\" size=\"120\" maxlength=\"255\" class=\"required\"></td>\n";
 		echo "</tr>\n";
 
 
@@ -844,22 +843,27 @@ echo "typedocid=$typedocid";
 	if ( ("$typedoc_libelle"!="conference_proceeding") && ("$typedoc_libelle"!="conference_abstract") )
 	{
 		echo "<tr>\n";
-		echo "<th>Année</th>\n";
-		echo "<td><input type=\"text\" name=\"year\" value=\"" . $document->year . "\" size=\"120\" maxlength=\"4\"></td>\n";
+		echo "<th>Citation</th>\n";
+		//MODIFIER
+		echo "<td><input type=\"text\" name=\"year\" value=\"" . $document->year . "\" size=\"120\" maxlength=\"4\" </td>\n";
 		echo "</tr>\n";
+		echo "<tr>\n";
+
 	}
 
 	if ( ("$typedoc_libelle"=="") || ("$typedoc_libelle"=="article") )
 	{
 		echo "<tr>\n";
 		echo "<th>Journal</th>\n";
-		echo "<td><select name=\"journal_id\" size=\"1\">\n";
+		/*echo "<td><select name=\"journal_id\" size=\"1\">\n";
 		foreach ($list_journal as $id=>$name)
 		{
 			echo "<option value=\"$id\"";
 			if ($id==$document->journal_id) echo " selected";
 			echo ">$name</option>\n";
-		}
+		}*/
+		echo "<td><input type=\"text\" name=\"journal\" value=\"" . $document->journal_id . "\" size=\"120\" maxlength=\"4\" ></td>\n";
+
 		echo "</td>\n";
 		echo "</tr>\n";
 	}
@@ -873,10 +877,7 @@ echo "typedocid=$typedocid";
 	}
 	if ( ("$typedoc_libelle"=="") || ("$typedoc_libelle"=="article") || ("$typedoc_libelle"=="conference_proceeding") )
 	{
-		echo "<tr><th></th><td>Pour saisir les pages&nbsp:</td></tr>\n";
-		echo "<tr><th></th><td>utiliser \"<i>pages_start</i>&ndash;<i>pages_end</i>\" pour les documents dans un volume dont toutes les pages sont numérotées&nbsp;;</td></tr>\n";
-		echo "<tr><th></th><td>utiliser \"<i>eid</i> (<i>pages_num</i> pages)\" quand le document est identifié par un numéro.</td></tr>\n";
-
+		
 		echo "<tr>\n";
 		echo "<th>Début</th>\n";
 		echo "<td><input type=\"text\" name=\"pages_start\" value=\"" . $document->pages_start . "\" size=\"120\" maxlength=\"255\"></td>\n";
@@ -885,16 +886,19 @@ echo "typedocid=$typedocid";
 		echo "<th>Fin</th>\n";
 		echo "<td><input type=\"text\" name=\"pages_end\" value=\"" . $document->pages_end . "\" size=\"120\" maxlength=\"255\"></td>\n";
 		echo "</tr>\n";
-		echo "<tr>\n";
-		echo "<th>eid</th>\n";
-		echo "<td><input type=\"text\" name=\"pages_eid\" value=\"" . $document->pages_eid . "\" size=\"120\" maxlength=\"255\"></td>\n";
-		echo "</tr>\n";
+
 		echo "<tr>\n";
 		echo "<th>Nombre de Pages</th>\n";
 		echo "<td><input type=\"text\" name=\"pages_num\" value=\"" . $document->pages_num . "\" size=\"120\" maxlength=\"255\"></td>\n";
 		echo "</tr>\n";
+		echo "<th>Année</th>\n";
+		echo "<td><input type=\"text\" name=\"year\" value=\"" . $document->year . "\" size=\"120\" maxlength=\"4\" class=\"required\"></td>\n";
+		echo "</tr>\n";
+		echo "<th>Mois</th>\n";
+		echo "<td><input type=\"text\" name=\"year\" value=\"" . $document->year . "\" size=\"120\" maxlength=\"4\" ></td>\n";
+		echo "</tr>\n";
 	}
-	if ( ("$typedoc_libelle"=="") || ("$typedoc_libelle"=="these") )
+/*	if ( ("$typedoc_libelle"=="") || ("$typedoc_libelle"=="these") )
 	{
 		echo "<tr>\n";
 		echo "<th>institution</th>\n";
@@ -907,23 +911,41 @@ echo "typedocid=$typedocid";
 		}
 		echo "</td>\n";
 		echo "</tr>\n";
-	}
+	}*/
 
 		echo "<tr>\n";
-		echo "<th>doi</th>\n";
+		echo "<th>DOI</th>\n";
 		echo "<td><input type=\"text\" name=\"doi\" value=\"" . stripSlashes($document->doi) . "\" size=\"120\" maxlength=\"255\"></td>\n";
 		echo "</tr>\n";
 
 		//echo "<tr><th></th><td>Indiquer l'identifiant du dépôt dans HAL, comme hal-01234567 ou tel-01234567</td></tr>\n";
 		echo "<tr>\n";
-		echo "<th>Identifiant HAL</th>\n";
-		echo "<td>http://hal.archives-ouvertes.fr/<input type=\"text\" name=\"hal\" value=\"" . stripSlashes($document->hal) . "\" size=\"50\" maxlength=\"255\"></td>\n";
+		echo "<th>Identifiant HAL</th>\n";//http://hal.archives-ouvertes.fr/
+		echo "<td><input type=\"text\" name=\"hal\" value=\"" . stripSlashes($document->hal) . "\" size=\"120\" maxlength=\"255\"></td>\n";
 		echo "</tr>\n";
 
 		echo "<tr>\n";
 		echo "<th>Nombreote</th>\n";
 		echo "<td><input type=\"text\" name=\"note\" value=\"" . stripSlashes($document->note) . "\" size=\"120\" maxlength=\"255\"></td>\n";
 		echo "</tr>\n";
+
+//modifier
+		echo "<tr>\n";
+		echo "<th>URL</th>\n";
+		echo "<td><input type=\"text\" name=\"pages_eid\" value=\"" . $document->pages_eid . "\" size=\"120\" maxlength=\"255\"></td>\n";
+		echo "</tr>\n";
+
+		echo "<tr>\n";
+		echo "<th>Abstract</th>\n";
+		echo "<td><textarea cols=\"85\" rows=\"4\" class=\"required\"> </textarea></td>\n";
+		echo "</tr>\n";
+
+		echo "<tr>\n";
+		echo "<th>Mots Clés</th>\n";
+		echo "<td><input type=\"text\" name=\"pages_eid\" value=\"" . $document->pages_eid . "\" size=\"120\" maxlength=\"255\"></td>\n";
+		echo "</tr>\n";
+
+//MODIFIER
 		echo "<tr>\n";
 		echo "<th>Groupes</th>\n";
 		echo "<td>\n";
@@ -1282,7 +1304,8 @@ function document_auth_form($mode, $doc_id, $bd, $fonc)
 		echo "</tr>\n";
 	}
 	echo "</table>\n";
-	echo "S'il faut ajouter des personnes supplémentaires, enregistrer déjà celles-ci, puis cliquer sur \"modifier les personnes\".<p>";
+	
+	//echo "S'il faut ajouter des personnes supplémentaires, enregistrer déjà celles-ci, puis cliquer sur \"modifier les personnes\".<p>";
 }
 function document_auth_update($mode, $document, $bd)
 {
@@ -1461,7 +1484,7 @@ function document_fixed($doc_id, $bd)
 		$list_groupes[$ob->g_id]="$ob->g_fullname";
 		// $list_groupes[$ob->g_id]="$ob->g_name";
 
-	echo "<center>\n";
+	//echo "<center>\n";
 
 	echo "<table>\n";
 
@@ -1586,7 +1609,7 @@ function document_fixed($doc_id, $bd)
 	echo "</table>\n";
         // end authors
 
-	echo "</center>\n";
+	//echo "</center>\n";
 }
 
 function document_update_old($action, $document, $bd)

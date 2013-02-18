@@ -73,7 +73,7 @@ function search_form($tab, $bd)
                 }
 	echo "</select><input type='text' name=\"year\" value=\"" . $tab['year'] . "\" size='4' maxlength='4'>";
 	echo "</td></tr>\n";
-	echo "<tr><td><b>Type de Document</b></td>\n";
+	/*echo "<tr><td><b>Type de Document</b></td>\n";
 	echo "<td><select name=\"typedoc_id\" size=\"1\">";
 	foreach ($list_typedoc as $id=>$name)
                 {
@@ -81,7 +81,7 @@ function search_form($tab, $bd)
                         if ("$id"==$tab['typedoc_id']) echo " selected";
                         echo ">$name</option>\n";
                 }
-	echo "</select></td></tr>\n";
+	echo "</select></td></tr>\n";*/
 	echo "<tr><td><b>Groupe</b></td>\n";
 	echo "<td><select name=\"groupe\" size=\"1\">";
 	foreach ($list_groupe as $id=>$name)
