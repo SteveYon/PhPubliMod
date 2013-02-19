@@ -136,6 +136,7 @@ if (isSet($_POST['action']))
 	if ($action=="validate")
 	{
 		//echo "action=$action<br>\n";
+
 		document_data_validate($doc_id, $bd);
 		document_auth_validate($doc_id, $bd);
 		$displayid=$doc_id;
@@ -178,6 +179,8 @@ if (isSet($_POST['action']))
 		echo "<input type=\"hidden\" name=\"action\" value=\"insertdocumentdata\">\n";
 		echo "<input type=\"hidden\" name=\"doc_id\" value=\"$doc_id\">\n";
 		echo "<center>\n";
+
+		//MODIFIER
 		document_data_fixed($doc_id, $bd);
 		document_auth_form("insert", $doc_id, $bd, $fonction_range);
 		echo "<input type=\"submit\" name=\"edit\" value=\"Annuler\">";

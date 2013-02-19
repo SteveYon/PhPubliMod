@@ -440,8 +440,10 @@ function document_data_fixed($doc_id, $bd)
 	echo "<table>\n";
 
 		echo "<tr>\n";
-		echo "<th>doc_id</th>\n";
-		echo "<td>$document->doc_id ";
+		//echo "<th>doc_id</th>\n";
+		echo "<th>Modifications</th>\n";
+		//echo "<td>$document->doc_id ";
+		echo "<td>";
 		if ($document->log=="0")
 			echo "[created on $document->date]";
 		if ($document->log=="1")
@@ -451,13 +453,15 @@ function document_data_fixed($doc_id, $bd)
 		echo "</td>\n";
 		echo "</tr>\n";
 
+
+//MODIFIER Formulaire
 		echo "<tr>\n";
-		echo "<th>typedoc_id</th>\n";
-		echo "<td>";
-		foreach ($list_typedoc as $id=>$name)
+		echo "<th>Document</th>\n";
+		echo "<td>Article";
+		/*foreach ($list_typedoc as $id=>$name)
 		{
 			if ($id==$document->typedoc_id) echo "$name";
-		}
+		}*/
 		echo "</td>\n";
 		echo "</tr>\n";
 
@@ -470,7 +474,7 @@ function document_data_fixed($doc_id, $bd)
 			if ($id==$document->soustypedoc_id) echo "$name";
 		}
 		echo "</td>\n";
-		echo "</tr>\n";*/
+		echo "</tr>\n";
 
 	if ( ("$typedoc_libelle"=="") || ("$typedoc_libelle"=="proceedings_book") )
 	{
@@ -495,14 +499,14 @@ function document_data_fixed($doc_id, $bd)
 		}
 		echo "</td>\n";
 		echo "</tr>\n";
-	}
+	}*/
 
 		echo "<tr>\n";
-		echo "<th>title</th>\n";
+		echo "<th>Titre</th>\n";
 		echo "<td>" . stripSlashes($document->title) . "</td>\n";
 		echo "</tr>\n";
 
-	if ( ("$typedoc_libelle"=="") || ("$typedoc_libelle"=="conference_proceeding") )
+	/*if ( ("$typedoc_libelle"=="") || ("$typedoc_libelle"=="conference_proceeding") )
 	{
 		echo "<tr>\n";
 		echo "<th>livre de proceedings</th>\n";
@@ -513,9 +517,9 @@ function document_data_fixed($doc_id, $bd)
 		}
 		echo "</td>\n";
 		echo "</tr>\n";
-	}
+	}*/
 
-	if ( ("$typedoc_libelle"=="") || ("$typedoc_libelle"=="conference_abstract") )
+	/*if ( ("$typedoc_libelle"=="") || ("$typedoc_libelle"=="conference_abstract") )
 	{
 		echo "<tr>\n";
 		echo "<th>conférence</th>\n";
@@ -526,12 +530,12 @@ function document_data_fixed($doc_id, $bd)
 		}
 		echo "</td>\n";
 		echo "</tr>\n";
-	}
+	}*/
 
 	if ( ( "$typedoc_libelle"!="conference_proceeding") && ( "$typedoc_libelle"!="conference_abstract") )
 	{
 		echo "<tr>\n";
-		echo "<th>year</th>\n";
+		echo "<th>Année</th>\n";
 		echo "<td>" . $document->year . "</td>\n";
 		echo "</tr>\n";
 	}
@@ -539,7 +543,7 @@ function document_data_fixed($doc_id, $bd)
 	if ("$typedoc_libelle"=="article")
 	{
 		echo "<tr>\n";
-		echo "<th>journal</th>\n";
+		echo "<th>Journal</th>\n";
 		echo "<td>";
 		foreach ($list_journal as $id=>$name)
 		{
@@ -552,7 +556,7 @@ function document_data_fixed($doc_id, $bd)
 	if ("$typedoc_libelle"=="article")
 	{
 		echo "<tr>\n";
-		echo "<th>volume</th>\n";
+		echo "<th>Volume</th>\n";
 		echo "<td>" . stripSlashes($document->volume) . "</td>\n";
 		echo "</tr>\n";
 	}
@@ -560,12 +564,12 @@ function document_data_fixed($doc_id, $bd)
 	if ( ("$typedoc_libelle"=="article") || ("$typedoc_libelle"=="conference_proceeding") )
 	{
 		echo "<tr>\n";
-		echo "<th>pages_start</th>\n";
+		echo "<th>Début</th>\n";
 		echo "<td>" . $document->pages_start . "</td>\n";
 		echo "</tr>\n";
 
 		echo "<tr>\n";
-		echo "<th>pages_end</th>\n";
+		echo "<th>Fin</th>\n";
 		echo "<td>" . $document->pages_end . "</td>\n";
 		echo "</tr>\n";
 
@@ -575,12 +579,12 @@ function document_data_fixed($doc_id, $bd)
 		echo "</tr>\n";
 
 		echo "<tr>\n";
-		echo "<th>pages_num</th>\n";
+		echo "<th>Nombre de pages</th>\n";
 		echo "<td>" . $document->pages_num . "</td>\n";
 		echo "</tr>\n";
 	}
 
-	if ("$typedoc_libelle"=="these")
+	/*if ("$typedoc_libelle"=="these")
 	{
 		echo "<tr>\n";
 		echo "<th>institution</th>\n";
@@ -591,10 +595,10 @@ function document_data_fixed($doc_id, $bd)
 		}
 		echo "</td>\n";
 		echo "</tr>\n";
-	}
+	}*/
 
 		echo "<tr>\n";
-		echo "<th>doi</th>\n";
+		echo "<th>DOI</th>\n";
 		echo "<td>";
 		$doi=stripSlashes($document->doi);
                 if ( "$doi"!="") echo anchor_ext("http://dx.doi.org/$doi", "$doi");
@@ -603,7 +607,7 @@ function document_data_fixed($doc_id, $bd)
 		echo "</tr>\n";
 
 		echo "<tr>\n";
-		echo "<th>hal</th>\n";
+		echo "<th>HAL</th>\n";
 		echo "<td>";
 		$hal=stripSlashes($document->hal);
                 if ( "$hal"!="") echo anchor_icon("http://hal.archives-ouvertes.fr/$hal", "$hal", "hal.ico");
@@ -612,12 +616,12 @@ function document_data_fixed($doc_id, $bd)
 		echo "</tr>\n";
 
 		echo "<tr>\n";
-		echo "<th>note</th>\n";
+		echo "<th>Abstract</th>\n";
 		echo "<td>" . stripSlashes($document->note) . "</td>\n";
 		echo "</tr>\n";
 
 		echo "<tr>\n";
-		echo "<th>groupe</th>\n";
+		echo "<th>Equipe</th>\n";
 		echo "<td>";
  		// echo "$document->groupe";
 		$groupe="";
@@ -633,7 +637,7 @@ function document_data_fixed($doc_id, $bd)
 		echo "</tr>\n";
 
 		echo "<tr>\n";
-		echo "<th>langue</th>\n";
+		echo "<th>Langue</th>\n";
 		echo "<td>";
 		foreach ($list_lang as $id=>$name)
 		{
@@ -642,7 +646,7 @@ function document_data_fixed($doc_id, $bd)
 		echo "</td>\n";
 		echo "</tr>\n";
 
-	echo "</table>\n";
+	echo "</table></br>\n";
 }
 //fonction qui permet d'afficher le formulaire en fonction de la base de donnée
 function document_data_form($typedoc_id, $mode, $doc_id, $bd)
@@ -771,7 +775,7 @@ function document_data_form($typedoc_id, $mode, $doc_id, $bd)
 			echo ">$name</option>\n";
 		}
 		echo "</td>\n";
-		echo "</tr>\n";*/
+		echo "</tr>\n";
 
 	if ( ("$typedoc_libelle"=="") || ("$typedoc_libelle"=="proceedings_book") || ("$typedoc_libelle"=="conference_abstract") )
 	{
@@ -812,7 +816,7 @@ function document_data_form($typedoc_id, $mode, $doc_id, $bd)
 		echo "</td>\n";
 		echo "</tr>\n";
 
-	}
+	}*/
 
 		echo "<tr>\n";
 		echo "<th>Titre</th>\n";
@@ -820,7 +824,7 @@ function document_data_form($typedoc_id, $mode, $doc_id, $bd)
 		echo "</tr>\n";
 
 
-	if ( ("$typedoc_libelle"=="") || ("$typedoc_libelle"=="conference_proceeding") )
+	/*if ( ("$typedoc_libelle"=="") || ("$typedoc_libelle"=="conference_proceeding") )
 	{
 		echo "<tr>\n";
 		echo "<th>livre de proceedings</th>\n";
@@ -838,14 +842,14 @@ function document_data_form($typedoc_id, $mode, $doc_id, $bd)
 		echo "Si le livre des proceedings ne figure pas encore dans la liste, il faut d'abord le <a href=\"$rootdir/$localdir/document.php?doc=proceedings_book&mode=insert\">saisir</a>.";
 		echo "</td>\n";
 		echo "</tr>\n";
-	}
+	}*/
 
 	if ( ("$typedoc_libelle"!="conference_proceeding") && ("$typedoc_libelle"!="conference_abstract") )
 	{
 		echo "<tr>\n";
 		echo "<th>Citation</th>\n";
 		//MODIFIER
-		echo "<td><input type=\"text\" name=\"year\" value=\"" . $document->year . "\" size=\"120\" maxlength=\"4\" </td>\n";
+		echo "<td><input type=\"text\" name=\"citation\" value=\"" . $document->citation . "\" size=\"120\" maxlength=\"4\" </td>\n";
 		echo "</tr>\n";
 		echo "<tr>\n";
 
@@ -895,7 +899,7 @@ function document_data_form($typedoc_id, $mode, $doc_id, $bd)
 		echo "<td><input type=\"text\" name=\"year\" value=\"" . $document->year . "\" size=\"120\" maxlength=\"4\" class=\"required\"></td>\n";
 		echo "</tr>\n";
 		echo "<th>Mois</th>\n";
-		echo "<td><input type=\"text\" name=\"year\" value=\"" . $document->year . "\" size=\"120\" maxlength=\"4\" ></td>\n";
+		echo "<td><input type=\"text\" name=\"year\" value=\"" . $document->month . "\" size=\"120\" maxlength=\"4\" ></td>\n";
 		echo "</tr>\n";
 	}
 /*	if ( ("$typedoc_libelle"=="") || ("$typedoc_libelle"=="these") )
@@ -920,15 +924,10 @@ function document_data_form($typedoc_id, $mode, $doc_id, $bd)
 		echo "<td><input type=\"text\" name=\"hal\" value=\"" . stripSlashes($document->hal) . "\" size=\"120\" maxlength=\"255\"></td>\n";
 		echo "</tr>\n";
 
-		echo "<tr>\n";
-		echo "<th>Nombreote</th>\n";
-		echo "<td><input type=\"text\" name=\"note\" value=\"" . stripSlashes($document->note) . "\" size=\"120\" maxlength=\"255\"></td>\n";
-		echo "</tr>\n";
-
 //modifier
 		echo "<tr>\n";
 		echo "<th>URL</th>\n";
-		echo "<td><input type=\"text\" name=\"pages_eid\" value=\"" . $document->pages_eid . "\" size=\"120\" maxlength=\"255\"></td>\n";
+		echo "<td><input type=\"text\" name=\"pages_eid\" value=\"" . stripSlashes($document->url) . "\" size=\"120\" maxlength=\"255\"></td>\n";
 		echo "</tr>\n";
 
 		echo "<tr>\n";
@@ -938,12 +937,12 @@ function document_data_form($typedoc_id, $mode, $doc_id, $bd)
 
 		echo "<tr>\n";
 		echo "<th>Abstract</th>\n";
-		echo "<td><textarea cols=\"85\" rows=\"4\" class=\"required\"> </textarea></td>\n";
+		echo "<td><textarea cols=\"85\" rows=\"4\" class=\"required\" value=\"" . $document->note . "\" > </textarea></td>\n";
 		echo "</tr>\n";
 
 		echo "<tr>\n";
 		echo "<th>Mots Clés</th>\n";
-		echo "<td><input type=\"text\" name=\"pages_eid\" value=\"" . $document->pages_eid . "\" size=\"120\" maxlength=\"255\"></td>\n";
+		echo "<td><input type=\"text\" name=\"keywords\" value=\"" . $document->keywords . "\" size=\"120\" maxlength=\"255\"></td>\n";
 		echo "</tr>\n";
 
 //MODIFIER
@@ -977,16 +976,15 @@ function document_data_form($typedoc_id, $mode, $doc_id, $bd)
 
 	echo "</table></br></br>\n";
 
-	//****
-
 }
+
 
 function document_data_import($typedoc_id, $mode, $doc_id, $bd){
 	echo "<input type=\"hidden\" name=\"action\" value=\"import\"><br>\n";
 	echo"<label>Vous pouvez copier coller un fichier Bibtex</label><br> \n";
 	echo"<textarea rows=\"4\" cols=\"50\"></textarea><br> \n";
 	echo"<label>Vous pouvez également importer depuis un fichier</label><br> \n";
-	echo "<input type=\"file\" name=\"\" value=\"Depuis un Fichier Bibtex\"><br> \n";
+	echo "<input type=\"file\" name=\"\" value=\"Depuis un Fichier Bibtex\"></br></br> \n";
 	echo "<input type=\"submit\" name=\"\" value=\"Envoyer\"><br>\n";
 
 	/*echo"<textarea id=\"bibtex_input\" style=\"display:none;\">
