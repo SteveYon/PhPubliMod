@@ -363,7 +363,6 @@ if ( "$query" != "")
 	//		. anchor("http://scholar.google.fr/", "Google Scholar")
 	//		. " </td></tr>\n";
 
-	/*
 	echo "<form method=\"post\" action=\"selection.php\">\n";
 	echo "<table>" . $lines . "</table>\n";
 	echo "<input type=\"hidden\" name=\"currentselection\">\n";
@@ -371,7 +370,6 @@ if ( "$query" != "")
 	echo "<input type=\"submit\" name=\"addalltoselection\" value=\"add all items to marked list\">\n";
 	echo "<input type=\"submit\" name=\"clearselection\" value=\"clear selection\">\n";
 	echo "</form>\n";
-	*/
 }
 
 
