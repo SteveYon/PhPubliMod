@@ -950,7 +950,6 @@ function document_data_form($typedoc_id, $mode, $doc_id, $bd)
 
 function document_data_import($typedoc_id, $mode, $doc_id, $bd)
 {
-        function document_data_import($typedoc_id, $mode, $doc_id, $bd){
 	echo "<input type=\"hidden\" name=\"action\" value=\"import\"><br>\n";
 	echo"<label>Vous pouvez copier coller un fichier Bibtex</label><br> \n";
 	echo"<textarea rows=\"4\" cols=\"50\" id=\"bibtex_input\"></textarea><br> \n";

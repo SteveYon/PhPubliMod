@@ -22,12 +22,10 @@
 
 $rootdir="..";
 $localdir="intranet";
-	$filename="login.php";
-	require_once ("$rootdir/include.php");
-        require_once ("include.php");
-
-	$bd = new MySQL(UNAME, UPASSWORD, BASE, SERVER);
-
+$filename="login.php";
+require_once ("$rootdir/include.php");
+require_once ("include.php");
+$bd = new MySQL(UNAME, UPASSWORD, BASE, SERVER);
 $redirectpage=$filename;
 
 if ( (isset($_POST['action'])) && ($_POST['action']=="login") )
@@ -47,7 +45,6 @@ if ( (isset($_POST['action'])) && ($_POST['action']=="login") )
   			$LDAPUser = UNAMELDAP;        //login permettant d'effectuer les opérations de bases dans la base ldap
   			$LDAPUserPassword = UPASSWORDLDAP; //Mot de passe admin
   			$LDAPFieldsToFind = array("cn", "ou", "uid", "status");//Les champs utiles pour la connexion
-    
   			$cnx = ldap_connect($LDAPHost);
   			ldap_set_option($cnx, LDAP_OPT_PROTOCOL_VERSION, 3); 
   			ldap_set_option($cnx, LDAP_OPT_REFERRALS, 0);        
