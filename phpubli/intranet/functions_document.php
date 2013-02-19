@@ -950,23 +950,13 @@ function document_data_form($typedoc_id, $mode, $doc_id, $bd)
 
 function document_data_import($typedoc_id, $mode, $doc_id, $bd)
 {
-        echo "<input type=\"hidden\" name=\"action\" value=\"import\"><br>\n";
-        echo "<label>Vous pouvez copier coller un fichier Bibtex</label><br> \n";
-        echo "<textarea rows=\"4\" cols=\"50\"></textarea><br> \n";
-        echo "<label>Vous pouvez également importer depuis un fichier</label><br> \n";
-        echo "<input type=\"file\" name=\"\" value=\"Depuis un Fichier Bibtex\"></br></br> \n";
-        echo "<input type=\"submit\" name=\"\" value=\"Envoyer\"><br>\n";
-        
-        /*echo"<textarea id=\"bibtex_input\" style=\"display:none;\">
-        @book{book1,
-        author = \"Donald Knuth\",
-        title = \"Concrete Mathematics\"
-        }
-        </textarea>";
-        echo"<div id=\"bibtex_display\"></div>";*/
-        
-        
-        
+        function document_data_import($typedoc_id, $mode, $doc_id, $bd){
+	echo "<input type=\"hidden\" name=\"action\" value=\"import\"><br>\n";
+	echo"<label>Vous pouvez copier coller un fichier Bibtex</label><br> \n";
+	echo"<textarea rows=\"4\" cols=\"50\" id=\"bibtex_input\"></textarea><br> \n";
+	echo"<label>Vous pouvez également importer depuis un fichier</label><br> \n";
+	echo "<input type=\"file\" name=\"\" value=\"Depuis un Fichier Bibtex\"><br> \n";
+	echo "<input type=\"submit\" name=\"\" value=\"Envoyer\" onclick=\"parseBib()\"><br>\n";        
 }
 
 function document_data_update($document, $bd)

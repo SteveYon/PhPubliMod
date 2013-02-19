@@ -40,7 +40,8 @@ function csslink()
 	print("<link rel=\"stylesheet/less\" href=\"$rootdir/lmfa_public.less\" type=\"text/css\">\n");
 	print("<script src=\"$rootdir/less-1.3.3.min.js\"></script>\n");
 	print("<script type=\"text/javascript\" src=\"http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js\"></script>");
-	print("<script type=\"text/javascript\" src=\"http://bibtex-js.googlecode.com/svn/trunk/src/bibtex_js.js\"></script>");
+	print("<script type=\"text/javascript\" src=\"../js/bibtex_js.js\"></script>");
+	print("<script type=\"text/javascript\" src=\"../js/bib.js\"></script>");
 
 }
 
