@@ -913,10 +913,6 @@ function document_data_form($typedoc_id, $mode, $doc_id, $bd)
 		echo "</tr>\n";
 	}*/
 
-		echo "<tr>\n";
-		echo "<th>DOI</th>\n";
-		echo "<td><input type=\"text\" name=\"doi\" value=\"" . stripSlashes($document->doi) . "\" size=\"120\" maxlength=\"255\"></td>\n";
-		echo "</tr>\n";
 
 		//echo "<tr><th></th><td>Indiquer l'identifiant du dépôt dans HAL, comme hal-01234567 ou tel-01234567</td></tr>\n";
 		echo "<tr>\n";
@@ -936,6 +932,11 @@ function document_data_form($typedoc_id, $mode, $doc_id, $bd)
 		echo "</tr>\n";
 
 		echo "<tr>\n";
+		echo "<th>DOI</th>\n";
+		echo "<td><input type=\"text\" name=\"doi\" value=\"" . stripSlashes($document->doi) . "\" size=\"120\" maxlength=\"255\"></td>\n";
+		echo "</tr>\n";
+
+		echo "<tr>\n";
 		echo "<th>Abstract</th>\n";
 		echo "<td><textarea cols=\"85\" rows=\"4\" class=\"required\"> </textarea></td>\n";
 		echo "</tr>\n";
@@ -946,7 +947,7 @@ function document_data_form($typedoc_id, $mode, $doc_id, $bd)
 		echo "</tr>\n";
 
 //MODIFIER
-		echo "<tr>\n";
+		/*echo "<tr>\n";
 		echo "<th>Groupes</th>\n";
 		echo "<td>\n";
 
@@ -960,7 +961,7 @@ function document_data_form($typedoc_id, $mode, $doc_id, $bd)
 			echo ">$name<br> \n";
 		}
 		echo "</td>\n";
-		echo "</tr>\n";
+		echo "</tr>\n";*/
 
 		echo "<tr>\n";
 		echo "<th>Langue</th>\n";
