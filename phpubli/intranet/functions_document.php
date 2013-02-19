@@ -975,7 +975,7 @@ function document_data_form($typedoc_id, $mode, $doc_id, $bd)
 		echo "</td>\n";
 		echo "</tr>\n";
 
-	echo "</table>\n";
+	echo "</table></br></br>\n";
 
 	//****
 
@@ -1003,6 +1003,8 @@ echo"<div id=\"bibtex_display\"></div>";*/
 
 function document_data_update($document, $bd)
 {
+
+
 	$typedoc_id=$document['typedoc_id'];
 	$soustypedoc_id=$document['soustypedoc_id'];
 	$title=addSlashes($document['title']);
@@ -1176,7 +1178,7 @@ function document_auth_fixed($doc_id, $bd)
 	while ( $fonction=$bd->fetch_object($lfresult))
 		$list_fonctions[$fonction->fonction_id]="$fonction->fonction_libelle";
 
-	echo "auteur(s), directeur(s), éditeur(s)...&nbsp;:<p>\n";
+	//echo "auteur(s), directeur(s), éditeur(s)...&nbsp;:<p>\n";
 	echo "<table>\n";
 
 		// author list
@@ -1226,7 +1228,7 @@ function document_auth_fixed($doc_id, $bd)
 
 function document_auth_form($mode, $doc_id, $bd, $fonc)
 {
-	echo "auteur(s), directeur(s), éditeur(s)...&nbsp;:<p>\n";
+	//echo "auteur(s), directeur(s), éditeur(s)...&nbsp;:<p>\n";
 	echo "<table>\n";
 
 	// produce a list with all known authors

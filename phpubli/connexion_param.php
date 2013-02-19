@@ -21,7 +21,7 @@
  *****************************************************************************/
 
 define('UNAME', "root");
-define('UPASSWORD', "theotheo");
+define('UPASSWORD', "root");
 define('SERVER', "localhost");
 define('BASE', "phpubli");
 
