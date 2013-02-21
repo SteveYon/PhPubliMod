@@ -956,12 +956,12 @@ echo "<tr>\n";
         
         echo "<tr>\n";
         echo "<th>Note</th>\n";
-        echo "<td><textarea cols=\"85\" rows=\"4\" name=\"note\" class=\"required\" value=\"" . $document->note . "\" >$document->note </textarea></td>\n";
+        echo "<td><textarea  name=\"note\" cols=\"85\" rows=\"4\"  class=\"required\" value=\"" . $document->note . "\" >$document->note</textarea></td>\n";
         echo "</tr>\n";
 
         echo "<tr>\n";
         echo "<th>Abstract</th>\n";
-        echo "<td><textarea cols=\"85\" rows=\"4\" name=\"abstract\" class=\"required\" value=\"" . $document->abstract . "\" >$document->abstract </textarea></td>\n";
+        echo "<td><textarea name=\"abstract\" cols=\"85\" rows=\"4\"  class=\"required\" value=\"".$document->abstract."\" >$document->abstract</textarea></td>\n";
         echo "</tr>\n";
         
         echo "<tr>\n";

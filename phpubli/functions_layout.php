@@ -42,6 +42,7 @@ function csslink()
 	print("<script type=\"text/javascript\" src=\"http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js\"></script>");
 	print("<script type=\"text/javascript\" src=\"../js/bibtex_js.js\"></script>");
 	print("<script type=\"text/javascript\" src=\"../js/bib.js\"></script>");
+	print("<script type=\"text/javascript\" src=\"../js/verificationForm.js\"></script>");
 
 }
 
