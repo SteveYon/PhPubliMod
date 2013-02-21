@@ -149,14 +149,14 @@ if (isSet($_POST['action']))
 	{
 		//echo "action=editdocumentdata<br>\n";
 		echo "<center>Mise à jour des données</center><br>\n";
-		echo "<form method=\"post\" action=\"document.php$docflag\" name=\"form\">\n";
+		echo "<form method=\"post\" action=\"document.php$docflag\" name=\"formEdit\">\n";
 		echo "<input type=\"hidden\" name=\"action\" value=\"editdocumentdata\">\n";
 		echo "<input type=\"hidden\" name=\"doc_id\" value=\"$doc_id\">\n";
 		echo "<center>\n";
 		document_data_form($typedoc_id, "update", $doc_id, $bd);
 		document_auth_fixed($doc_id, $bd);
 		echo "</center>\n";
-		echo "<input type=\"submit\" name=\"updatedocumentdata\" value=\"mettre à jour le document\"><br>\n";
+		echo "<input type=\"submit\" name=\"updatedocumentdata\" value=\"mettre à jour le document\" onclick=\"return validerEdit()\"><br>\n";
 		echo "<input type=\"submit\" name=\"edit\" value=\"réinitialiser\">\n";
 		echo "</form>\n";
 	}
