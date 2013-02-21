@@ -21,9 +21,9 @@
  *****************************************************************************/
 
 define('UNAME', "root");
-define('UPASSWORD', "theotheo");
+define('UPASSWORD', "root");
 define('SERVER', "localhost");
-define('BASE', "phpubli");
+define('BASE', "phpublitest");
 
 // Modifié par Adrien UWINDEKWE MatIS 2013
 //Paramètres LDAP

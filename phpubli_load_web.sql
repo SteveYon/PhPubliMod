@@ -318,11 +318,12 @@ CREATE TABLE `document` (
   `url` varchar(255) default NULL,
   `doi` varchar(255) default NULL,
   `note` varchar(255) default NULL,
+  `abstract` varchar(255) default NULL,
   `keywords` varchar(255) default NULL,
+  `authors` varchar(255) default NULL,
   `publisher` varchar(255) default NULL,
   `groupe` varchar(32) default NULL,
   `lang` char(2) NOT NULL default 'FR',
-  
   `date` datetime NOT NULL default '0000-00-00 00:00:00',
   `typedoc_id` int(10) default NULL,
   `soustypedoc_id` int(10) default NULL,

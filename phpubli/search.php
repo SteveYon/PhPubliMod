@@ -128,12 +128,16 @@ if (isSet($_GET['search']))
 	}
 	if ("$search"=="year")
 	{
- 		$query = "SELECT DISTINCT document.*"
+ 		/*$query = "SELECT DISTINCT document.*"
                 	. " FROM document, participer, personne"
                 	. " WHERE document.doc_id = participer.doc_id"
 			. " AND participer.pers_id = personne.pers_id "
 			. " AND participer.fonction_id=1"
-			. " AND participer.rang=1";
+			. " AND participer.rang=1";*/
+ 		$query = "SELECT DISTINCT *"
+                	. " FROM document"
+                	. " WHERE document.typedoc_id = 4";
+
 		if ($groupid>=0)
 			$query .= " AND document.groupe LIKE '%$groupid%'";
 		$query .= " AND (";
@@ -145,7 +149,9 @@ if (isSet($_GET['search']))
        				$query .= " OR document.year = $idlist[$i]";
 		}
 		$query .= " )";
-        	$query .= " ORDER BY document.year DESC, personne.pers_last ASC, personne.pers_first ASC ";
+        	$query .= " ORDER BY document.year DESC";//, personne.pers_last ASC, personne.pers_first ASC ";
+        	        	//echo $query;
+
 	}
 	if ("$search"=="conf")
 	{
@@ -280,7 +286,7 @@ if ( "$query" != "")
 	while ( ($doc = $bd->fetch_object($res)) )
 	{
 		// $i++;
-		// $lines .= document_singleline($i, $doc, $bd, $flag_ext);
+		//$lines .= document_singleline($i, $doc, $bd, $flag_ext);
 
 			$lines_all .= document_singleline($n_all, $doc, $bd, $flag_ext_all);
 			$n_all_tot++;
@@ -325,7 +331,7 @@ if ( "$query" != "")
 	else
 	{
 		$lines = "<tr><td></td><td></td><td>";
-		if ( $n_articles_tot > 0 )	$lines.="|<a href=\"#" . $list_typedoclibelle["4"] . "\">" . $list_typedocname["4"] . "</a>|";
+		//if ( $n_articles_tot > 0 )	$lines.="|<a href=\"#" . $list_typedoclibelle["4"] . "\">" . $list_typedocname["4"] . "</a>|";
 		if ( $n_theses_tot > 0 )	$lines.="|<a href=\"#" . $list_typedoclibelle["6"] . "\">" . $list_typedocname["6"] . "</a>|";
 		if ( $n_invited_tot > 0 )	$lines.="|<a href=\"#invited\">conférences invitées</a>|";
 		if ( $n_confproc_tot > 0 )	$lines.="|<a href=\"#" . $list_typedoclibelle["3"] . "\">" . $list_typedocname["3"] . "</a>|";
@@ -363,15 +369,15 @@ if ( "$query" != "")
 	//		. anchor("http://scholar.google.fr/", "Google Scholar")
 	//		. " </td></tr>\n";
 
-	/*
-	echo "<form method=\"post\" action=\"selection.php\">\n";
+	
+	//echo "<form method=\"post\" action=\"selection.php\">\n";
 	echo "<table>" . $lines . "</table>\n";
-	echo "<input type=\"hidden\" name=\"currentselection\">\n";
+	/*echo "<input type=\"hidden\" name=\"currentselection\">\n";
 	echo "<input type=\"submit\" name=\"addtoselection\" value=\"add selected items to marked list\">\n";
 	echo "<input type=\"submit\" name=\"addalltoselection\" value=\"add all items to marked list\">\n";
 	echo "<input type=\"submit\" name=\"clearselection\" value=\"clear selection\">\n";
-	echo "</form>\n";
-	*/
+	echo "</form>\n";*/
+	
 }
 
 
