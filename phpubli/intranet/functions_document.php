@@ -996,7 +996,7 @@ function document_data_import($typedoc_id, $mode, $doc_id, $bd)
 	echo"<label>Vous pouvez copier coller un fichier Bibtex</label><br> \n";
 	echo"<textarea rows=\"4\" cols=\"50\" id=\"bibtex_input\"></textarea><br> \n";
 	echo"<label>Vous pouvez également importer depuis un fichier</label><br> \n";
-	echo "<input type=\"file\" name=\"\" value=\"Depuis un Fichier Bibtex\"><br> \n";
+	echo "<input type=\"file\" name=\"\" id=\"fichierBib\" value=\"Depuis un Fichier Bibtex\" onchange=\"bib()\"><br> \n";
 	echo "<input type=\"submit\" name=\"\" value=\"Envoyer\" onclick=\"parseBib()\"><br>\n";        
 }
 
