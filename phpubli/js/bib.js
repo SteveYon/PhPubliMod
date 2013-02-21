@@ -1,3 +1,14 @@
+$(document).ready(function(){
+	var fileInput = document.querySelector('#fichierBib');
+	fileInput.onchange = function() {
+	    var reader = new FileReader();
+	    reader.onload = function() {
+	        $("#bibtex_input").val(reader.result) ;
+    	};
+    reader.readAsText(fileInput.files[0],"UTF-8");
+	};
+});
+
 function parseBib(){
 	var bib = new BibtexDisplay().displayBibtex3($("#bibtex_input").val());
 	go(bib);

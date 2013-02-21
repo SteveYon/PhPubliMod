@@ -148,15 +148,15 @@ if (isSet($_POST['action']))
 	if ($action=="editdocumentdata")
 	{
 		//echo "action=editdocumentdata<br>\n";
-		echo "Mise à jour des données (sauf personnes) d'un document<br>\n";
-		echo "<form method=\"post\" action=\"document.php$docflag\" name=\"form\">\n";
+		echo "<center>Mise à jour des données</center><br>\n";
+		echo "<form method=\"post\" action=\"document.php$docflag\" name=\"formEdit\">\n";
 		echo "<input type=\"hidden\" name=\"action\" value=\"editdocumentdata\">\n";
 		echo "<input type=\"hidden\" name=\"doc_id\" value=\"$doc_id\">\n";
 		echo "<center>\n";
 		document_data_form($typedoc_id, "update", $doc_id, $bd);
 		document_auth_fixed($doc_id, $bd);
 		echo "</center>\n";
-		echo "<input type=\"submit\" name=\"updatedocumentdata\" value=\"mettre à jour le document\"><br>\n";
+		echo "<input type=\"submit\" name=\"updatedocumentdata\" value=\"mettre à jour le document\" onclick=\"return validerEdit()\"><br>\n";
 		echo "<input type=\"submit\" name=\"edit\" value=\"réinitialiser\">\n";
 		echo "</form>\n";
 	}
@@ -189,7 +189,7 @@ if (isSet($_POST['action']))
 		document_auth_form("insert", $doc_id, $bd, $fonction_range);
 		echo "<input type=\"submit\" name=\"edit\" value=\"Annuler\">";
 
-		echo "<input type=\"submit\" name=\"insertdocumentauth\" value=\"Valider\"><br>\n";
+		echo "<input type=\"submit\" name=\"insertdocumentauth\" value=\"Valider\" ><br>\n";
 		echo "</center>\n";
 
 		echo "</form>\n";
@@ -218,6 +218,7 @@ if (isSet($_POST['action']))
 		//header("Location: $rootdir/$localdir/$filename?mode=edit&id=$doc_id");
 		$displayid=$doc_id;
 	}
+	//modifier laa
 	if ($action=="insertdocumentauth")
 	{
 		//echo "action=$action<br>\n";
@@ -350,12 +351,12 @@ if ( (isSet($_GET['mode'])) || ($displayid!="") )
 			echo "Saisie d'un nouveau document. Attention, selon le type de document choisi, seuls certains des champs ci-dessous sont pertinents.<br>\n";
 		echo "</h2></center>\n";
 
-		echo "<form method=\"post\" action=\"document.php$docflag\" name=\"form\">\n";
+		echo "<form method=\"post\" action=\"document.php$docflag\" name=\"formAjout\">\n";
 		echo "<input type=\"hidden\" name=\"action\" value=\"insert\">\n";
 		echo "<center>\n";
 		document_data_form($typedoc_id, "insert", "", $bd);
 		echo "<input type=\"submit\" name=\"insertdocumentdata\" value=\"Annuler\">";
-		echo "<input type=\"submit\" name=\"insertdocumentdata\" value=\"Suite (Ajout des auteurs)\"><br>\n";
+		echo "<input type=\"submit\" name=\"insertdocumentdata\" value=\"Suite (Ajout des auteurs)\" onclick=\"return valider()\"><br>\n";
 		echo "</center>\n";
 		echo "</form>\n";
 	}
@@ -425,7 +426,7 @@ if ( (isSet($_GET['mode'])) || ($displayid!="") )
 
 }
 
-if ( (!isSet($_GET['mode'])) and  (!isSet($_POST['action'])) )
+if ( (!isSet($_GET['mode'])) and  (!isSet($_POST['action'])) && isset($_GET['doc']) && $_GET['doc']="article")
 {
 	/*echo anchor("document.php?doc=article&mode=insert", "Ajouter e un nouvel article") . "<br>";
 	echo anchor("document.php?doc=these&mode=insert", "Ajouter une nouvelle thèse") . "<br>";
