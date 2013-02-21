@@ -23,7 +23,7 @@
 define('UNAME', "root");
 define('UPASSWORD', "root");
 define('SERVER', "localhost");
-define('BASE', "phpublitest");
+define('BASE', "phpubli");
 
 // Modifié par Adrien UWINDEKWE MatIS 2013
 //Paramètres LDAP
