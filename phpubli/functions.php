@@ -220,11 +220,11 @@ function document_lines($bd, $tid)
 
 function document_singleline(&$i, $document, $bd, &$flag)
 {
-	$result = $bd->exec_query("SELECT * FROM groupes WHERE g_name='exter' ");
+		$result = $bd->exec_query("SELECT * FROM groupes WHERE g_name='exter' ");
         $ob=$bd->fetch_object($result);
-	$extgid=$ob->g_id;
+		$extgid=$ob->g_id;
 
-	$result = $bd->exec_query("SELECT typedoc_libelle FROM typedoc WHERE typedoc_id='$document->typedoc_id' ");
+		$result = $bd->exec_query("SELECT typedoc_libelle FROM typedoc WHERE typedoc_id='$document->typedoc_id' ");
         $ob=$bd->fetch_object($result);
         $typedoc_libelle=$ob->typedoc_libelle;	
 
@@ -242,10 +242,10 @@ function document_singleline(&$i, $document, $bd, &$flag)
 			$ref="*";
 			$i--;
 			$style=" style=\"color:gray\"";
-
 		}
-		else
+		else{
 			$ref="$i";
+		}
 
 		$str .= "<td>"
 			. "<input type=\"checkbox\" value=\"docid_sel\" name=\"" . $document->doc_id . "\" >"
@@ -361,9 +361,9 @@ function document_singleline(&$i, $document, $bd, &$flag)
 		$lines .= "<tr> " . $str . "</tr>\n";
 
 		$str="<td></td><td></td>";
-		$str .= "<td $style >";
+		$str .= "<td><b>";
 		$str .= stripSlashes($document->title);
-		$str .= "</td>";
+		$str .= "</b></td>";
 		$lines .= "<tr>" . $str . "</tr>\n";
 /*
 
