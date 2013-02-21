@@ -52,9 +52,18 @@
 	<p>
 	A partir de se Portail vous pourrez:
 	<p>
+	Consulter des articles
+	<p>
 	Gérer les articles
 	<p>
-	Consulter des articles
+	<ul> 
+<li> Ajouter des Articles </li> 
+<li> Supprimer un article</li> 
+<li> Modifier un article</li> 
+</ul> 
+<p>
+	Les identifiants de connexion sont vos identifiants LDAP, si vous n'en avez pas, contactez l'administrateur de ce site.
+
 	<!--
 
 <a href="./search.php">Recherche d'articles, de thèses, de congrès&hellip; dans la base de données</a>
