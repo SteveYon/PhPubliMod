@@ -53,8 +53,8 @@
 <div id=mainarea>
 
 <h1>Recherche dans la base de donnees</h1>
-<tr>
-<td>titre :</td>
+<tr align="center">
+<td><p> titre :</p></td>
 <form method="post" action="searchDouble.php?search=true">
 <td><input type="text" name="title" value="" size="120" maxlength="255"></td>
 <td><input type="submit" name="ok" value="rechercher"></td>

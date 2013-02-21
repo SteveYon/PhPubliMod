@@ -1,0 +1,14 @@
+%% hal-00793202, version 1
+%% http://hal.archives-ouvertes.fr/hal-00793202
+@unpublished{pymar:hal-00793202,
+    hal_id = {hal-00793202},
+    url = {http://hal.archives-ouvertes.fr/hal-00793202},
+    title = {{Partial mixing of semi-random transposition shuffles}},
+    author = {Pymar, Richard},
+    abstract = {{We show that for any semi-random transposition shuffle on $n$ cards, the mixing time of any given $k$ cards is at most $n\log k$, provided $k=o((n/\log n)^{1/2})$. In the case of the top-to-random transposition shuffle we show that there is cutoff at this time with a window of size O(n), provided further that $k\to\infty$ as $n\to\infty$ (and no cutoff otherwise). For the random-to-random transposition shuffle we show cutoff at time $(1/2)n\log k$ for the same conditions on $k$. Finally, we analyse the cyclic-to-random transposition shuffle and show partial mixing occurs at time $\le\alpha n\log k$ for some $\alpha$ just larger than 1/2. We prove these results by relating the mixing time of $k$ cards to the mixing of one card. Our results rely heavily on coupling arguments to bound the total variation distance.}},
+    language = {Anglais},
+    affiliation = {Laboratoire Angevin de REcherche en MAth{\'e}matiques - LAREMA},
+    note = {23 pages, 4 figures },
+    year = {2013},
+    month = Feb,
+}

@@ -426,7 +426,7 @@ if ( (isSet($_GET['mode'])) || ($displayid!="") )
 
 }
 
-if ( (!isSet($_GET['mode'])) and  (!isSet($_POST['action'])) )
+if ( (!isSet($_GET['mode'])) and  (!isSet($_POST['action'])) && isset($_GET['doc']) && $_GET['doc']="article")
 {
 	/*echo anchor("document.php?doc=article&mode=insert", "Ajouter e un nouvel article") . "<br>";
 	echo anchor("document.php?doc=these&mode=insert", "Ajouter une nouvelle thèse") . "<br>";
