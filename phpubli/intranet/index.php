@@ -99,9 +99,10 @@ print "<a href=\"$rootdir/$localdir/conference.php?mode=insert\">Ajouter une con
 
 print "<a href=\"$rootdir/$localdir/document.php?doc=proceedings_book&mode=insert\">Ajouter un livre d'actes d'une conférence</a><br>\n";
 */
-print "<h2>Modifier des données existantes</h2>\n";
+print "<h2>Modifier/Supprimer des données existantes</h2>\n";
 
-print "<a href=\"$rootdir/$localdir/document.php?doc=article\">Liste des articles</a><br>\n";
+//print "<a href=\"$rootdir/$localdir/document.php?doc=article\">Liste des articles</a><br>\n";
+print "<a href=\"$rootdir/$localdir/last_document.php\">Liste des articles</a><br>\n";
 /*
 print "<a href=\"$rootdir/$localdir/document.php?doc=these\">Liste des thèses/hdr</a><br>\n";
 
@@ -122,12 +123,12 @@ print "<a href=\"$rootdir/$localdir/publisher.php\">Liste des éditeurs commercia
 print "<a href=\"$rootdir/$localdir/conference.php\">Liste des conférences</a><br>\n";
 
 print "<a href=\"$rootdir/$localdir/document.php?doc=proceedings_book\">Liste des livres d'actes d'une conférence</a><br>\n";
-*/
+
 
 print "<h2>Supprimer des données existantes</h2>\n";
 
 print "<a href=\"$rootdir/$localdir/document.php?doc=article\">Supprimer des articles</a><br>\n";
-
+*/
 print "<h2>Rechercher des doublons en base</h2>\n";
 
 print "<a href=\"$rootdir/$localdir/searchDouble.php\">Rechercher des doublons en base</a><br>\n";
