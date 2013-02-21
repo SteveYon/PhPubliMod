@@ -21,6 +21,7 @@
  *****************************************************************************/
 
 define('UNAME', "root");
+define('UNAME', "root");
 define('UPASSWORD', "root");
 define('SERVER', "localhost");
 define('BASE', "phpubli");
