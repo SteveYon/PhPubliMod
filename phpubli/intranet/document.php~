@@ -358,9 +358,9 @@ if ( (isSet($_GET['mode'])) || ($displayid!="") )
 
 	if ($_GET['mode']=="import"){
 		if ("$typedoc" == "fichier"){
-		//echo "<form method=\"post\" action=\"document.php$docflag\" name=\"form\">\n";
+		echo "<form method=\"post\" action=\"document.php$docflag\" name=\"form\">\n";
 		document_data_import($typedoc_id, "insert", "", $bd);
-		//echo "</form>\n";
+		echo "</form>\n";
 		}
 	}
 
