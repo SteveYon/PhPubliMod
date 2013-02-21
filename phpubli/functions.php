@@ -355,8 +355,32 @@ function document_singleline(&$i, $document, $bd, &$flag)
 		}
 		}
 	}*/
+		$title=$document->title;
+		$year=$document->year;
+		$month=$document->month;
+		$citation=$document->citation;
+		$abstract=$document->abstract;
+		$note=$document->note;
+		$volume=$document->volume;
+		$keywords=$document->keywords;
+		$authors=$document->authors;
 
-		$str .= " ($document->year, $document->month).";
+
+		$str .= " ($document->year, $document->month) <b> $document->title </b>";
+		if($citation!=""){
+			$str .= ", <i>".$citation."</i>";
+		}
+		if($abstract!=""){
+			$str .= ", Abstract: ".$abstract;
+		}
+		if($authors!=""){
+			$str .= ", Autheur(s): ".$authors;
+		}
+		if($keywords!=""){
+			$str .= ", <i>Mots Clés: ".$keywords."</i>";
+		}
+
+
 		$str .= "</td>";
 		$lines .= "<tr> " . $str . "</tr>\n";
 
