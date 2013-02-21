@@ -73,8 +73,8 @@ function search_form($tab, $bd)
                 }
 	echo "</select><input type='text' name=\"year\" value=\"" . $tab['year'] . "\" size='4' maxlength='4'>";
 	echo "</td></tr>\n";
-	/*echo "<tr><td><b>Type de Document</b></td>\n";
-	echo "<td><select name=\"typedoc_id\" size=\"1\">";
+	/*echo "<tr><td><b>Type de Document</b></td>\n";*/
+	/*echo "<td><select name=\"typedoc_id\" size=\"1\">";
 	foreach ($list_typedoc as $id=>$name)
                 {
                         echo "<option value=\"$id\"";
@@ -82,6 +82,10 @@ function search_form($tab, $bd)
                         echo ">$name</option>\n";
                 }
 	echo "</select></td></tr>\n";*/
+
+	echo"<input type=\"hidden\"  name=\"typedoc_id\"  value=\"4\">";
+
+
 	echo "<tr><td><b>Groupe</b></td>\n";
 	echo "<td><select name=\"groupe\" size=\"1\">";
 	foreach ($list_groupe as $id=>$name)
@@ -162,11 +166,11 @@ function setup_searchquery($tab, $bd)
 
 
 	$query = "SELECT DISTINCT document.*"
-		. " FROM document, personne, participer"
-		. " WHERE document.doc_id = participer.doc_id"
-		. " AND personne.pers_id = participer.pers_id";
+		. " FROM document"//, personne, participer"
+		. " WHERE typedoc_id = '4' ";//document.doc_id = participer.doc_id"
+		//. " AND personne.pers_id = participer.pers_id";
 
-	if ( $tab['author']=="")
+	/*if ( $tab['author']=="")
 	{
 		$query .= " AND participer.fonction_id=1"
 			. " AND participer.rang=1";
@@ -176,13 +180,13 @@ function setup_searchquery($tab, $bd)
 		$query .= " ORDER BY year DESC,  personne.pers_last, personne.pers_first";
 	}
 	else
-	{
-		$query .= " AND " . $authquery;
-		if ($tab['typedoc_id']!="0")	$query .= " AND " . $typedocquery;
+	{*/
+		//$query .= " AND " . $authquery;
+		//if ($tab['typedoc_id']!="0")	$query .= " AND " . $typedocquery;
 		if ($tab['groupe']!="0")	$query .= " AND " . $groupequery;
 		if ($tab['year']!="")		$query .= " AND " . $yearquery;
-		$query .= " ORDER BY personne.pers_last, personne.pers_first, document.year DESC";
-	}
+		$query .= " ORDER BY  document.year DESC";
+	//}
 
 	return $query;
 }
