@@ -95,7 +95,7 @@ function search_form($tab, $bd)
                         echo ">$name</option>\n";
                 }
 	echo "</select></td></tr>\n";
-	echo "<tr><td></td><td><input type='submit' name=\"rechercher\" value=\"submit\"></td></tr>\n";
+	echo "<tr><td></td><td><input type='submit' name=\"rechercher\" value=\"Rechercher\"></td></tr>\n";
 	echo "</table>\n";
 	echo "</form>\n";
 }
