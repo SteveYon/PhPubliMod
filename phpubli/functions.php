@@ -252,7 +252,7 @@ function document_singleline(&$i, $document, $bd, &$flag)
 			. "<input type=\"hidden\" value=\"docid_selall\" name=\"X" . $document->doc_id . "\" >"
 			. "</td>";
 
-		$str .= "<td $style>";
+		$str .= "<td $style> ";
 		$log=$document->log;
 		if (check_status($bd)>-1)
 		{
@@ -297,7 +297,7 @@ function document_singleline(&$i, $document, $bd, &$flag)
 			$space = ", ";
 		}
 
-	if ("$typedoc_libelle"=="these")
+	/*if ("$typedoc_libelle"=="these")
 	{
 		// advisor list
 		$query = "SELECT pers_id FROM participer"
@@ -326,9 +326,9 @@ function document_singleline(&$i, $document, $bd, &$flag)
 		}
 		$str .= ")";
 		}
-	}
+	}*/
 
-	if ("$typedoc_libelle"=="proceedings_book")
+	/*if ("$typedoc_libelle"=="proceedings_book")
 	{
 		$query = "SELECT pers_id FROM participer"
 			. " WHERE doc_id='$document->doc_id'"
@@ -354,68 +354,19 @@ function document_singleline(&$i, $document, $bd, &$flag)
 			$space = ", ";
 		}
 		}
-	}
+	}*/
 
-		$str .= " ($document->year).";
+		$str .= " ($document->year, $document->month).";
 		$str .= "</td>";
-		$lines .= "<tr>" . $str . "</tr>\n";
+		$lines .= "<tr> " . $str . "</tr>\n";
 
 		$str="<td></td><td></td>";
 		$str .= "<td $style >";
 		$str .= stripSlashes($document->title);
 		$str .= "</td>";
 		$lines .= "<tr>" . $str . "</tr>\n";
+/*
 
-	/*if ("$typedoc_libelle"=="article")
-	{
-		$str="<td></td><td></td>";
-		$str .= "<td $style>";
-		$query = "SELECT * FROM journal WHERE 'journal_id'=$document->journal_id";
-		$jresult = $bd->exec_query ($query);
-		$journal = $bd->fetch_object ($jresult);
-		// $str .= "<i>$journal->journal_name</i> ";
-		$journalname=anchor("$rootdir/search.php?search=journal&amp;id=$document->journal_id", "<i>" . stripSlashes($journal->journal_name) . "</i>");
-		$str .= $journalname . " ";
-		$str .= "<b>" . stripSlashes($document->volume) . "</b>";
-		$pages_start=$document->pages_start;
-		$pages_end=$document->pages_end;
-		$pages_eid=$document->pages_eid;
-		$pages_num=$document->pages_num;
-		if ( ( "$pages_eid"!="") || ( "$pages_num"!="") )
-		{
-			if ( "$pages_eid"!="")	$str .= ", $pages_eid";
-			if ( "$pages_num"!="")	$str .= " ($pages_num pages)";
-		}
-		else if ( "$pages_start"!="")
-		{
-			$str .= ", $pages_start";
-			if ( ( "$pages_end"!="") && ( "$pages_end"!="$pages_start") )
-				$str .= "&ndash;$pages_end";
-		}
-		$str .= ".";
-
-		// doi
-		$doi=stripSlashes($document->doi);
-		if ( "$doi"!="")
-		{
-			$str .= " " . anchor_icon("http://dx.doi.org/$doi", "doi:$doi", "doi.ico");
-		}
-		// HAL
-		$hal=stripSlashes($document->hal);
-		if ( "$hal"!="")
-		{
-			$str .= " " . anchor_ext_icon("http://hal.archives-ouvertes.fr/$hal", "hal.ico");
-		}
-
-		$googlescholar=google_search($bd, $document->doc_id);
-		$str .= " " . anchor_ext_icon("$googlescholar", "google.ico");
-
-		// $halsearch=hal_search($bd, $document->doc_id);
-		// $str .= " " . anchor_ext_icon("$halsearch", "hal.ico");
-
-		$str .= "</td>";
-		$lines .= "<tr>" . $str . "</tr>\n";
-	}*/
 	if ("$typedoc_libelle"=="these")
 	{
 		$str = "<td></td><td></td><td $style>";
@@ -515,8 +466,7 @@ function document_singleline(&$i, $document, $bd, &$flag)
 		$str .= "</td>";
 		$lines .= "<tr>" . $str . "</tr>\n";
 	}
-	if ("$typedoc_libelle"=="conference_proceeding")
-	{
+	if ("$typedoc_libelle"=="conference_proceeding"){
 		$str = "<td></td><td></td><td $style>";
 
 		$query = "SELECT * FROM document WHERE doc_id=$document->proceedings_id";
@@ -590,6 +540,9 @@ function document_singleline(&$i, $document, $bd, &$flag)
 		$str .= "</td>";
 		$lines .= "<tr>" . $str . "</tr>\n";
 	}
+
+*/
+
 
 		$note=stripSlashes($document->note);
 		if ( "$note"!="")
