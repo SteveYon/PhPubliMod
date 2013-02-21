@@ -558,6 +558,7 @@ if ("$typedoc_libelle" == "article") {
         echo "<tr>\n";
         echo "<th>Mois</th>\n";
         echo "<td>" . $document->month . "</td>\n";
+
         echo "</tr>\n";  
 
         echo "<tr>\n";
@@ -901,10 +902,23 @@ if (("$typedoc_libelle" == "") || ("$typedoc_libelle" == "article") || ("$typedo
         echo "<td><input type=\"text\" name=\"pages_num\" value=\"" . $document->pages_num . "\" size=\"120\" maxlength=\"255\"></td>\n";
         echo "</tr>\n";
         echo "<th>Année</th>\n";
-        echo "<td><input type=\"text\" name=\"year\" value=\"" . $document->year . "\" size=\"120\" maxlength=\"4\" class=\"required\"></td>\n";
+        //echo "<td><input type=\"text\" name=\"year\" value=\"" . $document->year . "\" size=\"120\" maxlength=\"4\" class=\"required\"></td>\n";
+        $date = date('Y');               //On prend l'année en cours
+        echo "<td><select name=\"year\" value=\"" . $document->year . "\ size=\"120\"> ";
+                for ($y=$date; $y>=1980; $y--) {         
+                echo '<option value="'.$y.'">'.$y.'</option>';
+                }
+        echo "</select></td>";
+
         echo "</tr>\n";
         echo "<th>Mois</th>\n";
-        echo "<td><input type=\"text\" name=\"month\" value=\"" . $document->month . "\" size=\"120\" maxlength=\"4\" ></td>\n";
+        //echo "<td><input type=\"text\" name=\"month\" value=\"" . $document->month . "\" size=\"120\" maxlength=\"4\" ></td>\n";
+        echo "<td><select name=\"month\" value=\"" . $document->month . "\ size=\"120\"> ";
+        $month = array('Janvier','Février','Mars','Avril','Mai','Juin','Juillet','Août','Septembre','Octobre','Novembre','Décembre');
+        for ($i = 0 ; $i <12 ; $i++){      
+                echo '<option value="'.$month[$i].'">'.$month[$i].'</option>';
+        }
+                echo "</select></td>";
         echo "</tr>\n";
 }
         /* if ( ("$typedoc_libelle"=="") || ("$typedoc_libelle"=="these") )
