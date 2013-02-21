@@ -558,6 +558,7 @@ if ("$typedoc_libelle" == "article") {
         echo "<tr>\n";
         echo "<th>Mois</th>\n";
         echo "<td>" . $document->month . "</td>\n";
+
         echo "</tr>\n";  
 
         echo "<tr>\n";
@@ -738,8 +739,8 @@ function document_data_form($typedoc_id, $mode, $doc_id, $bd)
         
         if ($mode == "update") {
                 echo "<tr>\n";
-                echo "<th>doc_id</th>\n";
-                echo "<td>$document->doc_id ";
+                echo "<th>Modification</th>\n";
+                echo "<td>";//$document->doc_id ";
                 if ($document->log == "0")
                         echo "Créé le $document->date ";
                 if ($document->log == "1")
@@ -858,7 +859,7 @@ if (("$typedoc_libelle" != "conference_proceeding") && ("$typedoc_libelle" != "c
         echo "<tr>\n";
         echo "<th>Citation</th>\n";
                 //MODIFIER
-        echo "<td><input type=\"text\" name=\"citation\" value=\"" . $document->citation . "\" size=\"120\"  </td>\n";
+        echo "<td><input type=\"text\" name=\"citation\" value=\"" . $document->citation . "\" size=\"120\"></td>\n";
         echo "</tr>\n";
         echo "<tr>\n";
 
@@ -874,7 +875,7 @@ if (("$typedoc_libelle" == "") || ("$typedoc_libelle" == "article")) {
                 if ($id==$document->journal_id) echo " selected";
                 echo ">$name</option>\n";
         }*/
-        echo "<td><input type=\"text\" name=\"journal\" value=\"" . $document->journal . "\" size=\"120\"  ></td>\n";
+        echo "<td><input type=\"text\" name=\"journal\" value=\"" . $document->journal . "\" size=\"120\" ></td>\n";
 
         echo "</td>\n";
         echo "</tr>\n";
@@ -901,10 +902,23 @@ if (("$typedoc_libelle" == "") || ("$typedoc_libelle" == "article") || ("$typedo
         echo "<td><input type=\"text\" name=\"pages_num\" value=\"" . $document->pages_num . "\" size=\"120\" maxlength=\"255\"></td>\n";
         echo "</tr>\n";
         echo "<th>Année</th>\n";
-        echo "<td><input type=\"text\" name=\"year\" value=\"" . $document->year . "\" size=\"120\" maxlength=\"4\" class=\"required\"></td>\n";
+        //echo "<td><input type=\"text\" name=\"year\" value=\"" . $document->year . "\" size=\"120\" maxlength=\"4\" class=\"required\"></td>\n";
+        $date = date('Y');               //On prend l'année en cours
+        echo "<td><select name=\"year\" value=\"" . $document->year . "\ size=\"120\"> ";
+                for ($y=$date; $y>=1980; $y--) {         
+                echo '<option value="'.$y.'">'.$y.'</option>';
+                }
+        echo "</select></td>";
+
         echo "</tr>\n";
         echo "<th>Mois</th>\n";
-        echo "<td><input type=\"text\" name=\"month\" value=\"" . $document->month . "\" size=\"120\" maxlength=\"4\" ></td>\n";
+        //echo "<td><input type=\"text\" name=\"month\" value=\"" . $document->month . "\" size=\"120\" maxlength=\"4\" ></td>\n";
+        echo "<td><select name=\"month\" value=\"" . $document->month . "\ size=\"120\"> ";
+        $month = array('Janvier','Février','Mars','Avril','Mai','Juin','Juillet','Août','Septembre','Octobre','Novembre','Décembre');
+        for ($i = 0 ; $i <12 ; $i++){      
+                echo '<option value="'.$month[$i].'">'.$month[$i].'</option>';
+        }
+                echo "</select></td>";
         echo "</tr>\n";
 }
         /* if ( ("$typedoc_libelle"=="") || ("$typedoc_libelle"=="these") )
@@ -942,12 +956,12 @@ echo "<tr>\n";
         
         echo "<tr>\n";
         echo "<th>Note</th>\n";
-        echo "<td><textarea cols=\"85\" rows=\"4\" name=\"note\" class=\"required\" value=\"" . $document->note . "\" > </textarea></td>\n";
+        echo "<td><textarea  name=\"note\" cols=\"85\" rows=\"4\"  class=\"required\" value=\"" . $document->note . "\" >$document->note</textarea></td>\n";
         echo "</tr>\n";
 
         echo "<tr>\n";
         echo "<th>Abstract</th>\n";
-        echo "<td><textarea cols=\"85\" rows=\"4\" name=\"note\" class=\"required\" value=\"" . $document->abstract . "\" > </textarea></td>\n";
+        echo "<td><textarea name=\"abstract\" cols=\"85\" rows=\"4\"  class=\"required\" value=\"".$document->abstract."\" >$document->abstract</textarea></td>\n";
         echo "</tr>\n";
         
         echo "<tr>\n";
@@ -1002,28 +1016,10 @@ function document_data_import($typedoc_id, $mode, $doc_id, $bd)
 
 
 //Modifier la
-function document_data_update($document, $bd)
-{
-        $typedoc_id     = $document['typedoc_id'];
-        $soustypedoc_id = $document['soustypedoc_id'];
-        $title          = addSlashes($document['title']);
-        $year           = $document['year'];
-        $institution_id = $document['institution_id'];
-        $volume         = addSlashes($document['volume']);
-        $pages_start    = $document['pages_start'];
-        $pages_end      = $document['pages_end'];
-        $pages_eid      = $document['pages_eid'];
-        $pages_num      = $document['pages_num'];
-        $doi            = addSlashes($document['doi']);
-        $hal            = addSlashes($document['hal']);
-        $journal_id     = $document['journal_id'];
-        $conference_id  = $document['conference_id'];
-        $proceedings_id = $document['proceedings_id'];
-        $publisher_id   = $document['publisher_id'];
-        $note           = addSlashes($document['note']);
-        $lang           = $document['lang'];
+function document_data_update($document, $bd){
+
         
-        if ("$typedoc_id" == "3") // conference proceedings, use year from proceedings book. This is redundant but useful for sorting...
+        /*if ("$typedoc_id" == "3") // conference proceedings, use year from proceedings book. This is redundant but useful for sorting...
         {
                 $query = "select * from document where doc_id='$proceedings_id'";
                 $res   = $bd->exec_query($query);
@@ -1045,16 +1041,47 @@ function document_data_update($document, $bd)
                         $gid = preg_replace("/^groupe/", "", $key);
                         $groupe .= "$gid ";
                 }
-        }
+        }*/
         // print "groupe=$groupe<br>";
         
+                $doc_id     = $document['doc_id'];
+        $title          = addSlashes($document['title']);
+        $citation       = $document['citation'];
+        $journal        = $document['journal'];
+        $volume         = addSlashes($document['volume']);
+        $pages_start    = $document['pages_start'];
+        $pages_end      = $document['pages_end'];
+        $pages_num      = $document['pages_num'];        
+        //$institution_id = $document['institution_id'];
+        $year           = $document['year'];
+        $month          = $document['month'];
+        $hal            = addSlashes($document['hal']);
+        $url            = addSlashes($document['url']);
+        $doi            = addSlashes($document['doi']);
+        $note           = addSlashes($document['note']);
+        $abstract           = addSlashes($document['abstract']);
+        $keywords       = $document['keywords'];
+        $authors      = $document['authors'];
+        $publisher      = $document['publisher'];
+        $groupe         = $document['groupe'];
+        $lang           = $document['lang'];
+//date
+        $typedoc_id     = $document['typedoc_id'];
+        $soustypedoc_id = $document['soustypedoc_id'];
+        $pages_eid      = $document['pages_eid'];
+//log
+        $conference_id  = $document['conference_id'];
+        $proceedings_id = $document['proceedings_id'];
+
         $doc_id = $document['doc_id'];
         
         $query        = "select * from document where doc_id = '$doc_id'";
         $res          = $bd->exec_query($query);
         $document_old = $bd->fetch_object($res);
         
-        $query = "UPDATE document SET " . "typedoc_id='$typedoc_id', " . "soustypedoc_id='$soustypedoc_id', " . "title='$title', year='$year', volume='$volume', " . "pages_start='$pages_start', pages_end='$pages_end', pages_num='$pages_num', " . "doi='$doi', hal='$hal', " . "journal='$journal', " . "publisher='$publisher', " . "note='$note', groupe='$groupe', lang='$lang', " . "log='1', date=now() " . "WHERE doc_id = '$doc_id'";
+
+        //ici !!
+        $query = "UPDATE document SET " . "title='$title', citation='$citation', year='$year', month='$month', volume='$volume', " . "pages_start='$pages_start', pages_end='$pages_end', pages_num='$pages_num', " . "doi='$doi', hal='$hal', url='$url', " . "journal='$journal', " . "publisher='$publisher', authors='$authors', keywords='$keywords', " . "note='$note', abstract='$abstract', groupe='$groupe', lang='$lang', " . "typedoc_id='$typedoc_id', " . "soustypedoc_id='$soustypedoc_id', " .  "log='1', date=now() " . "WHERE doc_id = '$doc_id'";
         //print ("query= $query <p>\n");
         $res   = $bd->exec_query($query);
         
