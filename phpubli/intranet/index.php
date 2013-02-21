@@ -127,6 +127,10 @@ print "<a href=\"$rootdir/$localdir/document.php?doc=proceedings_book\">Liste de
 print "<h2>Supprimer des données existantes</h2>\n";
 
 print "<a href=\"$rootdir/$localdir/document.php?doc=article\">Supprimer des articles</a><br>\n";
+
+print "<h2>Rechercher des doublons en base</h2>\n";
+
+print "<a href=\"$rootdir/$localdir/searchDouble.php\">Rechercher des doublons en base</a><br>\n";
 }
 ?>
 
