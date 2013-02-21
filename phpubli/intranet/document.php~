@@ -101,9 +101,13 @@ else
 <div id=mainarea>
 <!-- start main panel -->
 
-<h1>Opérations sur la table des documents</h1>
-
-
+<h1>Ajout de documents</h1>
+<?php
+if(count($_GET) == 0){
+	print "<a href=\"$rootdir/$localdir/document.php?doc=article&mode=insert\">Ajouter un article depuis le formulaire</a><br>\n";
+	print "<a href=\"$rootdir/$localdir/document.php?doc=fichier&mode=import\">Ajouter un article depuis un fichier</a><br>\n";
+}
+?>
 <?php
 
 $displayid=""; // if not null, display doc with doc_id==displayid
@@ -362,6 +366,10 @@ if ( (isSet($_GET['mode'])) || ($displayid!="") )
 		document_data_import($typedoc_id, "insert", "", $bd);
 		//echo "</form>\n";
 		}
+	}
+
+	if($_get['mode']=="doublon"){
+	    echo "<textarea> </textarea>";
 	}
 
 /*

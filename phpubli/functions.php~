@@ -197,7 +197,7 @@ function document_lines($bd, $tid)
 	else
 		$query = "SELECT * FROM document";
 	$query .= " ORDER BY year";
-	//echo "query=$query <br>\n";
+//echo "query=$query <br>\n";
 	$result = $bd->exec_query ($query);
 	$lines="";
 	$i=0;

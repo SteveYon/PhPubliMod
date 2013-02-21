@@ -352,6 +352,8 @@ if ( "$query" != "")
 		$lines .= "<tr><td></td></tr>\n<tr><td></td><td>*:</td><td>Publication hors $LABO</td></tr>\n";
 	}
 
+<<<<<<< HEAD
+	/*
 	// DOI icon
 	//$lines .= "<tr><td></td></tr>\n<tr><td></td><td>" . anchor_ext_icon("http://www.doi.org/", "doi.ico")
 	//		. ":</td><td>Lien " . anchor("http://www.doi.org/", "DOI") . " vers le document original"
@@ -369,7 +371,7 @@ if ( "$query" != "")
 	//		. anchor("http://scholar.google.fr/", "Google Scholar")
 	//		. " </td></tr>\n";
 
-	
+	*/
 	//echo "<form method=\"post\" action=\"selection.php\">\n";
 	echo "<table>" . $lines . "</table>\n";
 	/*echo "<input type=\"hidden\" name=\"currentselection\">\n";
@@ -378,6 +380,8 @@ if ( "$query" != "")
 	echo "<input type=\"submit\" name=\"clearselection\" value=\"clear selection\">\n";
 	echo "</form>\n";*/
 	
+=======
+>>>>>>> 2d009f682fea4d47a17e2f2075aea79832d68a3f
 }
 
 
