@@ -156,7 +156,7 @@ if (isSet($_GET['search']))
 		}
 		$query .= " )";
         	$query .= " ORDER BY document.year DESC";//, personne.pers_last ASC, personne.pers_first ASC ";
-        	        	echo $query;
+        	        	//echo $query;
 
 	}
 	if ("$search"=="conf")
@@ -229,10 +229,11 @@ if (isSet($_GET['search']))
 if (isSet($_POST['action']))
 {
 	$action=$_POST['action'];
-	echo "action=$action <p>\n";
+	//echo "action=$action <p>\n";
 
  	$query = setup_searchquery($_POST, $bd);
-	echo "query = $query <p>\n";
+	//echo "query = $query <p>\n";
+	echo "<br><br><a name=\"query\"></a><h2>Nouvelle requête&nbsp</h2>\n";
 
 	search_form($_POST, $bd);
 }
@@ -247,10 +248,10 @@ while ( $ob=$bd->fetch_object($result))
 
 if ( "$query" != "")
 {
-	if (isSet($_POST['action']))
+	/*if (isSet($_POST['action']))
 	{
 		echo "<br><a href=\"#query\">Nouvelle requête</a><br><br>\n";
-	}
+	}*/
 
 	$res = $bd->exec_query($query);
 
@@ -395,6 +396,7 @@ if (isSet($_POST['action']))
 {
 	echo "<br><br><a name=\"query\"></a><h2>Nouvelle requête&nbsp</h2>\n";
 	search_form($_POST, $bd);
+
 }
 else
 {
