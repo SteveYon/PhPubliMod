@@ -355,11 +355,11 @@ function document_singleline(&$i, $document, $bd, &$flag)
 		}
 		}
 	}*/
-		$title=$document->title;
+		$title=stripSlashes($document->title);
 		$year=$document->year;
 		$month=$document->month;
-		$citation=$document->citation;
-		$abstract=$document->abstract;
+		$citation=stripSlashes($document->citation);
+		$abstract=stripSlashes($document->abstract);
 		$note=$document->note;
 		$volume=$document->volume;
 		$keywords=$document->keywords;
@@ -384,11 +384,11 @@ function document_singleline(&$i, $document, $bd, &$flag)
 		$str .= "</td>";
 		$lines .= "<tr> " . $str . "</tr>\n";
 
-		$str="<td></td><td></td>";
-		$str .= "<td><b>";
+		$str="<tr><td></td><td></td></tr>\n";
+		/*$str .= "<td><b>";
 		$str .= stripSlashes($document->title);
 		$str .= "</b></td>";
-		$lines .= "<tr>" . $str . "</tr>\n";
+		$lines .= "<tr>" . $str . "</tr>\n";*/
 /*
 
 	if ("$typedoc_libelle"=="these")
@@ -568,12 +568,13 @@ function document_singleline(&$i, $document, $bd, &$flag)
 */
 
 
-		$note=stripSlashes($document->note);
+		/*$note=stripSlashes($document->note);
 		if ( "$note"!="")
 		{
 			$str="<td></td><td></td><td $style>" . $note . "</td>";
 			$lines .= "<tr>" . $str . "</tr>\n";
-		}
+		}*/
+
 
 	return $lines;
 }
