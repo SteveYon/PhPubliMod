@@ -112,3 +112,53 @@ function validerEdit() {
 function estPlein(text) {
     return (/\S/.test(text));
 }
+
+
+function AddAuthor()    {  AddWriter ($('auteurs'));  }
+function AddEditor()    {  AddWriter ($('editeurs')); }
+function AddWriter (obj)
+{
+    authorID = getSelectValue("groupeAuteur");
+
+    var isNew = true;
+    for (var i = 0;  i < obj.length;  i++)  {
+        if (obj.options [i].value == authorID)  {
+            isNew = false;
+            break;
+        } else {
+            obj.options [i].selected = false;
+        }
+    }
+    if (isNew)  {
+        newoption = new Option (1, authorID, false, true);
+        obj.options [obj.length] = newoption;
+    }
+}
+
+function getSelectValue(selectId)
+{
+    /**On récupère l'élement html <select>*/
+    var selectElmt = document.getElementById(selectId);
+    /**
+    selectElmt.options correspond au tableau des balises <option> du select
+    selectElmt.selectedIndex correspond à l'index du tableau options qui est actuellement sélectionné
+    */
+    return selectElmt.options[selectElmt.selectedIndex].value;
+}
+
+function RemoveAuthor() {  RemoveWriter ($('selectedauthors')); }
+function RemoveEditor() {  RemoveWriter ($('selectededitors')); }
+function RemoveWriter (obj)
+{
+    i = obj.selectedIndex;
+    if (i >= 0)  {
+        obj.options [i] = null; // obj.length decreases by 1...
+        if (i < (obj.length)) {
+            // if there is an element on the old position, mark it
+            obj.options [i].selected = true;
+        } else if (obj.length > 0)  {
+            // otherwise it was the lowest element; mark the el. above (if any is left)
+            obj.options [i-1].selected = true;
+        }
+    }
+}
