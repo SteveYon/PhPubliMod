@@ -20,7 +20,8 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-define('UNAME', "adrien");
+define('UNAME', "root");
+define('UNAME', "root");
 define('UPASSWORD', "root");
 define('SERVER', "localhost");
 define('BASE', "phpubli");

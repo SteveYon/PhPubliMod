@@ -67,17 +67,26 @@ if(isset($_GET['search'])){
     $req = "SELECT * FROM document";
     $res= $bd->exec_query($req);
     $tab = array();
+    $i = 0; $flag=0;
     while ($obj = $bd->fetch_object($res)) {
 	    $percent = analyseSentence($titre,$obj->title);
+	    /*echo " titre base : ".$titre;
+	    echo " title bd : ".$obj->title;
+	    echo " percent : ".$percent;
+	    echo "<br/>";*/
 	    if($percent>50){
-		// similaire
-		$tab[document_lines($bd,$obj->typedoc_id)] = $percent;
-		//echo "ICI: ".$obj->typedoc_id;
+			// similaire
+			//$tab[document_lines($bd,$obj->typedoc_id)] = $percent;
+			//echo ">50";
+			//echo document_singleline($i,$obj,$bd,$flag);
+			//echo ">50bis";
+			$tab[document_singleline($i,$obj,$bd,$flag)] = $percent;
+			$i ++;
 	    }
     }
     arsort($tab);
     foreach ($tab as $key => $val) {
-	echo "$key <b> similitude : $val %</b>\n";
+		echo "$key <br/><i style=\"color:gray\"> similitude : $val %</i><br/>";
     }
 }
 ?>

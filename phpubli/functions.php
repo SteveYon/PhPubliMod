@@ -73,8 +73,8 @@ function search_form($tab, $bd)
                 }
 	echo "</select><input type='text' name=\"year\" value=\"" . $tab['year'] . "\" size='4' maxlength='4'>";
 	echo "</td></tr>\n";
-	/*echo "<tr><td><b>Type de Document</b></td>\n";
-	echo "<td><select name=\"typedoc_id\" size=\"1\">";
+	/*echo "<tr><td><b>Type de Document</b></td>\n";*/
+	/*echo "<td><select name=\"typedoc_id\" size=\"1\">";
 	foreach ($list_typedoc as $id=>$name)
                 {
                         echo "<option value=\"$id\"";
@@ -82,6 +82,10 @@ function search_form($tab, $bd)
                         echo ">$name</option>\n";
                 }
 	echo "</select></td></tr>\n";*/
+
+	echo"<input type=\"hidden\"  name=\"typedoc_id\"  value=\"4\">";
+
+
 	echo "<tr><td><b>Groupe</b></td>\n";
 	echo "<td><select name=\"groupe\" size=\"1\">";
 	foreach ($list_groupe as $id=>$name)
@@ -91,7 +95,7 @@ function search_form($tab, $bd)
                         echo ">$name</option>\n";
                 }
 	echo "</select></td></tr>\n";
-	echo "<tr><td></td><td><input type='submit' name=\"rechercher\" value=\"submit\"></td></tr>\n";
+	echo "<tr><td></td><td><input type='submit' name=\"rechercher\" value=\"Rechercher\"></td></tr>\n";
 	echo "</table>\n";
 	echo "</form>\n";
 }
@@ -162,11 +166,11 @@ function setup_searchquery($tab, $bd)
 
 
 	$query = "SELECT DISTINCT document.*"
-		. " FROM document, personne, participer"
-		. " WHERE document.doc_id = participer.doc_id"
-		. " AND personne.pers_id = participer.pers_id";
+		. " FROM document"//, personne, participer"
+		. " WHERE typedoc_id = '4' ";//document.doc_id = participer.doc_id"
+		//. " AND personne.pers_id = participer.pers_id";
 
-	if ( $tab['author']=="")
+	/*if ( $tab['author']=="")
 	{
 		$query .= " AND participer.fonction_id=1"
 			. " AND participer.rang=1";
@@ -176,13 +180,13 @@ function setup_searchquery($tab, $bd)
 		$query .= " ORDER BY year DESC,  personne.pers_last, personne.pers_first";
 	}
 	else
-	{
-		$query .= " AND " . $authquery;
-		if ($tab['typedoc_id']!="0")	$query .= " AND " . $typedocquery;
+	{*/
+		//$query .= " AND " . $authquery;
+		//if ($tab['typedoc_id']!="0")	$query .= " AND " . $typedocquery;
 		if ($tab['groupe']!="0")	$query .= " AND " . $groupequery;
 		if ($tab['year']!="")		$query .= " AND " . $yearquery;
-		$query .= " ORDER BY personne.pers_last, personne.pers_first, document.year DESC";
-	}
+		$query .= " ORDER BY  document.year DESC";
+	//}
 
 	return $query;
 }
@@ -216,11 +220,11 @@ function document_lines($bd, $tid)
 
 function document_singleline(&$i, $document, $bd, &$flag)
 {
-	$result = $bd->exec_query("SELECT * FROM groupes WHERE g_name='exter' ");
+		$result = $bd->exec_query("SELECT * FROM groupes WHERE g_name='exter' ");
         $ob=$bd->fetch_object($result);
-	$extgid=$ob->g_id;
+		$extgid=$ob->g_id;
 
-	$result = $bd->exec_query("SELECT typedoc_libelle FROM typedoc WHERE typedoc_id='$document->typedoc_id' ");
+		$result = $bd->exec_query("SELECT typedoc_libelle FROM typedoc WHERE typedoc_id='$document->typedoc_id' ");
         $ob=$bd->fetch_object($result);
         $typedoc_libelle=$ob->typedoc_libelle;	
 
@@ -238,17 +242,17 @@ function document_singleline(&$i, $document, $bd, &$flag)
 			$ref="*";
 			$i--;
 			$style=" style=\"color:gray\"";
-
 		}
-		else
+		else{
 			$ref="$i";
+		}
 
 		$str .= "<td>"
 			. "<input type=\"checkbox\" value=\"docid_sel\" name=\"" . $document->doc_id . "\" >"
 			. "<input type=\"hidden\" value=\"docid_selall\" name=\"X" . $document->doc_id . "\" >"
 			. "</td>";
 
-		$str .= "<td $style>";
+		$str .= "<td $style> ";
 		$log=$document->log;
 		if (check_status($bd)>-1)
 		{
@@ -293,7 +297,7 @@ function document_singleline(&$i, $document, $bd, &$flag)
 			$space = ", ";
 		}
 
-	if ("$typedoc_libelle"=="these")
+	/*if ("$typedoc_libelle"=="these")
 	{
 		// advisor list
 		$query = "SELECT pers_id FROM participer"
@@ -322,9 +326,9 @@ function document_singleline(&$i, $document, $bd, &$flag)
 		}
 		$str .= ")";
 		}
-	}
+	}*/
 
-	if ("$typedoc_libelle"=="proceedings_book")
+	/*if ("$typedoc_libelle"=="proceedings_book")
 	{
 		$query = "SELECT pers_id FROM participer"
 			. " WHERE doc_id='$document->doc_id'"
@@ -350,68 +354,43 @@ function document_singleline(&$i, $document, $bd, &$flag)
 			$space = ", ";
 		}
 		}
-	}
-
-		$str .= " ($document->year).";
-		$str .= "</td>";
-		$lines .= "<tr>" . $str . "</tr>\n";
-
-		$str="<td></td><td></td>";
-		$str .= "<td $style >";
-		$str .= stripSlashes($document->title);
-		$str .= "</td>";
-		$lines .= "<tr>" . $str . "</tr>\n";
-
-	/*if ("$typedoc_libelle"=="article")
-	{
-		$str="<td></td><td></td>";
-		$str .= "<td $style>";
-		$query = "SELECT * FROM journal WHERE 'journal_id'=$document->journal_id";
-		$jresult = $bd->exec_query ($query);
-		$journal = $bd->fetch_object ($jresult);
-		// $str .= "<i>$journal->journal_name</i> ";
-		$journalname=anchor("$rootdir/search.php?search=journal&amp;id=$document->journal_id", "<i>" . stripSlashes($journal->journal_name) . "</i>");
-		$str .= $journalname . " ";
-		$str .= "<b>" . stripSlashes($document->volume) . "</b>";
-		$pages_start=$document->pages_start;
-		$pages_end=$document->pages_end;
-		$pages_eid=$document->pages_eid;
-		$pages_num=$document->pages_num;
-		if ( ( "$pages_eid"!="") || ( "$pages_num"!="") )
-		{
-			if ( "$pages_eid"!="")	$str .= ", $pages_eid";
-			if ( "$pages_num"!="")	$str .= " ($pages_num pages)";
-		}
-		else if ( "$pages_start"!="")
-		{
-			$str .= ", $pages_start";
-			if ( ( "$pages_end"!="") && ( "$pages_end"!="$pages_start") )
-				$str .= "&ndash;$pages_end";
-		}
-		$str .= ".";
-
-		// doi
-		$doi=stripSlashes($document->doi);
-		if ( "$doi"!="")
-		{
-			$str .= " " . anchor_icon("http://dx.doi.org/$doi", "doi:$doi", "doi.ico");
-		}
-		// HAL
-		$hal=stripSlashes($document->hal);
-		if ( "$hal"!="")
-		{
-			$str .= " " . anchor_ext_icon("http://hal.archives-ouvertes.fr/$hal", "hal.ico");
-		}
-
-		$googlescholar=google_search($bd, $document->doc_id);
-		$str .= " " . anchor_ext_icon("$googlescholar", "google.ico");
-
-		// $halsearch=hal_search($bd, $document->doc_id);
-		// $str .= " " . anchor_ext_icon("$halsearch", "hal.ico");
-
-		$str .= "</td>";
-		$lines .= "<tr>" . $str . "</tr>\n";
 	}*/
+		$title=stripSlashes($document->title);
+		$year=$document->year;
+		$month=$document->month;
+		$citation=stripSlashes($document->citation);
+		$abstract=stripSlashes($document->abstract);
+		$note=$document->note;
+		$volume=$document->volume;
+		$keywords=$document->keywords;
+		$authors=$document->authors;
+
+
+		$str .= " ($document->year, $document->month) <b> $document->title </b>";
+		if($citation!=""){
+			$str .= ", <i>".$citation."</i>";
+		}
+		if($abstract!=""){
+			$str .= ", Abstract: ".$abstract;
+		}
+		if($authors!=""){
+			$str .= ", Autheur(s): ".$authors;
+		}
+		if($keywords!=""){
+			$str .= ", <i>Mots Clés: ".$keywords."</i>";
+		}
+
+
+		$str .= "</td>";
+		$lines .= "<tr> " . $str . "</tr>\n";
+
+		$str="<tr><td></td><td></td></tr>\n";
+		/*$str .= "<td><b>";
+		$str .= stripSlashes($document->title);
+		$str .= "</b></td>";
+		$lines .= "<tr>" . $str . "</tr>\n";*/
+/*
+
 	if ("$typedoc_libelle"=="these")
 	{
 		$str = "<td></td><td></td><td $style>";
@@ -511,8 +490,7 @@ function document_singleline(&$i, $document, $bd, &$flag)
 		$str .= "</td>";
 		$lines .= "<tr>" . $str . "</tr>\n";
 	}
-	if ("$typedoc_libelle"=="conference_proceeding")
-	{
+	if ("$typedoc_libelle"=="conference_proceeding"){
 		$str = "<td></td><td></td><td $style>";
 
 		$query = "SELECT * FROM document WHERE doc_id=$document->proceedings_id";
@@ -587,12 +565,16 @@ function document_singleline(&$i, $document, $bd, &$flag)
 		$lines .= "<tr>" . $str . "</tr>\n";
 	}
 
-		$note=stripSlashes($document->note);
+*/
+
+
+		/*$note=stripSlashes($document->note);
 		if ( "$note"!="")
 		{
 			$str="<td></td><td></td><td $style>" . $note . "</td>";
 			$lines .= "<tr>" . $str . "</tr>\n";
-		}
+		}*/
+
 
 	return $lines;
 }

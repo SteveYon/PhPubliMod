@@ -1,4 +1,4 @@
-<?php session_start();
+<?php @session_start();
 /*****************************************************************************
  * Copyright (C) 2007-2009 CNRS
  *
@@ -51,7 +51,7 @@
 $bd = new MySQL(UNAME, UPASSWORD, BASE, SERVER);
 
 // empty table for default values
-$NULL_SEARCH = array ("author"=>"", "test_author"=>"0", "year"=>"", "test_year"=>"0", "journal_id"=>"0", "test_tri"=>"0", "test_ordre"=>"0", "groupe"=>"");
+$NULL_SEARCH = array ("author" =>"", "test_author"=>"0", "year"=>"", "test_year"=>"0", "journal_id"=>"0", "test_tri"=>"0", "test_ordre"=>"0", "groupe"=>"");
 
 // $message = ControleSaisie($_POST);
 
@@ -86,11 +86,15 @@ if (isSet($_GET['search']))
 	}
 	if ("$search"=="personne")
 	{
- 		$query = "SELECT DISTINCT document.*"
+ 		 		/*$query = "SELECT DISTINCT document.*"
                 	. " FROM document, participer, personne"
                 	. " WHERE document.doc_id = participer.doc_id"
-			. " AND participer.pers_id = personne.pers_id ";
-			// . " AND participer.fonction_id=1";
+			. " AND participer.pers_id = personne.pers_id "
+			. " AND participer.fonction_id=1"
+			. " AND participer.rang=1";*/
+ 		$query = "SELECT DISTINCT *"
+                	. " FROM document"
+                	. " WHERE document.typedoc_id = 4";
 		if ($groupid>=0)
 			$query .= " AND document.groupe LIKE '%$groupid%'";
 		$query .= " AND (";
@@ -106,11 +110,15 @@ if (isSet($_GET['search']))
 	}
 	if ("$search"=="journal")
 	{
- 		$query = "SELECT DISTINCT document.*"
+ 		 		/*$query = "SELECT DISTINCT document.*"
                 	. " FROM document, participer, personne"
                 	. " WHERE document.doc_id = participer.doc_id"
 			. " AND participer.pers_id = personne.pers_id "
-			. " AND participer.fonction_id=1";
+			. " AND participer.fonction_id=1"
+			. " AND participer.rang=1";*/
+ 		$query = "SELECT DISTINCT *"
+                	. " FROM document"
+                	. " WHERE document.typedoc_id = 4";
 		if ($groupid>=0)
 			$query .= " AND document.groupe LIKE '%$groupid%'";
 		$query .= " AND (";
@@ -184,12 +192,15 @@ if (isSet($_GET['search']))
 	}
 	if ("$search"=="proc")
 	{
- 		$query = "SELECT DISTINCT document.*"
+ 		 		/*$query = "SELECT DISTINCT document.*"
                 	. " FROM document, participer, personne"
                 	. " WHERE document.doc_id = participer.doc_id"
 			. " AND participer.pers_id = personne.pers_id "
 			. " AND participer.fonction_id=1"
-			. " AND participer.rang=1";
+			. " AND participer.rang=1";*/
+ 		$query = "SELECT DISTINCT *"
+                	. " FROM document"
+                	. " WHERE document.typedoc_id = 4";
 		if ($groupid>=0)
 			$query .= " AND document.groupe LIKE '%$groupid%'";
 		$query .= " AND (";
@@ -214,16 +225,17 @@ if (isSet($_GET['search']))
 	//echo "query=$query <br>";
 
 }
-
+//la
 if (isSet($_POST['action']))
 {
 	$action=$_POST['action'];
-	// echo "action=$action <p>\n";
+	//echo "action=$action <p>\n";
 
  	$query = setup_searchquery($_POST, $bd);
-	// echo "query = $query <p>\n";
+	//echo "query = $query <p>\n";
+	echo "<br><br><a name=\"query\"></a><h2>Nouvelle requête&nbsp</h2>\n";
 
-	// search_form($_POST, $bd);
+	search_form($_POST, $bd);
 }
 
 $result = $bd->exec_query("SELECT * FROM typedoc");
@@ -236,10 +248,10 @@ while ( $ob=$bd->fetch_object($result))
 
 if ( "$query" != "")
 {
-	if (isSet($_POST['action']))
+	/*if (isSet($_POST['action']))
 	{
 		echo "<br><a href=\"#query\">Nouvelle requête</a><br><br>\n";
-	}
+	}*/
 
 	$res = $bd->exec_query($query);
 
@@ -350,7 +362,6 @@ if ( "$query" != "")
 		$lines .= "<tr><td></td></tr>\n<tr><td></td><td>*:</td><td>Publication hors $LABO</td></tr>\n";
 	}
 
-<<<<<<< HEAD
 	/*
 	// DOI icon
 	//$lines .= "<tr><td></td></tr>\n<tr><td></td><td>" . anchor_ext_icon("http://www.doi.org/", "doi.ico")
@@ -378,8 +389,6 @@ if ( "$query" != "")
 	echo "<input type=\"submit\" name=\"clearselection\" value=\"clear selection\">\n";
 	echo "</form>\n";*/
 	
-=======
->>>>>>> 2d009f682fea4d47a17e2f2075aea79832d68a3f
 }
 
 
@@ -387,6 +396,7 @@ if (isSet($_POST['action']))
 {
 	echo "<br><br><a name=\"query\"></a><h2>Nouvelle requête&nbsp</h2>\n";
 	search_form($_POST, $bd);
+
 }
 else
 {
