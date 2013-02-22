@@ -101,7 +101,7 @@ else
 <div id=mainarea>
 <!-- start main panel -->
 
-<h1>Modification de documents</h1>
+<h1>Ajout de documents</h1>
 <?php
 if(count($_GET) == 0){
 	print "<a href=\"$rootdir/$localdir/document.php?doc=article&mode=insert\">Ajouter un article depuis le formulaire</a><br>\n";
@@ -148,7 +148,7 @@ if (isSet($_POST['action']))
 	if ($action=="editdocumentdata")
 	{
 		//echo "action=editdocumentdata<br>\n";
-		echo "<center><h2>Mise à jour des données</h2></center><br>\n";
+		echo "<center>Mise à jour des données</center><br>\n";
 		echo "<form method=\"post\" action=\"document.php$docflag\" name=\"formEdit\">\n";
 		echo "<input type=\"hidden\" name=\"action\" value=\"editdocumentdata\">\n";
 		echo "<input type=\"hidden\" name=\"doc_id\" value=\"$doc_id\">\n";
@@ -196,7 +196,8 @@ if (isSet($_POST['action']))
 	}
 	if ($action=="editdocumentauth")
 	{
-		echo "<center><h2>Mise à jour des auteurs, éditeurs<h2></center><br>\n";
+		//echo "action=editdocumentauth <br>\n";
+		echo "Mise à jour des auteurs, éditeurs... d'un document<br>\n";
 		echo "<form method=\"post\" action=\"document.php$docflag\" name=\"form\">\n";
 		echo "<input type=\"hidden\" name=\"action\" value=\"editdocumentauth\">\n";
 		echo "<input type=\"hidden\" name=\"doc_id\" value=\"$doc_id\">\n";
