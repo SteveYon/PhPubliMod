@@ -314,6 +314,7 @@ CREATE TABLE `document` (
   `pages_num` varchar(32) default NULL,
   `year` int(10) default NULL,
   `month` varchar(10) default NULL,
+  `pdf` varchar(255) default NULL,
   `hal` varchar(255) default NULL,
   `url` varchar(255) default NULL,
   `doi` varchar(255) default NULL,

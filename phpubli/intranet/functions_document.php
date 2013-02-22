@@ -419,6 +419,7 @@ function document_data_fixed($doc_id, $bd)
         while ($ob = $bd->fetch_object($result))
                 $list_lang[$ob->iso] = "$ob->iso - $ob->name";
         
+        echo "<h3>Récapitulatif</h3>";
         echo "<table>\n";
         
         echo "<tr>\n";
@@ -558,8 +559,12 @@ if ("$typedoc_libelle" == "article") {
         echo "<tr>\n";
         echo "<th>Mois</th>\n";
         echo "<td>" . $document->month . "</td>\n";
-
         echo "</tr>\n";  
+
+        echo "<tr>\n";
+        echo "<th>PDF</th>\n";
+        echo "<td>" . stripSlashes($document->pdf) . "</td>\n";
+        echo "</tr>\n";
 
         echo "<tr>\n";
         echo "<th>HAL</th>\n";
@@ -938,7 +943,13 @@ if (("$typedoc_libelle" == "") || ("$typedoc_libelle" == "article") || ("$typedo
 
 
         //echo "<tr><th></th><td>Indiquer l'identifiant du dépôt dans HAL, comme hal-01234567 ou tel-01234567</td></tr>\n";
-echo "<tr>\n";
+
+        echo "<tr>\n";
+        echo "<th>PDF</th>\n"; //http://hal.archives-ouvertes.fr/
+        echo "<td><input type=\"text\" name=\"pdf\" value=\"" . stripSlashes($document->pdf) . "\" size=\"120\" maxlength=\"255\"></td>\n";
+        echo "</tr>\n";
+
+        echo "<tr>\n";
         echo "<th>Identifiant HAL</th>\n"; //http://hal.archives-ouvertes.fr/
         echo "<td><input type=\"text\" name=\"hal\" value=\"" . stripSlashes($document->hal) . "\" size=\"120\" maxlength=\"255\"></td>\n";
         echo "</tr>\n";
@@ -1055,6 +1066,7 @@ function document_data_update($document, $bd){
         //$institution_id = $document['institution_id'];
         $year           = $document['year'];
         $month          = $document['month'];
+        $pdf            = addSlashes($document['pdf']);
         $hal            = addSlashes($document['hal']);
         $url            = addSlashes($document['url']);
         $doi            = addSlashes($document['doi']);
@@ -1081,7 +1093,7 @@ function document_data_update($document, $bd){
         
 
         //ici !!
-        $query = "UPDATE document SET " . "title='$title', citation='$citation', year='$year', month='$month', volume='$volume', " . "pages_start='$pages_start', pages_end='$pages_end', pages_num='$pages_num', " . "doi='$doi', hal='$hal', url='$url', " . "journal='$journal', " . "publisher='$publisher', authors='$authors', keywords='$keywords', " . "note='$note', abstract='$abstract', groupe='$groupe', lang='$lang', " . "typedoc_id='$typedoc_id', " . "soustypedoc_id='$soustypedoc_id', " .  "log='1', date=now() " . "WHERE doc_id = '$doc_id'";
+        $query = "UPDATE document SET " . "title='$title', citation='$citation', year='$year', month='$month', pdf='$pdf', volume='$volume', " . "pages_start='$pages_start', pages_end='$pages_end', pages_num='$pages_num', " . "doi='$doi', hal='$hal', url='$url', " . "journal='$journal', " . "publisher='$publisher', authors='$authors', keywords='$keywords', " . "note='$note', abstract='$abstract', groupe='$groupe', lang='$lang', " . "typedoc_id='$typedoc_id', " . "soustypedoc_id='$soustypedoc_id', " .  "log='1', date=now() " . "WHERE doc_id = '$doc_id'";
         //print ("query= $query <p>\n");
         $res   = $bd->exec_query($query);
         
@@ -1106,6 +1118,7 @@ function document_data_insert($document, $bd)
         //$institution_id = $document['institution_id'];
         $year           = $document['year'];
         $month          = $document['month'];
+        $pdf            = addSlashes($document['pdf']);
         $hal            = addSlashes($document['hal']);
         $url            = addSlashes($document['url']);
         $doi            = addSlashes($document['doi']);
@@ -1152,7 +1165,7 @@ function document_data_insert($document, $bd)
         //MODIFIER LA
 
         //$query = "INSERT INTO document ( " . "typedoc_id, soustypedoc_id, institution_id, title" . ", year, volume, pages_start, pages_end, pages_eid, pages_num, doi, hal" . ", journal_id, conference_id, publisher_id, proceedings_id" . ", note, groupe, lang" . ", log, date " . ") VALUES ( " . " '$typedoc_id', '$soustypedoc_id', '$institution_id', '$title'" . ", '$year', '$volume', '$pages_start', '$pages_end', '$pages_eid', '$pages_num', '$doi', '$hal'" . ", '$journal_id', '$conference_id', '$publisher_id', '$proceedings_id'" . ", '$note', '$groupe', '$lang'" . ", '0', now()) ";
-        $query = "INSERT INTO document ( " . " doc_id ,title ,citation ,journal ,volume ,pages_start ,pages_end ,pages_num ,year ,month ,hal ,url ,doi ,note, abstract ,keywords, authors ,publisher ,groupe ,lang ,date ,typedoc_id ,soustypedoc_id ,pages_eid ,log ,conference_id ,proceedings_id".")VALUES (" . " '$doc_id', '$title', '$citation', '$journal', '$volume', '$pages_start', '$pages_end', '$pages_num', '$year', '$month', '$hal', '$url', '$doi', '$note', '$abstract', '$keywords', '$authors', '$publisher', '$groupe', '$lang', "."now()".", '$typedoc_id', '$soustypedoc_id', '$pages_eid', "."0".", '$conference_id', '$proceedings_id'" . ")";
+        $query = "INSERT INTO document ( " . " doc_id ,title ,citation ,journal ,volume ,pages_start ,pages_end ,pages_num ,year ,month ,pdf, hal ,url ,doi ,note, abstract ,keywords, authors ,publisher ,groupe ,lang ,date ,typedoc_id ,soustypedoc_id ,pages_eid ,log ,conference_id ,proceedings_id".")VALUES (" . " '$doc_id', '$title', '$citation', '$journal', '$volume', '$pages_start', '$pages_end', '$pages_num', '$year', '$month', '$pdf', '$hal', '$url', '$doi', '$note', '$abstract', '$keywords', '$authors', '$publisher', '$groupe', '$lang', "."now()".", '$typedoc_id', '$soustypedoc_id', '$pages_eid', "."0".", '$conference_id', '$proceedings_id'" . ")";
         //print ("query= $query <p>\n");
         
         $res = $bd->exec_query($query);
@@ -1223,7 +1236,7 @@ function document_auth_fixed($doc_id, $bd)
 
 function document_auth_form($mode, $doc_id, $bd, $fonc)
 {
-        echo "auteur(s), directeur(s), éditeur(s)...&nbsp;:<p>\n";
+        //echo "auteur(s), directeur(s), éditeur(s)...&nbsp;:<p>\n";
         echo "<table>\n";
         
         // produce a list with all known authors
@@ -1318,24 +1331,26 @@ while ($ob = $bd->fetch_object($aresult)) {
         echo "</td>\n";
         echo "</tr>\n";
 }
+
+echo "<tr><th><td>Auteurs</td><td>Editeurs</td></th></tr>";
 for ($i = 0; $i < 3; $i++) {
         $rang++;
         echo "<tr>\n";
         echo "<th>" . $rang . "</th>\n";
-        echo "<td><select name=\"auth$rang\" size=\"1\">\n";
+        echo "<td><select name=\"auth$rang\"   size=\"1\">\n";
         foreach ($list_authors as $id => $name) {
                 echo "<option value=\"$id\"";
                 if ($id == 0)
                         echo " selected";
                 echo ">$name</option>\n";
         }
-        echo "<td><select name=\"fonc$rang\" size=\"1\">\n";
+        /*echo "<td><select name=\"fonc$rang\"  size=\"1\">\n";
         foreach ($list_fonctions as $id => $name) {
                 echo "<option value=\"$id\"";
                 if ($id == "1")
                         echo " selected";
-                echo ">$name</option>\n";
-        }
+                echo ">$name </option>\n";
+        }*/
         echo "<td><select name=\"group$rang\" size=\"1\">\n";
         foreach ($list_groups as $id => $name) {
                 echo "<option value=\"$id\"";
@@ -1348,8 +1363,54 @@ for ($i = 0; $i < 3; $i++) {
         echo "</td>\n";
         echo "</tr>\n";
 }
+       /* echo "<tr>\n";
+        echo "<td></td><td> Les Auteurs </td><td></td>\n";
+        echo "<td><select href\"#\" name=\"auteurs\" id=\"auteurs\" value=\"$document->author\" style=\"width:20em;\" size=\"9\">\n";
+        foreach ($list_authors as $id => $name) {
+                echo "<option value=\"$id\"";
+                if ($id == 0)
+                        echo " selected";
+                echo ">$name</option>\n";
+        }
+
+        echo "<td>[<a href=\"#\" onclick=\"AddAuthor();; return false;\"> ajouter</a>]</br>";
+        echo "[<a href=\"#\" onclick=\"RemoveAuthor();; return false;\"> supprimer</a>]</td>";
+
+        echo "<td><select name=\"groupeAuteur\" id=\"groupeAuteur\" style=\"width:20em;\" size=\"9\">\n";
+        foreach ($list_groups as $id => $name) {
+                echo "<option value=\"$id\"";
+                if ($id == "1")
+                        echo " selected";
+                echo ">$name</option>\n";
+        }
+        echo "</td>\n";
+        echo "</td>\n";
+        echo "</td>\n";
+        echo "</tr>\n";
+
+
+        echo "<tr>\n";
+        echo "<td></td><td> Les Editeurs </td><td></td>\n";
+        echo "<td><select name=\"editeurs\" id=\"editeurs\" value=\"$document->publisher\" style=\"width:20em;\" size=\"9\">\n";
+        /*foreach ($list_authors as $id => $name) {
+                echo "<option value=\"$id\"";
+                if ($id == 0)
+                        echo " selected";
+                echo ">$name</option>\n";
+        }
+
+        echo "<td>[<a href=\"#\" onclick=\"return addEditeur()\"> ajouter</a>]</br>";
+        echo "[<a href=\"#\" onclick=\"return supprEditeur()\"> supprimer</a>]</td>";
+
+
+        echo "</td>\n";
+        echo "</td>\n";
+        echo "</td>\n";
+        echo "</tr>\n";*/
 echo "</table>\n";
-echo "S'il faut ajouter des personnes supplémentaires, enregistrer déjà celles-ci, puis cliquer sur \"modifier les personnes\".<p>";
+
+
+//echo "S'il faut ajouter des personnes supplémentaires, enregistrer déjà celles-ci, puis cliquer sur \"modifier les personnes\".<p>";
 }
 
 function document_auth_update($mode, $document, $bd)
@@ -1677,6 +1738,7 @@ function document_update_old($action, $document, $bd)
         //$institution_id = $document['institution_id'];
         $year           = $document['year'];
         $month          = $document['month'];
+        $pdf            = addSlashes($document['pdf']);
         $hal            = addSlashes($document['hal']);
         $url            = addSlashes($document['url']);
         $doi            = addSlashes($document['doi']);
@@ -1712,7 +1774,7 @@ function document_update_old($action, $document, $bd)
                 
 
                 //ajouter pour les mises a jour ICI
-                $query = "UPDATE document SET " . "typedoc_id='$typedoc_id', " . "title='$title', citation='$citation', journal='$journal', volume='$volume',  " . "pages_start='$pages_start', pages_end='$pages_end', pages_num='$pages_num', " . " year='$year', month='$month', hal='$hal', url='$url', doi='$doi',  note='$note', abstract='$abstract',keywords='$keywords', authors='$authors' ,groupe='$groupe', lang='$lang', " . "log='1', date=now() " . "WHERE doc_id = '$doc_id'";
+                $query = "UPDATE document SET " . "typedoc_id='$typedoc_id', " . "title='$title', pdf='$pdf', citation='$citation', journal='$journal', volume='$volume',  " . "pages_start='$pages_start', pages_end='$pages_end', pages_num='$pages_num', " . " year='$year', month='$month', hal='$hal', url='$url', doi='$doi',  note='$note', abstract='$abstract',keywords='$keywords', authors='$authors' ,groupe='$groupe', lang='$lang', " . "log='1', date=now() " . "WHERE doc_id = '$doc_id'";
                 //print ("query= $query <p>\n");
                 $res   = $bd->exec_query($query);
                 
@@ -1826,7 +1888,7 @@ function document_update_old($action, $document, $bd)
                 
         } else // insertdocument or insertdocumentnow
         {
-                $query = "INSERT INTO document ( " . " doc_id ,title ,citation ,journal ,volume ,pages_start ,pages_end ,pages_num ,year ,month ,hal ,url ,doi ,note, abstract ,keywords, authors ,publisher ,groupe ,lang ,date ,typedoc_id ,soustypedoc_id ,pages_eid ,log ,conference_id ,proceedings_id".")VALUES (" . " '$doc_id', '$title', '$citation', '$journal', '$volume', '$pages_start', '$pages_end', '$pages_num', '$institution_id', '$year', '$month', '$hal', '$url', '$doi', '$note', '$abstract', '$keywords', '$authors' '$publisher', '$groupe', '$lang', "."now()"." '$typedoc_id', '$soustypedoc_id', '$pages_eid', "."0"." '$conference_id', '$proceedings_id'" . ")";
+                $query = "INSERT INTO document ( " . " doc_id ,title ,citation ,journal ,volume ,pages_start ,pages_end ,pages_num ,year ,month, pdf ,hal ,url ,doi ,note, abstract ,keywords, authors ,publisher ,groupe ,lang ,date ,typedoc_id ,soustypedoc_id ,pages_eid ,log ,conference_id ,proceedings_id".")VALUES (" . " '$doc_id', '$title', '$citation', '$journal', '$volume', '$pages_start', '$pages_end', '$pages_num', '$institution_id', '$year', '$month', '$pdf', '$hal', '$url', '$doi', '$note', '$abstract', '$keywords', '$authors' '$publisher', '$groupe', '$lang', "."now()"." '$typedoc_id', '$soustypedoc_id', '$pages_eid', "."0"." '$conference_id', '$proceedings_id'" . ")";
                 // print ("query= $query <p>\n");
                 $res   = $bd->exec_query($query);
                 
