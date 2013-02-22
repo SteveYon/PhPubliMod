@@ -1,29 +1,29 @@
 <?php session_start();
 /*****************************************************************************
- * Copyright (C) 2007-2009 CNRS
- *
- * Author: Benoît PIER  <http://www.lmfa.ec-lyon.fr/perso/Benoit.Pier>
- *
- * This file is part of PHPUBLI-1.0
- *
- * PHPUBLI is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the license, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
- *****************************************************************************/
+* Copyright (C) 2007-2009 CNRS
+*
+* Author: Benoît PIER <http://www.lmfa.ec-lyon.fr/perso/Benoit.Pier>
+*
+* This file is part of PHPUBLI-1.0
+*
+* PHPUBLI is free software; you can redistribute it and/or modify
+* it under the terms of the GNU General Public License as published by
+* the Free Software Foundation, either version 3 of the license, or
+* (at your option) any later version.
+*
+* This program is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+* GNU General Public License for more details.
+*
+* You should have received a copy of the GNU General Public License
+* along with this program. If not, see <http://www.gnu.org/licenses/>.
+*****************************************************************************/
         $rootdir=".";
-	$localdir=".";
-	$filename="index.php";
-	require_once ("$rootdir/include.php");
-	$bd = new MySQL(UNAME, UPASSWORD, BASE, SERVER);
+$localdir=".";
+$filename="index.php";
+require_once ("$rootdir/include.php");
+$bd = new MySQL(UNAME, UPASSWORD, BASE, SERVER);
 ?>
 <?php preamble(); ?>
 <html>
@@ -48,14 +48,23 @@
 <h1>Production scientifique du <?php echo $LABO; ?></h1>
 
 <p>
-	<h5>Bienvenue sur le portail de Gestion des Artciles de rechercher du laboratoire LITIS:</h5>
-	<p>
-	A partir de se Portail vous pourrez:
-	<p>
-	Gérer les articles
-	<p>
-	Consulter des articles
-	<!--
+<h5>Bienvenue sur le portail de Gestion des Artciles de rechercher du laboratoire LITIS:</h5>
+<p>
+A partir de se Portail vous pourrez:
+<p>
+Consulter des articles
+<p>
+Gérer les articles
+<p>
+<ul>
+<li> Ajouter des Articles </li>
+<li> Supprimer un article</li>
+<li> Modifier un article</li>
+</ul>
+<p>
+Les identifiants de connexion sont vos identifiants LDAP, si vous n'en avez pas, contactez l'administrateur de ce site.
+
+<!--
 
 <a href="./search.php">Recherche d'articles, de thèses, de congrès&hellip; dans la base de données</a>
 <p>
@@ -64,7 +73,7 @@ Recherche par année&nbsp;:
 
 for ($year=date("Y"); $year>1999; $year--)
 {
-	print("<a href=\"./search.php?search=year&amp;id=$year\">$year</a>, ");
+print("<a href=\"./search.php?search=year&amp;id=$year\">$year</a>, ");
 }
 
 ?>
@@ -80,23 +89,23 @@ Derniers documents ajoutés/modifiés dans la base&nbsp;:<br>
 
 
 <?php
-	$query = "SELECT * from document";
-	$query .= " WHERE typedoc_id != '7'";
+$query = "SELECT * from document";
+$query .= " WHERE typedoc_id != '7'";
         $query .= " ORDER BY date DESC ";
         $query .= " LIMIT 10";
-	$res = $bd->exec_query($query);
+$res = $bd->exec_query($query);
 
-	$lines="<tr><td></td><td></td></tr>\n";
+$lines="<tr><td></td><td></td></tr>\n";
 
-	$i=0; $fl=0;
-	while ( ($doc = $bd->fetch_object($res)) )
-	{
-		$lines .= document_singleline($i, $doc, $bd, $fl);
-	}
+$i=0; $fl=0;
+while ( ($doc = $bd->fetch_object($res)) )
+{
+$lines .= document_singleline($i, $doc, $bd, $fl);
+}
 
-	$lines .= "<tr><td>&nbsp;</td></tr>\n";
+$lines .= "<tr><td>&nbsp;</td></tr>\n";
 
-	echo "<table>" . $lines . "</table>\n";
+echo "<table>" . $lines . "</table>\n";
 ?>
 
 <p>

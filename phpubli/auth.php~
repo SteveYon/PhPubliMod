@@ -126,7 +126,7 @@ function check_admin_priv()
 	$currentuser=current_user();
 	if (empty($currentuser))
 	{
-		$priv=2;
+		$priv=0;
 	}
 	else
 	{
