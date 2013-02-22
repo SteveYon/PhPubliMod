@@ -35,6 +35,8 @@ $typedoc="";
 
 if ( (isSet($_GET['mode'])) && ($_GET['mode']=="edit") && (isSet($_GET['id'])) )
 {
+
+
 	$docid=$_GET['id'];
 	$result = $bd->exec_query("SELECT * FROM document WHERE doc_id='$docid' "); 
 	$ob=$bd->fetch_object($result);
@@ -295,7 +297,7 @@ if ( (isSet($_GET['mode'])) || ($displayid!="") )
 		$document = $bd->fetch_object($res);
 
 		$log=$document->log;
-		if ( ( "$log"=="2" ) && (check_root_priv($bd)<1) )
+		if ( ( "$log"=="2" ) && (check_root_priv($bd)<1)  )
 		{
 			echo "Données non modifiables<br><br>\n";
 		}
@@ -311,7 +313,7 @@ if ( (isSet($_GET['mode'])) || ($displayid!="") )
 			if ( "$document->hal"=="")
 			{
 				echo "<br>";
-				echo "L'identifiant HAL n'est pas renseigné.<br>";
+				//echo "L'identifiant HAL n'est pas renseigné.<br>";
 				$hal_search_url=hal_search($bd, $doc_id);
 				//echo "Créer un " . anchor("./export_notice_hal.php?docid=$doc_id", "fichier XML") ." pour " . anchor_ext("http://import.ccsd.cnrs.fr/importXML.php", "transférer automatiquement") ." les données ci-dessus vers HAL.<br><br>\n";
 				//echo "Créer un " . anchor("./export_bibtex.php?docid=$doc_id", "fichier Bibtex") ." pour " . anchor_ext("http://import.ccsd.cnrs.fr/importXML.php", "transférer automatiquement") ." les données ci-dessus vers HAL.<br><br>\n";
