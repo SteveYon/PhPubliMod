@@ -19,17 +19,35 @@
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
-        $rootdir=".";
-	$localdir=".";
-	$filename="index.php";
+	$rootdir="..";
+	$localdir="intranet";
+	$filename="last_document.php";
+
 	require_once ("$rootdir/include.php");
+	require_once ("include.php");
+
 	$bd = new MySQL(UNAME, UPASSWORD, BASE, SERVER);
+
+        check_login($bd);
+
+        $result = $bd->exec_query("SELECT * FROM groupes");
+        while ( $ob=$bd->fetch_object($result))
+                $list_groupes[$ob->g_id]="$ob->g_fullname";
+        $groupe_id=current_group($bd);
+        $groupe_name=$list_groupes[$groupe_id];
+
+	if (isSet($_GET['limit']))
+		$limit=$_GET['limit'];
+	else
+		$limit=20;
 ?>
 <?php preamble(); ?>
 <html>
 
+<!-- ------------------------------------------------------------------------- -->
+
 <head>
-<title>Publications du <?php echo $LABO; ?></title>
+<title>Liste des derniers documents modifiés</title>
 <?php csslink(); ?>
 <?php metadata(); ?>
 </head>
@@ -40,73 +58,42 @@
 
 <?php head(); ?>
 
-<?php lhsmenu(""); ?>
+<?php leftmenu_intranet("doc"); ?>
 
 <!-- begin main panel -->
 <div id=mainarea>
 
-<h1>Production scientifique du <?php echo $LABO; ?></h1>
-
-<p>
-	<h5>Bienvenue sur le portail de Gestion des Artciles de rechercher du laboratoire LITIS:</h5>
-	<p>
-	A partir de se Portail vous pourrez:
-	<p>
-	Gérer les articles
-	<p>
-	Consulter des articles
-	<!--
-
-<a href="./search.php">Recherche d'articles, de thèses, de congrès&hellip; dans la base de données</a>
-<p>
-Recherche par année&nbsp;:
-<?php
-
-for ($year=date("Y"); $year>1999; $year--)
-{
-	print("<a href=\"./search.php?search=year&amp;id=$year\">$year</a>, ");
-}
-
-?>
-&nbsp;&hellip;
-
-<p>
-Publications du <?php echo $LABO; ?> dans l'archive ouverte
-<?php echo anchor("http://hal.archives-ouvertes.fr/lab/$LABO/", "HAL"); ?>.
-<br><br>
-
-<p>
-Derniers documents ajoutés/modifiés dans la base&nbsp;:<br>
-
+<h1>Liste des <?php echo "$limit"; ?> derniers documents modifiés</h1>
 
 <?php
+
 	$query = "SELECT * from document";
 	$query .= " WHERE typedoc_id != '7'";
         $query .= " ORDER BY date DESC ";
-        $query .= " LIMIT 10";
+        $query .= " LIMIT $limit";
 	$res = $bd->exec_query($query);
 
 	$lines="<tr><td></td><td></td></tr>\n";
 
-	$i=0; $fl=0;
+	$i=0;	$fl=0;
 	while ( ($doc = $bd->fetch_object($res)) )
 	{
-		$lines .= document_singleline($i, $doc, $bd, $fl);
+		$lines .= document_singleline($i, $doc, $bd, $fl)."\n";
+		
 	}
 
 	$lines .= "<tr><td>&nbsp;</td></tr>\n";
 
 	echo "<table>" . $lines . "</table>\n";
-?>
 
-<p>
--->
-<!--<?php warning(); ?>-->
+?>
 
 </div>
 <!-- end main panel -->
 
 <?php footer(); ?>
+
+<!-- ------------------------------------------------------------------------- -->
 
 </body>
 

@@ -16,7 +16,7 @@
 
         $typedoc_id     = 4;
         $soustypedoc_id = $_POST['soustypedoc_id'];
-        $title          = addSlashes($_POST['TITLE']);
+        $title          = substr(addSlashes($_POST['TITLE']), 1, strlen(addSlashes($_POST['TITLE']))-2);
         $year           = $_POST['YEAR'];
         $institution_id = addSlashes($_POST['AFFILIATION']);
         $volume         = addSlashes($_POST['VOLUME']);
@@ -35,12 +35,11 @@
 	$month          = $_POST['MONTH'];
 	$citation       = addSlashes($_POST['CITATION']);
 	$url            = $_POST['URL'];
-	$abstract       = addSlashes($_POST['ABSTRACT']);
+	$abstract       = substr(addSlashes($_POST['ABSTRACT']), 1, strlen(addSlashes($_POST['ABSTRACT']))-2);
         $keywords       = addSlashes($_POST['KEYWORDS']);
 	$authors	= addSlashes($_POST['AUTHOR']);
 	//$groupe 	= addSlaches($_POST['GROUPE']); 
 
-        
         if ("$typedoc_id" == "3") // conference proceedings, use year from proceedings book. This is redundant but useful for sorting...
                 {
                 $query = "select * from document where doc_id='$proceedings_id'";
@@ -69,8 +68,7 @@
        $query        = "SELECT * " . "FROM document " . "WHERE title LIKE '%$title' " . "AND year LIKE '%$year%'";
        $reponse          = $bd->exec_query($query);
        $doc = $bd->fetch_object($reponse);
-       $id     = $doc->doc_id;
-       echo $id; 
+       $id     = $doc->doc_id; 
       if("$id" == ""){ //Le document n'existe pas dans la base et donc nous l'ajoutons.
 
         $query = "INSERT INTO document ( " . "title, citation, journal, volume" . ", pages_start, pages_end, pages_num, year, month" . ", hal, url, 		doi, note" . ", abstract, keywords, authors" . ", publisher, groupe, lang, date, typedoc_id, soustypedoc_id, pages_eid, log, conference_id, 		proceedings_id " . ") VALUES ( " . " '$title', '$citation', '$journal', '$volume'" . ", '$pages_start', '$pages_end', '$pages_num', '$year', 		'$month', '$hal', '$url'" . ", '$doi', '$note', '$abstract', '$keywords'" . ", '$authors', '$publisher', '$groupe', '$lang', 'now()', 		'$typedoc_id', '$soustypedoc_id', '$pages_eid', '$log', '$conference_id', '$proceedings_id')";
@@ -91,12 +89,12 @@
                 // echo "returnid=$returnid <p>\n";
                 
                 log_entry("document", $returnid, "insert", "", $document_new, $bd);
-
+		echo "\""$title."\""."\na été ajouté dans la base \n";
 
 
 
     }else{
-	echo "\nLe document existe dans la base";
+	echo $title."\n existe dans la base\n";
     }
 
 ?>
