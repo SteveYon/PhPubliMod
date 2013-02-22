@@ -40,7 +40,10 @@
 	$authors	= addSlashes($_POST['AUTHOR']);
 	//$groupe 	= addSlaches($_POST['GROUPE']); 
 
-        
+	$varTitle = substr("$title", -1, -1);
+        echo $title."\n";
+	echo $abstract."\n";
+	echo $title;
         if ("$typedoc_id" == "3") // conference proceedings, use year from proceedings book. This is redundant but useful for sorting...
                 {
                 $query = "select * from document where doc_id='$proceedings_id'";

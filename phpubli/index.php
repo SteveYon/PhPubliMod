@@ -55,7 +55,7 @@
 	Gérer les articles
 	<p>
 	Consulter des articles
-	<!--
+
 
 <a href="./search.php">Recherche d'articles, de thèses, de congrès&hellip; dans la base de données</a>
 <p>
@@ -100,7 +100,7 @@ Derniers documents ajoutés/modifiés dans la base&nbsp;:<br>
 ?>
 
 <p>
--->
+
 <!--<?php warning(); ?>-->
 
 </div>

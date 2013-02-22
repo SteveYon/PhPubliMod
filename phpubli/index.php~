@@ -1,4 +1,4 @@
-<?php
+<?php session_start();
 /*****************************************************************************
  * Copyright (C) 2007-2009 CNRS
  *
@@ -48,15 +48,25 @@
 <h1>Production scientifique du <?php echo $LABO; ?></h1>
 
 <p>
-<a href="./search.php">Recherche d'articles, de thèses, de congrès&hellip; dans la base de données</a>
+	<h5>Bienvenue sur le portail de Gestion des Artciles de rechercher du laboratoire LITIS:</h5>
+	<p>
+	A partir de se Portail vous pourrez:
+	<p>
+	Gérer les articles
+	<p>
+	Consulter des articles
+	<!--
 
+<a href="./search.php">Recherche d'articles, de thèses, de congrès&hellip; dans la base de données</a>
 <p>
 Recherche par année&nbsp;:
 <?php
+
 for ($year=date("Y"); $year>1999; $year--)
 {
 	print("<a href=\"./search.php?search=year&amp;id=$year\">$year</a>, ");
 }
+
 ?>
 &nbsp;&hellip;
 
@@ -90,7 +100,8 @@ Derniers documents ajoutés/modifiés dans la base&nbsp;:<br>
 ?>
 
 <p>
-<?php warning(); ?>
+-->
+<!--<?php warning(); ?>-->
 
 </div>
 <!-- end main panel -->

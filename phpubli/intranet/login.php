@@ -63,7 +63,7 @@ if ( (isset($_POST['action'])) && ($_POST['action']=="login") )
 				{
 					$_SESSION['id']=$info[0]['uid'][0];
 					$_SESSION['login']=$login;
-					$_SESSION['status']=$info[0]['status'][0];
+					$_SESSION['status']= 0;// 0 => utilisateur normal donc venant de LDAP
 					$_SESSION['group']=$info[0]['ou'][0];
 					$_SESSION['site']="phpubli";
 					$redirectpage="index.php";

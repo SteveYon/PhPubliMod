@@ -23,13 +23,9 @@
 $rootdir="..";
 $localdir="intranet";
 $filename="login.php";
-echo 'test';
 require_once ("$rootdir/include.php");
-echo 'test2';
 require_once ("include.php");
-echo 'test3';
 $bd = new MySQL(UNAME, UPASSWORD, BASE, SERVER);
-echo 'test4';
 $redirectpage=$filename;
 
 if ( (isset($_POST['action'])) && ($_POST['action']=="login") )
@@ -67,7 +63,7 @@ if ( (isset($_POST['action'])) && ($_POST['action']=="login") )
 				{
 					$_SESSION['id']=$info[0]['uid'][0];
 					$_SESSION['login']=$login;
-					$_SESSION['status']=$info[0]['status'][0];
+					$_SESSION['status']= 0;// 0 => utilisateur normal donc venant de LDAP
 					$_SESSION['group']=$info[0]['ou'][0];
 					$_SESSION['site']="phpubli";
 					$redirectpage="index.php";
