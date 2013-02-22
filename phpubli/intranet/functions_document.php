@@ -588,7 +588,7 @@ if ("$typedoc_libelle" == "article") {
 
         echo "<tr>\n";
         echo "<th>Abstract</th>\n";
-        echo "<td>" . $document->note . "</td>\n";
+        echo "<td>" . $document->abstract . "</td>\n";
         echo "</tr>\n";
 
         echo "<tr>\n";
@@ -612,12 +612,7 @@ if ("$typedoc_libelle" == "article") {
 
         echo "<tr>\n";
         echo "<th>Langue</th>\n";
-        echo "<td>";
-        foreach ($list_lang as $id => $name) {
-                if ($id == $document->lang)
-                        echo "$name";
-        }
-        echo "</td>\n";
+        echo "<td> ".$document->lang."</td>\n";
         echo "</tr>\n";
 
 

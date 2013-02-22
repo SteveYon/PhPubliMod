@@ -270,7 +270,10 @@ function document_singleline(&$i, $document, $bd, &$flag)
 				$str .= anchor("$rootdir/intranet/document.php?mode=edit&amp;id=$document->doc_id", $ref) . "."  ;
 		}
 		else
-			$str .= "$ref" . "."  ;
+				$str .= anchor("$rootdir/intranet/document.php?mode=edit&amp;id=$document->doc_id", $ref) . "."  ;
+
+
+
 		$str .= "</td>";
 
 		$str .= "<td $style>";
@@ -371,10 +374,10 @@ function document_singleline(&$i, $document, $bd, &$flag)
 			$str .= ", <i>".$citation."</i>";
 		}
 		if($abstract!=""){
-			$str .= ", Abstract: ".$abstract;
+			$str .= "</br> Abstract: ".$abstract;
 		}
 		if($authors!=""){
-			$str .= ", Autheur(s): ".$authors;
+			$str .= ", <i>Autheur(s): ".$authors."</i>";
 		}
 		if($keywords!=""){
 			$str .= ", <i>Mots Clés: ".$keywords."</i>";
