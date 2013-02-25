@@ -30,22 +30,7 @@ function valider() {
         valeurC = false;
     }
 
-    mondebut = estPlein(mondebut);
-    monfin = estPlein(monfin);
-    monnb = estPlein(monnb);
-
-    if (mondebut == true && monfin == true & monnb == true) {
-        // les donnees sont ok, on peut envoyer le formulaire    
-        valeurCV = true;
-    } else {
-        // sinon on affiche un message
-        string+="- Les champs 'D\351but', 'Fin', 'Nombre de Page' ne sont pas vides \n";
-        // et on indique de ne pas envoyer le formulaire
-        valeurCV = false;
-    }
-
-
-    if (valeurC == true & valeurL == true & valeurCV == true) {
+    if (valeurL == true & valeurC == true) {
         return true;
     } else {
     	alert(string);
@@ -85,22 +70,8 @@ function validerEdit() {
         valeurC = false;
     }
 
-    mondebut = estPlein(mondebut);
-    monfin = estPlein(monfin);
-    monnb = estPlein(monnb);
 
-    if (mondebut == true && monfin == true & monnb == true) {
-        // les donnees sont ok, on peut envoyer le formulaire    
-        valeurCV = true;
-    } else {
-        // sinon on affiche un message
-        string+="- Les champs 'D\351but', 'Fin', 'Nombre de Page' ne sont pas vides \n";
-        // et on indique de ne pas envoyer le formulaire
-        valeurCV = false;
-    }
-
-
-    if (valeurC == true & valeurL == true & valeurCV == true) {
+    if (valeurC == true & valeurL == true) {
         return true;
     } else {
     	alert(string);
